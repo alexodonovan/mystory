@@ -1,0 +1,24 @@
+storyjs_jsonp_data = {
+	"timeline" : {
+		"headline" : "Surname: Breen",
+		"type" : "default",
+		"text" : "<span class=\"test-styling\">in Irish: Mac BRAOIN</span>",
+		"startDate" : "1800,14,10",
+		"date" : [{
+			"startDate" : "1888,10,14",
+			"endDate" : "1965,12,05",
+			"headline" : "Joseph Ignatius Breen",
+			"text" : "<p>The Irish name Breen has evolved from the Gaelic Mac Braoin or O Braoin.</p>",
+		},{
+			"startDate" : "1888,10,14",
+			"endDate" : "1965,12,05",
+			"headline" : "Joseph Ignatius Breen",
+			"text" : "<p>Joseph Ignatius Breen was born</p>",
+			"asset" : {
+				"media" : "<div id='map-container' class='map-container'><div id='map-canvas'></div></div>",
+				"credit" : "",
+				"caption" : ""
+			}
+		}]
+	}
+}

@@ -10,10 +10,12 @@ Ext.define('App.maps.Marker', {
 	],	
 	
 	statics: {
-		options: {
-			clickable : true,
-			draggable : true,
-			zIndex: 1
+		options: function(preview){
+			return {
+				clickable : true,
+				draggable : !preview,
+				zIndex: 1				
+			};
 		},
 		
 		createMarker: function(marker){
@@ -37,8 +39,10 @@ Ext.define('App.maps.Marker', {
     	//dragend: when the marker is moved
     	this.wrapEvents('dragend', 'click', 'drag', 'rightclick');
     	this.on('dragend', this.onDragEnd, this);
-    	this.on('rightclick', this.onRightClick, this);
+    	this.on('rightclick', this.onRightClick, this);    	    
 //    	this.on('drag', this.onDrag, this);
+    	
+    	this.addEvents('load');
     },  
     
     onRightClick: function(){
@@ -78,7 +82,7 @@ Ext.define('App.maps.Marker', {
     },
     
     onDragEnd: function(model, mouseEvent){
-    	this.update(mouseEvent.latLng);
+    	this.updatePosition(mouseEvent.latLng);
     	this.save('updateCallback');    
     },       
     
@@ -94,6 +98,10 @@ Ext.define('App.maps.Marker', {
     
     deleteCallback: function(){
     	alert('done');
+    },
+    
+    update: function(){
+    	this.save('updateCallback');    
     },
     
     save: function(fnName){
@@ -118,7 +126,7 @@ Ext.define('App.maps.Marker', {
     	this.set('id', record.get('id'));
     },
 			
-	update: function(latLng){		
+	updatePosition: function(latLng){		
 		this.set('lat', latLng.lat());
 		this.set('lng', latLng.lng());		
 	},	
@@ -127,13 +135,17 @@ Ext.define('App.maps.Marker', {
 		this.set('narrative', value);	
 	},
 	
-	draw: function(map){			
+	draw: function(map, preview){			
 		if (!map) throw new Error('map not initialized');
-		var options = Ext.apply(App.maps.Marker.options, {
+		var options = Ext.apply(App.maps.Marker.options(preview), {
 			position: new google.maps.LatLng(this.get('lat'), this.get('lng')),    		
     		map: map    		
 		});					
 		this.marker = new google.maps.Marker(options);				
+	},
+	
+	showStory: function(){		
+		this.fireEvent('load', this, this.marker);
 	},
 	
 	onMapEvent: function(evt, fn, scope){

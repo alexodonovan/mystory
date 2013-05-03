@@ -10,22 +10,25 @@ Ext.define('App.maps.Story', {
 	},
 	
 	createWindow: function(){				
-			var g = google.maps.event,
+		var g = google.maps.event,
 			window = new google.maps.InfoWindow({
-			    content: this.content()			    
+			    content: this.content(),
+			    maxWidth: 450
 			});
 			
-		g.addListener(window, 'domready', Ext.bind(this.onInfoWindowShow, this));
+		g.addListener(window, 'domready', Ext.bind(this.onInfoWindowDomReady, this));
 		return window;
 	},
 	
-	content: function(){
-		var	content = '<textarea id="info-window-input" class="info-window-popup"></textarea>';
-		return content;
+	content: function(value){
+		if (!value) value='';
+		if (this.preview) return '<div id="info-window-input" class="info-window-popup">'+value+'</div>';
+		return '<textarea id="info-window-input" class="info-window-popup">'+value+'</textarea>';		
 	},
 	
 	show: function(){		
-		this.window.open(this.map, this.marker);		
+		this.window.open(this.map, this.marker);
+		this.updateValue();		
 	},
 	
 	close: function(){
@@ -33,24 +36,28 @@ Ext.define('App.maps.Story', {
 	},
 	
 	
-	onInfoWindowShow: function(model, marker){		
-		this.textarea().on('blur', this.onWindowBlur, this);
-		this.textarea().updateValue();
+	onInfoWindowDomReady: function(model, marker){	
+		if (this.preview) return;
+		this.textarea().on('blur', this.onWindowBlur, this);		
 	},
 	
 	textarea: function(){
 		var el = Ext.get('info-window-input');
-		el.updateValue = Ext.bind(this.updateValue, this);
+		el.resize = Ext.bind(this.resize, this, [el]);
 		return el;
 	},
 	
+	resize: function(el){
+		el.setSize(450, 450);
+	},
+	
 	updateValue: function(){
-		this.textarea().dom.value = this.model.get('narrative');
+		this.window.setContent(this.content(this.model.get('narrative')));		
 	},
 	
 	onWindowBlur: function(evt, t, eOpts){
 		this.model.updateNarrative(t.value);		
-		this.model.save();		
+		this.model.update();		
 	},
 	
 	update: function(model, map, marker){

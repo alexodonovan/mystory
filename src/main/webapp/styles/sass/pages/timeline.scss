@@ -1,0 +1,15 @@
+
+@import "compass/css3";
+
+
+.timeline-container {
+	width: 100%;
+	height: 100%;
+	@include display-box;
+	@include box-align(center);
+	@include box-pack(center);
+}
+
+.test-styling {
+	color: red;
+}

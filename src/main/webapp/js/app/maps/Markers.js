@@ -11,10 +11,10 @@ Ext.define('App.maps.Markers', {
 		this.addEvents('redrawn');
 	},
 	
-	redraw: function(map){
+	redraw: function(map, preview){
 		this.each(function(marker){
-			marker.draw(map);
-			marker.initEvents();
+			marker.draw(map, preview);			
+			marker.initEvents();			
 		}, this);
 		this.fireEvent('redrawn', this);		
 	},	
@@ -41,6 +41,11 @@ Ext.define('App.maps.Markers', {
 		this.each(function(marker){			
 			marker.on(evt, fn, scope);
 		}, this);
+	},
+	
+	showFirstStory: function(){
+		this.first().showStory();
 	}
+	
 		
 });
