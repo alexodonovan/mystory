@@ -5,8 +5,18 @@ Ext.application({
     requires: ['App.maps.GoogleMap'],
      
     launch: function() {
-    	this.renderMap();
-    	
+    	this.createTimeline();
+    	this.renderMap();    	    	
+    },
+           
+    createTimeline: function(json){    		
+    	var config = {
+			width : "98%",
+			height : "98%",
+			source : 'rest/timeline/somesearchstring/data.jsonp'
+//			source : 'example_jsonp.jsonp'
+		};				
+		createStoryJS(config);
     },
     
     renderMap: function(){
@@ -15,6 +25,8 @@ Ext.application({
     		Ext.defer(this.renderMap, 200, this);
     		return;
     	}    	
-    	App.maps.GoogleMap.create({renderTo: 'map-canvas', preview:true});    	
+    	App.maps.GoogleMap.create({renderTo: 'map-canvas', preview:true});    	    
     }
+    
+    
 });

@@ -1,0 +1,60 @@
+{
+	"timeline" : {
+		"headline" : "The Breen Family Name",
+		"type" : "timeline",
+		"text" : "<p>The strong hand uppermost (Lám láidir in uactar); Strength from above (Vigeur de dessus); Boldly and faithfully (Fortiter et fideliter); Let us be judged by our actions (Spectemur agendo). The Irish name Breen has evolved from the Gaelic <a href='http://www.fexco.com'>Mac Braoin</a> or O Braoin.</p>",
+		"asset" : {
+			"media" : "http://localhost:8080/genealogy/images/crests/breen.jpg",
+			"credit" : "&copy Fexco 2013",
+			"caption" : "The Breen Family Crest"
+		},
+		"date" : [{
+			"startDate" : "1700",
+			"endDate" : "1700",
+			"headline" : "Breen Early Origins",
+			"classname" : "hide-date",
+			"text" : "<p>The Breen family is known to have hailed from the <a href='http://www.kilkennytourism.ie/'>Kilkenny Region</a> where they held a <a href='http://en.wikipedia.org/wiki/Family_seat'>family seat.</a></p>",
+			"asset" : {
+				"media" : "<div id='map-container' class='map-container'><div id='map-canvas'></div></div>",
+				"thumbnail" : "images/icons/marker32.png"
+			}
+		}, {
+			"startDate" : "2013",
+			"endDate" : "2013",
+			"headline" : "More Information on the Breen Genealogy",
+			"text" : "Wikipedia lists many other famous Breens",
+			"asset" : {
+				"media" : "http://en.wikipedia.org/wiki/O%27Donovan_family"
+			}
+		}, {
+			"startDate" : "2002,6,11",
+			"endDate" : "2002,6,11",
+			"headline" : "Gary Patrick Breen",
+			"text" : "Gary Patrick Breen (born 12 December 1973 in Hendon, London) is a former footballer who made more than 500 appearances in the Football League and Premier League. He played for numerous clubs over a 20-year career, including more than 100 appearances each for Coventry City and Sunderland. He won 63 caps for the Republic of Ireland, and played in the 2002 FIFA World Cup, scoring in Ireland's 3–0 victory over Saudi Arabia.",
+			"asset" : {
+				"media" : "http://youtu.be/j-4XJNVZmMU",
+				"caption" : "Gary Breen Goal against Saudi Arabia World Cup 2002"
+			}
+		}, {
+			"startDate" : "1800",
+			"endDate" : "1800",
+			"classname" : "hide-date",
+			"headline" : "Distingushed Members",
+			"text" : "There have been many distingushed family members with the Breen name ranging from sporting hero's to outlaws during the <a herf='http://en.wikipedia.org/wiki/Irish_War_of_Independence'>Irish War of Independence</a>. Read about some of them in the next few pages...",
+			"asset" : {
+				"media" : "<blockquote>...we took the action deliberately, having thought over the matter and talked it over between us. Treacy had stated to me that the only way of starting a war was to kill someone, and we wanted to start a war, so we intended to kill some of the police whom we looked upon as the foremost and most important branch of the enemy forces ... The only regret that we had following the ambush was that there were only two policemen in it, instead of the six we had expected...</blockquote>",
+				"caption" : "Dan Breen speaking about the Irish War of Idenpendance."
+			}
+		}, {
+			"startDate" : "1919,1,21",
+			"endDate" : "1919,1,21",
+			"headline" : "Dan Breen",
+			"text" : "<a href='http://en.wikipedia.org/wiki/Dan_Breen'>Daniel 'Dan' Breen</a> (Irish: Dónall Ó Braoin; 11 August 1894 – 27 December 1969) was a volunteer in the Irish Republican Army during the Irish War of Independence and the Irish Civil War. In later years, he was a Fianna Fáil politician.",
+			"asset" : {
+				"media" : "http://upload.wikimedia.org/wikipedia/commons/e/ef/Daniel_Breen_police_notice.jpg",
+				"caption" : "Wanted for his part in an ambush at <a href='https://maps.google.com/maps?q=Soloheadbeg&hl=en&ll=52.676382,-9.0802&spn=2.817887,7.13562&sll=52.085138,-9.80253&sspn=0.178479,0.445976&hnear=Soloheadbeg,+County+Tipperary,+Ireland&t=m&z=8'>Soloheadbeg in County Tipperary.</a>"
+			}
+		}]
+
+	}
+}

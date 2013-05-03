@@ -44,7 +44,8 @@ Ext.define('App.maps.Markers', {
 	},
 	
 	showFirstStory: function(){
-		this.first().showStory();
+		var first = this.first();
+		if(first) first.showStory();		
 	}
 	
 		
