@@ -32,7 +32,7 @@ Ext.define('App.maps.GoogleMap', {
 			zoomControlOptions : {
 				style : google.maps.ZoomControlStyle.LARGE
 			},
-			streetViewControl : false,
+			streetViewControl : true,
 			mapTypeControl : false
 	 	};
 	},
@@ -140,6 +140,7 @@ Ext.define('App.maps.GoogleMap', {
 		    "stylers":
 		      [{ "visibility": "on" },
 		      { "color": "#809494" }]
+//		      { "color": "#FFFFFF" }]
 		  },{
 		    "featureType": "administrative.country",
 		    "stylers": [{ "visibility": "off" }]

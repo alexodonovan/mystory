@@ -16,7 +16,7 @@
   box-pack: center;
 }
 
-/* line 13, ../../sass/pages/timeline.scss */
-.test-styling {
-  color: red;
+/* line 15, ../../sass/pages/timeline.scss */
+.hide-date .container .date {
+  display: none;
 }

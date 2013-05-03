@@ -10,6 +10,10 @@
 	@include box-pack(center);
 }
 
-.test-styling {
-	color: red;
+.hide-date {
+	.container {
+		.date {
+			display: none;
+		}
+	}
 }
