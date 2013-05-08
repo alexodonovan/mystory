@@ -1,0 +1,33 @@
+<aspectj>
+<aspects>
+<aspect name="com.fsg.storify.readservice.timeline.Topic_Roo_Jpa_ActiveRecord"/>
+<aspect name="com.fsg.storify.readservice.timeline.Timeline_Roo_Configurable"/>
+<aspect name="com.fsg.storify.readservice.timeline.Family_Roo_Finder"/>
+<aspect name="com.fsg.storify.readservice.timeline.Asset_Roo_JavaBean"/>
+<aspect name="com.fsg.storify.readservice.timeline.Family_Roo_Jpa_ActiveRecord"/>
+<aspect name="com.fsg.storify.readservice.timeline.Timeline_Roo_ToString"/>
+<aspect name="com.fsg.storify.readservice.timeline.Timeline_Roo_JavaBean"/>
+<aspect name="com.fsg.storify.readservice.timeline.DateTopic_Roo_Jpa_ActiveRecord"/>
+<aspect name="com.fsg.storify.readservice.timeline.Family_Roo_Configurable"/>
+<aspect name="com.fsg.storify.readservice.timeline.Timeline_Roo_Jpa_ActiveRecord"/>
+<aspect name="com.fsg.storify.readservice.timeline.Asset_Roo_Jpa_Entity"/>
+<aspect name="com.fsg.storify.readservice.timeline.Asset_Roo_Jpa_ActiveRecord"/>
+<aspect name="com.fsg.storify.readservice.timeline.Family_Roo_JavaBean"/>
+<aspect name="com.fsg.storify.readservice.timeline.Topic_Roo_Configurable"/>
+<aspect name="com.fsg.storify.readservice.timeline.Topic_Roo_ToString"/>
+<aspect name="com.fsg.storify.readservice.timeline.DateTopic_Roo_Jpa_Entity"/>
+<aspect name="com.fsg.storify.readservice.timeline.Family_Roo_Jpa_Entity"/>
+<aspect name="com.fsg.storify.readservice.timeline.Asset_Roo_Configurable"/>
+<aspect name="com.fsg.storify.readservice.timeline.Family_Roo_ToString"/>
+<aspect name="com.fsg.storify.readservice.timeline.DateTopic_Roo_JavaBean"/>
+<aspect name="com.fsg.storify.readservice.timeline.DateTopic_Roo_ToString"/>
+<aspect name="com.fsg.storify.readservice.timeline.Timeline_Roo_Finder"/>
+<aspect name="com.fsg.storify.readservice.timeline.Timeline_Roo_Json"/>
+<aspect name="com.fsg.storify.readservice.timeline.Timeline_Roo_Jpa_Entity"/>
+<aspect name="com.fsg.storify.readservice.timeline.Asset_Roo_ToString"/>
+<aspect name="com.fsg.storify.readservice.timeline.Topic_Roo_JavaBean"/>
+<aspect name="com.fsg.storify.readservice.timeline.DateTopic_Roo_Configurable"/>
+<aspect name="com.fsg.storify.readservice.timeline.Topic_Roo_Jpa_Entity"/>
+</aspects>
+</aspectj>
+

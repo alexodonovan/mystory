@@ -1,0 +1,28 @@
+<Context path="/readservice" reloadable="true"
+	docBase="C:\projects\genealogy\storify-read-service"
+	workDir="C:\projects\genealogy\storify-read-service\work">
+	
+	<!-- UAT Bone Datasource -->
+	<Resource name="jdbc/storify" type="javax.sql.DataSource" auth="Container"	
+		username="awsfsgdev" password="Abcde12?"
+		driverClassName="com.mysql.jdbc.Driver"								
+		url="jdbc:mysql://fsgdev.c3fumuuunjmu.eu-west-1.rds.amazonaws.com:3306/storify"						
+		maxActive="100"
+		maxIdle="50"
+		minIdle="10"
+		suspectTimeout="60"
+		timeBetweenEvictionRunsMillis="30000"
+		minEvictableIdleTimeMillis="60000"
+		removeAbandonedTimeout="60"
+		removeAbandoned="true"
+		logAbandoned="true"          
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"          
+		testOnBorrow="true"
+		testWhileIdle="true"
+		testOnReturn="false"
+		validationQuery="SELECT 1"
+		validationInterval="30000"
+		jmxEnabled="false"
+		jdbcInterceptors="SlowQueryReportJmx(threshold=1000)" />
+
+</Context>
