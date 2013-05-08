@@ -9,7 +9,18 @@ Ext.define('App.maps.GoogleMap', {
 	
 	autoHeight: true,
 
-	border : false,	
+	border : false,
+	
+	statics: {
+		 createPreview: function(){
+	    	var el = Ext.get('map-canvas');
+	    	if (!el) {
+	    		Ext.defer(App.maps.GoogleMap.createPreview, 200, this);
+	    		return;
+	    	}    	
+	    	return App.maps.GoogleMap.create({renderTo: 'map-canvas', preview:true});    	    
+	    }
+	},
 	
 	initComponent : function() {
 		this.html = '&nbsp';
