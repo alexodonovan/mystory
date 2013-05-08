@@ -17,14 +17,12 @@ import com.fsg.genealogy.domain.Marker;
 public class MarkerController {
 
 	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
-	public ResponseEntity<java.lang.String> createFromJson(
-			@RequestBody String json) {
+	public ResponseEntity<java.lang.String> createFromJson(@RequestBody String json) {
 		Marker marker = Marker.fromJsonToMarker(json);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json");
 		marker.persist();
-		return new ResponseEntity<String>(marker.toJson(), headers,
-				HttpStatus.CREATED);
+		return new ResponseEntity<String>(marker.toJson(), headers, HttpStatus.CREATED);
 	}
 
 }

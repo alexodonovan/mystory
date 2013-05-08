@@ -12,13 +12,19 @@ Ext.define('App.maps.GoogleMap', {
 	border : false,
 	
 	statics: {
-		 createPreview: function(){
-	    	var el = Ext.get('map-canvas');
+		 createPreview: function(){	    
+	    	return App.maps.GoogleMap.create({renderTo: 'map-canvas', preview:true});    	    
+	    },
+	    createAdmin: function(){
+	    	return App.maps.GoogleMap.create({renderTo: 'map-canvas', preview:false});	    		    
+	    },
+	    waitForReadyThen: function(fn){	    	
+	    	var el = Ext.get('map-canvas'), gm = App.maps.GoogleMap;
 	    	if (!el) {
-	    		Ext.defer(App.maps.GoogleMap.createPreview, 200, this);
+	    		Ext.defer(gm.waitForReadyThen, 200, this, [fn]);
 	    		return;
 	    	}    	
-	    	return App.maps.GoogleMap.create({renderTo: 'map-canvas', preview:true});    	    
+	    	return fn();
 	    }
 	},
 	

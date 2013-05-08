@@ -5,8 +5,9 @@ Ext.application({
     requires: ['App.maps.GoogleMap'],
      
     launch: function() {
-    	this.createTimeline();    	
-    	App.maps.GoogleMap.createPreview();
+    	this.createTimeline();
+    	var gm = App.maps.GoogleMap;
+    	gm.waitForReadyThen(gm.createPreview);
     },
            
     createTimeline: function(json){    		
