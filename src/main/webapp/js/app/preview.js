@@ -13,8 +13,7 @@ Ext.application({
     	var config = {
 			width : "98%",
 			height : "98%",
-			source : 'http://localhost:8081/readservice/timelines/breen/data.jsonp'
-//			source : 'example_jsonp.jsonp'
+			source : 'http://localhost:8081/storify-read-service/timelines/breen/data.jsonp'
 		};				
 		createStoryJS(config);
     }      
