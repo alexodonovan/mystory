@@ -32,10 +32,10 @@ public class TimelineController {
 	public @ResponseBody String getDataForEdit(@PathVariable String searchString, @RequestParam(value="callback") String callback){
 		List<Family> resultList = Family.findFamilysByNameLike(searchString).getResultList();
 		Family family = resultList.get(0);
-		Timeline timeline = Timeline.findTimelinesByFamily(family).getSingleResult();	
-		
+		Timeline timeline = Timeline.findTimelinesByFamily(family).getSingleResult();
+					
 		StringBuilder jsonP = new StringBuilder(callback+"(")
-									.append(timeline.getData())
+									.append(timeline.toJson())
 									.append(");");		
 		
 		return jsonP.toString();		
