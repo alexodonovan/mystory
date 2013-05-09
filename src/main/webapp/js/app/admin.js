@@ -2,30 +2,18 @@ Ext.application({
     name: 'App',    
     appFolder: 'js/app',
     
-    requires: ['App.maps.GoogleMap', 'App.timeline.Loader'],
+    requires: ['App.maps.GoogleMap', 
+    		'App.timeline.Loader',
+    		'App.timeline.Editor'
+    		],
      
-    launch: function() {
-    	var gm = App.maps.GoogleMap;
-    	
-    	this.timeline = this.createTimeline();    	    	    	 
-    	gm.waitForReadyThen(gm.createAdmin);
-    	    	    	
-    	
-    },
-           
-    createTimeline: function(json){
-    	var loader = App.timeline.Loader.init();
-    	loader.on('ready', this.onTimelineLoaded, this);
-    	    		
+    launch: function() {    	
+    	var loader = App.timeline.Loader.fetch('breen');
+    	loader.on('ready', this.loadEditor, this);    	    	   	    	    	     	    	    	    	   
     },
     
-    onTimelineLoaded: function(loader){
-    	this.createEditor();    	
-    },
-    
-    createEditor: function(){
-    	
+    loadEditor: function(timeline){
+    	App.timeline.Editor.create({renderTo: 'timeline-container', timeline: timeline});
     }
-    
     
 });

@@ -1,43 +1,55 @@
-Ext.define('App.timeline.Loader', {
+Ext.define('App.timeline.Editor', {
 
-	extend : 'Ext.util.Observable',
+	extend : 'Ext.panel.Panel',
 	
-	statics: {
+	requires: ['App.timeline.TitleDescription'],
+	
+	cls: 'editor-container',
+	
+	border: false,
+	
+	layout: {
+		type: 'hbox',
+		align: 'stretch'
+	},
 		
-		init: function(){
-			var loader = App.timeline.Loader.create();
-			loader.createStoryJS();
-			loader.pollForReady();
-			return loader;
-		}
 	
+	initComponent: function(){
+		this.items = this.buildItems();		
+		this.callParent();		
 	},
 	
-	constructor: function(){
-		this.callParent();			
-	},
-	
-	initEvents: function(){
-		this.addEvents('ready');
+	initEvents: function(){		
 		this.callParent();
 	},
 	
-	pollForReady: function(){				
-		if(window['VMM'] == undefined)  {
-			Ext.defer(this.pollForReady, 200, this);
-			return;
-		}		
-		this.fireEvent('ready', this);				
-	},	
 	
-	createStoryJS: function(){
-		var config = {
-			width : "98%",
-			height : "98%",
-			debug : true,
-			source : 'http://localhost:8081/storify-read-service/timelines/breen/data.jsonp'
-		};		
-		createStoryJS(config);		
+	buildItems: function(){
+		var upload = this.createImageUpload(),
+			title = this.createTitlePanel();;
+		
+		return [upload, title];
+	},
+	
+	createImageUpload: function(){
+		var p = Ext.panel.Panel.create({
+			html: 'image upload here',
+			flex: 1,
+			border: false		
+		});
+		
+		return p;
+	},
+	
+	createTitlePanel: function(){
+		return App.timeline.TitleDescription.create({
+			flex: 1,
+			timeline: this.timeline
+		});		
 	}
+	
+	
+	
+	
 	
 });

@@ -21,14 +21,16 @@ body {
 
 
 <!-- Le Frameworks -->
-<link href="http://cdn.sencha.com/ext/gpl/4.2.0/resources/css/ext-all.css" rel="stylesheet" />
+<link href="http://cdn.sencha.com/ext/gpl/4.2.0/resources/css/ext-all-neptune.css" rel="stylesheet" />
+<!-- <link href="http://cdn.sencha.com/ext/gpl/4.2.0/resources/css/ext-all.css" rel="stylesheet" /> -->
 <script src="http://cdn.sencha.com/ext/gpl/4.2.0/ext-all-debug.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=drawing"></script> 
 
 <!-- Le Styles -->
-<link href="styles/stylesheets/map/map.css" rel="stylesheet" />
+<link href="styles/stylesheets/admin/admin.css" rel="stylesheet" />
 
 <!-- Le Javascript -->
+<script src="config.js"></script>
 <script src="js/app/admin.js"></script>
 
 <script type="text/javascript" src="assets/timeline/compiled/js/storyjs-embed.js"></script>
@@ -64,23 +66,7 @@ body {
 
 
 	<!-- BEGIN Timeline Embed -->
-	<div class="timeline-container">
-		<div id="timeline-embed"></div>
-	</div>	
-	
-	<!--
-	<script type="text/javascript">
-		var timeline_config = {
-			width : "90%",
-			height : "90%",
-			source : 'example_jsonp.jsonp',
-			maptype: 'TERRAIN',
-			gmap_key: 'AIzaSyDyFcTFNgvn3bQ_1GPwW6_zNuHOO5xOioY'
-		};		
-	</script>
-	<script type="text/javascript"
-		src="assets/timeline/compiled/js/storyjs-embed.js"></script>
-		-->
-	<!-- END Timeline Embed-->
+	<div id="timeline-container" class="timeline-container"></div>	
+		
 </body>
 </html>
