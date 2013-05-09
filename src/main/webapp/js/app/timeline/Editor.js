@@ -14,11 +14,11 @@ Ext.define('App.timeline.Editor', {
 	},
 		
 	
-	initComponent: function(){
+	initComponent: function(){	
 		this.items = this.buildItems();		
 		this.callParent();		
 	},
-	
+		
 	initEvents: function(){		
 		this.callParent();
 	},
@@ -29,7 +29,7 @@ Ext.define('App.timeline.Editor', {
 			title = this.createTitlePanel();;
 		
 		return [upload, title];
-	},
+	},		
 	
 	createImageUpload: function(){
 		var p = Ext.panel.Panel.create({
@@ -44,7 +44,7 @@ Ext.define('App.timeline.Editor', {
 	createTitlePanel: function(){
 		return App.timeline.TitleDescription.create({
 			flex: 1,
-			timeline: this.timeline
+			model: this.model
 		});		
 	}
 	

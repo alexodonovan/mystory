@@ -4,16 +4,19 @@ Ext.application({
     
     requires: ['App.maps.GoogleMap', 
     		'App.timeline.Loader',
-    		'App.timeline.Editor'
+    		'App.timeline.Editor',
+    		'App.timeline.SimpleModel'
     		],
      
-    launch: function() {    	
-    	var loader = App.timeline.Loader.fetch('breen');
-    	loader.on('ready', this.loadEditor, this);    	    	   	    	    	     	    	    	    	   
+    launch: function() {    	    	
+    	App.timeline.SimpleModel.load('breen', {
+    		callback: this.onModelLoaded, scope: this
+    	});    	    	    	   	    	    	     	    	    	    	  
     },
     
-    loadEditor: function(timeline){
-    	App.timeline.Editor.create({renderTo: 'timeline-container', timeline: timeline});
+    onModelLoaded: function(operation){
+		var model = operation.getResultSet().records[0];
+    	App.timeline.Editor.create({renderTo: 'timeline-container', model: model});
     }
     
 });

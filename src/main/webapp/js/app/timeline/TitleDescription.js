@@ -17,33 +17,58 @@ Ext.define('App.timeline.TitleDescription', {
 	
 	
 	buildItems: function(){
-		var title = this.createTitleField(),		
-			desc = this.createDescField();
+		this.titleField = this.createTitleField();		
+		this.desc = this.createDescField();
+		this.btn = this.createSaveBtn();
 		
-		return [title, desc];
-	},		
+		return [this.titleField, this.desc, this.btn];
+	},			
 	
+	createSaveBtn: function(){
+		var btn = Ext.button.Button.create({
+			text:'Save',
+			handler: this.onSaveClick,
+			scope: this
+		});
+		return btn;
+	},
+	
+	onSaveClick: function(){
+		alert('saved');
+	},
 	
 	createDescField: function(){
 		var desc = Ext.form.field.HtmlEditor.create({
 			emptyText: 'Description',			
 			cls: 'desc-field',
-			value: this.timeline.text,
+			value: this.model.text(),
 			enableColors: false,
-//			enableFont: false,
+//			enableFont: false, //bug in extjs4.2
 			enableFontSize: false,
 			enableAlignments: false
-		});
+		});		
 		
 		return desc;
 	},
 	
-	createTitleField: function(){
+	onEditorChange: function(){
+		alert('editor change');
+	},
+	
+	onTitleBlur: function(){
+		var title = this.titleField.getValue();		
+		this.model.updateTitle(title)
+			.save();		
+	},
+	
+	createTitleField: function(){		
+		
 		var title = Ext.form.field.Text.create({
 			emptyText: 'Title',
 			cls: 'title-field',
-			value: this.timeline.headline			
+			value: this.model.headline()			
 		});
+		title.on('blur', this.onTitleBlur, this);
 		
 		return title;
 	}
