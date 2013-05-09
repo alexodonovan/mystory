@@ -1,4 +1,4 @@
-<Context path="/readservice" reloadable="true"
+<Context path="/storify-read-service" reloadable="true"
 	docBase="C:\projects\genealogy\storify-read-service"
 	workDir="C:\projects\genealogy\storify-read-service\work">
 	
