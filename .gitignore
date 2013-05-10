@@ -5,3 +5,4 @@ target/*
 log.roo
 *.scssc
 *.svn
+**/META_INF/context.xml
