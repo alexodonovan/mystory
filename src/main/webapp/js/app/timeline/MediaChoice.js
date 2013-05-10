@@ -26,11 +26,11 @@ Ext.define('App.timeline.MediaChoice', {
 	
 	
 	buildItems: function(){
-		var image = this.createBtn('Image', 'icon-image', 'image'),
-			map= this.createBtn('Custom Map', 'icon-map', 'map'),
-			youtube = this.createBtn('Youtube', 'icon-youtube','youtube'),
-			quote = this.createBtn('Quote', 'icon-quote','quote'),
-			wikipedia = this.createBtn('Wikipedia', 'icon-wiki','wikipedia');
+		var image = this.createBtn('Image', 'icon-image', 'Image'),
+			map= this.createBtn('Custom Map', 'icon-map', 'CustomMap'),
+			youtube = this.createBtn('YouTube', 'icon-youtube','YouTube'),
+			quote = this.createBtn('Quote', 'icon-quote','Quote'),
+			wikipedia = this.createBtn('Wikipedia', 'icon-wiki','Wikipedia');
 			
 		var p = Ext.panel.Panel.create({
 			border: false,
@@ -45,7 +45,7 @@ Ext.define('App.timeline.MediaChoice', {
 		return [p];
 	},			
 	
-	createBtn: function(title, iconCls, type){
+	createBtn: function(title, iconCls, action){
 		var btn = Ext.button.Button.create({
 			text: title ||'Save',
 			scale: 'large',
@@ -54,13 +54,13 @@ Ext.define('App.timeline.MediaChoice', {
 			handler: this.onBtnClick,
 			width: 150,
 			scope: this,
-			
+			action: action			
 		});
 		return btn;
 	},
 	
 	onBtnClick: function(btn){
-		this.fireEvent('btn_click', btn.type);
+		this.fireEvent('btn_click', btn.action);
 	}	
 	
 });
