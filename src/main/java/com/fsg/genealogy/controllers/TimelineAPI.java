@@ -17,11 +17,8 @@ public class TimelineAPI {
 	@RequestMapping(method = RequestMethod.PUT, headers ={"Accept=application/json"})
 	@ResponseStatus(HttpStatus.OK)
 	public void updateTimelineData(@RequestBody String json){				               
-//        timeline.merge();
-		
 		Timeline timeline = Timeline.fromJsonToTimeline(json);
-		timeline.merge();
-		System.out.println(json);
+		timeline.merge();		
 	}
 	
 

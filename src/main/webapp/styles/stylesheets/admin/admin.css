@@ -15,30 +15,67 @@ html, body {
   text-decoration: none;
 }
 
-/* line 5, ../../sass/admin/admin.scss */
+/* line 6, ../../sass/admin/_media_choice.scss */
+.media-choice .media-btn {
+  margin: 10px;
+  background-color: #f5f5f5;
+  background-image: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* line 12, ../../sass/admin/_media_choice.scss */
+.media-choice .media-btn .x-btn-inner {
+  color: #777;
+}
+/* line 16, ../../sass/admin/_media_choice.scss */
+.media-choice .media-btn .icon-base, .media-choice .media-btn .icon-wiki, .media-choice .media-btn .icon-map, .media-choice .media-btn .icon-image, .media-choice .media-btn .icon-youtube, .media-choice .media-btn .icon-quote {
+  width: 32px;
+  height: 25px;
+}
+/* line 21, ../../sass/admin/_media_choice.scss */
+.media-choice .media-btn .icon-wiki {
+  background: transparent url(../../../assets/timeline/compiled/css/timeline@2x.png) no-repeat -368px -235px !important;
+}
+/* line 26, ../../sass/admin/_media_choice.scss */
+.media-choice .media-btn .icon-map {
+  background: transparent url(../../../assets/timeline/compiled/css/timeline@2x.png) no-repeat -403px -235px !important;
+}
+/* line 31, ../../sass/admin/_media_choice.scss */
+.media-choice .media-btn .icon-image {
+  background: transparent url(../../../assets/timeline/compiled/css/timeline@2x.png) no-repeat -556px -235px !important;
+}
+/* line 36, ../../sass/admin/_media_choice.scss */
+.media-choice .media-btn .icon-youtube {
+  background: transparent url(../../../assets/timeline/compiled/css/timeline@2x.png) no-repeat -600px -260px !important;
+}
+/* line 41, ../../sass/admin/_media_choice.scss */
+.media-choice .media-btn .icon-quote {
+  background: transparent url(../../../assets/timeline/compiled/css/timeline@2x.png) no-repeat -456px -260px !important;
+}
+
+/* line 6, ../../sass/admin/admin.scss */
 .editor-container {
   width: 93%;
   height: 100%;
 }
-/* line 9, ../../sass/admin/admin.scss */
+/* line 10, ../../sass/admin/admin.scss */
 .editor-container .input-field, .editor-container .title-field input, .editor-container .desc-field {
   padding: 2px 5px;
 }
-/* line 14, ../../sass/admin/admin.scss */
+/* line 15, ../../sass/admin/admin.scss */
 .editor-container .title-field input {
   height: 50px;
   font-size: 36px;
   line-height: 38px;
   font-family: "Georgia",Times New Roman,Times,serif;
 }
-/* line 23, ../../sass/admin/admin.scss */
+/* line 24, ../../sass/admin/admin.scss */
 .editor-container .desc-field {
   height: 100px;
   font-size: 15px;
   font-weight: normal;
   line-height: 20px;
 }
-/* line 30, ../../sass/admin/admin.scss */
+/* line 31, ../../sass/admin/admin.scss */
 .editor-container .desc-field .x-toolbar {
   border: none;
 }

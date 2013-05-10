@@ -3,7 +3,7 @@ Ext.define('App.timeline.SimpleModel', {
 	extend: 'Ext.data.Model',		
 	requires: ['App.timeline.Family'],
 	
-	fields: ['data', 'id', 'version'],
+	fields: ['data', 'id', 'version', 'family_Id'],
 	
 	autoLoad: false,
 	

@@ -2,7 +2,7 @@ Ext.define('App.timeline.Editor', {
 
 	extend : 'Ext.panel.Panel',
 	
-	requires: ['App.timeline.TitleDescription'],
+	requires: ['App.timeline.TitleDescription', 'App.timeline.MediaChoice'],
 	
 	cls: 'editor-container',
 	
@@ -25,20 +25,24 @@ Ext.define('App.timeline.Editor', {
 	
 	
 	buildItems: function(){
-		var upload = this.createImageUpload(),
-			title = this.createTitlePanel();;
+		this.choice = this.createMediaChoice();
+		this.titlePanel = this.createTitlePanel();;
 		
-		return [upload, title];
+		return [this.choice, this.titlePanel];
 	},		
 	
-	createImageUpload: function(){
+	createMediaChoice: function(){
+		var choice = App.timeline.MediaChoice.create({flex: 1});		
+		choice.on('btn_click', this.onMediaChoice);
+		return choice;				
+	},
+	
+	onMediaChoice: function(type){
 		var p = Ext.panel.Panel.create({
-			html: 'image upload here',
-			flex: 1,
-			border: false		
+			html: 'this is a test'
 		});
-		
-		return p;
+		this.remove(this.choice);
+		this.add(p);		
 	},
 	
 	createTitlePanel: function(){

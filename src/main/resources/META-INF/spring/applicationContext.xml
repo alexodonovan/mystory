@@ -52,21 +52,7 @@
 		<property name="jndiName" value="java:comp/env/jdbc/storify"/>    
 		<property name="resourceRef" value="true" /> 
 	</bean>		
-	
-	<!--
-		<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
-			<property name="driverClassName" value="${database.driverClassName}"/>
-			<property name="url" value="${database.url}"/>
-			<property name="username" value="${database.username}"/>
-			<property name="password" value="${database.password}"/>
-			<property name="testOnBorrow" value="true"/>
-			<property name="testOnReturn" value="true"/>
-			<property name="testWhileIdle" value="true"/>
-			<property name="timeBetweenEvictionRunsMillis" value="1800000"/>
-			<property name="numTestsPerEvictionRun" value="3"/>
-			<property name="minEvictableIdleTimeMillis" value="1800000"/>
-		</bean>
-		-->
+		
 	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
@@ -74,13 +60,6 @@
 	<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
 		<property name="persistenceUnitName" value="persistenceUnit"/>
 		<property name="dataSource" ref="dataSource"/>
-	</bean>
-    
-	<!-- provides a H2 console to look into the db if necessary -->
-	<bean id="org.h2.tools.Server-WebServer" class="org.h2.tools.Server" 
-		factory-method="createWebServer" depends-on="dataSource" 
-		init-method="start" lazy-init="false">
-		<constructor-arg value="-web,-webPort,11111" />
-	</bean>
+	</bean>    
     
 </beans>

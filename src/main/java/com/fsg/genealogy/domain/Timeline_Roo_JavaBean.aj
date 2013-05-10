@@ -7,14 +7,6 @@ import com.fsg.genealogy.domain.Timeline;
 
 privileged aspect Timeline_Roo_JavaBean {
     
-    public Long Timeline.getFamilyId() {
-        return this.familyId;
-    }
-    
-    public void Timeline.setFamilyId(Long familyId) {
-        this.familyId = familyId;
-    }
-    
     public String Timeline.getData() {
         return this.data;
     }
