@@ -22,14 +22,7 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	},
 	
 	buildItems: function(){				
-		this.wizard = Ext.panel.Panel.create({
-			border: false,
-			layout: 'card',
-			active: 0,
-			flex: 1,
-			items: this.controller.steps() 
-		});		
-		
+		this.wizard = this.createWizard();		
 		this.navBtns = this.createToolbar();
 		
 		return [this.wizard, this.navBtns];	
@@ -41,50 +34,73 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	
 	createController: function(model){
 		return Ext.create(this.pkg + '.Controller', {model: model});		
-	},		
+	},
 	
-	createToolbar: function(){
-		var next = Ext.button.Button.create({
-			text: 'Next',
+	onPrevClick: function(){		
+		if (this.model.isNotValid()) return;
+		this.wizard.prevCard();
+	},
+	
+	onNextClick: function(){
+		if (this.model.isNotValid()) return;		
+		this.model.load();
+		this.wizard.nextCard();				
+	},
+	
+	createBtn: function(txt, fn, scope){
+		var btn = Ext.button.Button.create({
+			text: txt,
 			scale: 'medium',
 			cls: 'nav-btn',
-			handler: function(){
-				var layout = this.wizard.getLayout();
-				this.model.load();
-	            ++this.wizard.active;
-	            layout.setActiveItem(this.wizard.active);
-	            this.wizard.active = this.wizard.items.indexOf(layout.getActiveItem());
-	            
-			},
-			scope: this
+			handler: fn,
+			scope: scope
 		});
-		
-		var prev = Ext.button.Button.create({
-			text: 'Previous',
-			scale: 'medium',
-			cls: 'nav-btn',
-			handler: function(){
-				var layout = this.wizard.getLayout();
-	            --this.wizard.active;
-	            layout.setActiveItem(this.wizard.active);
-	            this.wizard.active = this.wizard.items.indexOf(layout.getActiveItem());
-			},
-			scope: this
-		});
-		
+		return btn;
+	},
+	
+	createWizard: function(){
+		var p = Ext.panel.Panel.create({
+			border: false,
+			layout: 'card',
+			active: 0,
+			flex: 1,
+			items: this.controller.steps() 
+		});	
+		p.nextCard = Ext.bind(this.doNav, p, [+1]);
+		p.prevCard = Ext.bind(this.doNav, p, [-1]);				
+		return p;				
+	},
+	
+	//in scope of this.wizard 
+	doNav: function(increment){
+		var layout = this.getLayout();		
+        this.active += increment;
+        layout.setActiveItem(this.active);
+        this.active = this.items.indexOf(layout.getActiveItem());
+	},
+	
+	createNavBtns: function(btns){
 		var tb = Ext.panel.Panel.create({
 			border: false,
 			cls: 'wizard-ctrls',
-			items: [prev, next],
+			items: btns,
 			autoHeight: true,
 			flex: 1,			
 			layout: {
 				type: 'hbox',
 				align: 'center',
 				pack: 'center'
-			}
+			}			
 		});
 		
+		return tb;				
+	},
+	
+	createToolbar: function(){
+		var next = this.createBtn('Next', this.onNextClick, this), 
+			prev = this.createBtn('Prev', this.onPrevClick, this),
+			tb = this.createNavBtns([prev, next]);
+			
 		return tb;
 	}
 	

@@ -42,6 +42,15 @@ Ext.define('App.timeline.assets.wikipedia.Model', {
 	
 	articleTitle: function(sub){
 		return this.get('url').replace(sub, '');
+	},
+	
+	isValid: function(){
+		return !Ext.isEmpty(this.get('url'));
+	},
+	
+	
+	isNotValid: function(){
+		return !this.isValid();
 	}
 	
 });

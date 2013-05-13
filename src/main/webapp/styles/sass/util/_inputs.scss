@@ -1,0 +1,10 @@
+@import "compass/css3";
+@import "../base";
+
+@mixin default-textfield {
+	border: 1px solid $default-border;
+}
+
+.story-default-textfield {
+	@include default-textfield;
+}

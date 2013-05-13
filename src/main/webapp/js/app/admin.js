@@ -8,7 +8,11 @@ Ext.application({
     		'App.timeline.SimpleModel'
     		],
      
-    launch: function() {    	    	
+    launch: function() {   
+    	//initialize tooltips and workaround bug fix.
+    	Ext.QuickTips.init();
+    	Ext.tip.Tip.prototype.minWidth = 'auto';
+    	
     	App.timeline.SimpleModel.load('breen', {
     		callback: this.onModelLoaded, scope: this
     	});    	    	    	   	    	    	     	    	    	    	  

@@ -1,3 +1,4 @@
+/* color statics */
 /* line 1, ../../sass/_resets.scss */
 html, body {
   height: 100%;
@@ -122,11 +123,17 @@ html, body {
   font-weight: bold;
 }
 
-/* line 4, ../../sass/admin/_media_builder.scss */
+/* color statics */
+/* line 8, ../../sass/util/_inputs.scss */
+.story-default-textfield {
+  border: 1px solid #c4c4c4;
+}
+
+/* line 5, ../../sass/admin/_media_builder.scss */
 .wizard-ctrls {
   padding: 10px;
 }
-/* line 8, ../../sass/admin/_media_builder.scss */
+/* line 9, ../../sass/admin/_media_builder.scss */
 .wizard-ctrls .nav-btn {
   margin: 10px 5px;
   -webkit-border-radius: 3px;
