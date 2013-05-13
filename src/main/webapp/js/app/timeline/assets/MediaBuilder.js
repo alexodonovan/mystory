@@ -1,7 +1,7 @@
 Ext.define('App.timeline.assets.MediaBuilder', {
 	extend: 'Ext.panel.Panel',
 	
-	requires: ['App.timeline.assets.wikipedia.Model'],
+	requires: ['App.timeline.assets.wikipedia.Model', 'App.timeline.assets.wikipedia.Controller'],
 	
 	border: false,
 	layout: 'card',
@@ -9,7 +9,8 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	active: 0,
 	
 	initComponent: function(){		
-		this.media = this.createModel();	
+		this.model = this.createModel();	
+		this.controller = this.createController(this.model);
 		this.items = this.buildItems();
 		
 		this.bbar = this.createToolbar();
@@ -22,20 +23,24 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	},
 	
 	buildItems: function(){		
-		var items = this.media.steps();		
+		var items = this.controller.steps();		
 		return items;	
 	},
 	
 	createModel: function(){
-		return Ext.create(this.clz);		
+		return Ext.create(this.pkg + '.Model');		
 	},
+	
+	createController: function(model){
+		return Ext.create(this.pkg + '.Controller', {model: model});		
+	},		
 	
 	createToolbar: function(){
 		var next = Ext.button.Button.create({
 			text: 'Next',
 			handler: function(){
 				var layout = this.getLayout();
-				this.media.load();
+				this.model.load();
 	            ++this.active;
 	            layout.setActiveItem(this.active);
 	            this.active = this.items.indexOf(layout.getActiveItem());

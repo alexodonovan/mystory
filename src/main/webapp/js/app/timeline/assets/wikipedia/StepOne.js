@@ -14,7 +14,17 @@ Ext.define('App.timeline.assets.wikipedia.StepOne', {
 		this.items = this.buildItems();
 		
 		this.callParent();				
-	},		
+	},	
+	
+	initEvents: function(){
+		this.callParent();
+		
+		this.url.on('blur', this.onFieldBlur, this);
+	},
+	
+	onFieldBlur: function(field){
+		this.model.set('url', field.getValue());
+	},
 	
 	buildItems: function(){
 		this.url = Ext.form.field.Text.create({
@@ -22,11 +32,6 @@ Ext.define('App.timeline.assets.wikipedia.StepOne', {
 		});
 		
 		return [this.url];
-	},
-	
-	articleTitle: function(sub){
-		return this.url.getValue()
-					.replace(sub, '');
-	}
+	}	
 		
 });

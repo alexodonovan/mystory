@@ -10,9 +10,7 @@ Ext.define('App.timeline.assets.wikipedia.Model', {
 	_steps: [],
 					
 	constructor: function(){
-		this.callParent();		
-				
-		this._steps = this.createSteps();		
+		this.callParent();							
 	},	
 	
 	load: function(){
@@ -22,15 +20,15 @@ Ext.define('App.timeline.assets.wikipedia.Model', {
 	},
 	
 	createProxy: function(){
-		var title = this.step1.articleTitle(this.baseWikiUrl);
+		var title = this.articleTitle(this.baseWikiUrl);
 		return new Ext.data.proxy.JsonP({
-				url: this.url(title),
+				url: this.wikiApi(title),
 				callbackKey: this.callbackKey,
 				reader: 'json'
 		});	
 	}, 
 	
-	url: function(title){
+	wikiApi: function(title){
 		var url = 'http://en.wikipedia.org/w/api.php?action=query&prop=extracts&redirects=&titles=' +
 					title +
 					'&exintro=1&format=json' +
@@ -39,32 +37,11 @@ Ext.define('App.timeline.assets.wikipedia.Model', {
 	},
 	
 	onDataLoaded: function(data){
-		this.step2.showData(data);
+		this.fireEvent('dataloaded', data);		
 	},
 	
-	steps: function(){
-		return this._steps;
-	},	
-	
-	createSteps: function(){
-		this.step1 = this.createStepOne();
-		this.step2 = this.createStepTwo();
-			
-		return [this.step1, this.step2];
-	},
-	
-	createStepOne: function(){
-		var view = App.timeline.assets.wikipedia.StepOne.create();
-		return view;		
-	},
-	
-	createStepTwo: function(){
-		var view = App.timeline.assets.wikipedia.StepTwo.create();
-		return view;		
-	},	
-	
-	onDataLoad: function(data){
-		this.step2.showData(data);			
+	articleTitle: function(sub){
+		return this.get('url').replace(sub, '');
 	}
 	
 });
