@@ -40,7 +40,7 @@ Ext.define('App.timeline.Editor', {
 	},
 	
 	onMediaChoice: function(type){
-		var clz = 'App.timeline.assets.'+type,
+		var clz = 'App.timeline.assets.'+type.toLowerCase()+ '.Model',
 			builder = App.timeline.assets.MediaBuilder.create({flex: 1, clz: clz});
 						
 		this.choice.getEl().fadeOut({

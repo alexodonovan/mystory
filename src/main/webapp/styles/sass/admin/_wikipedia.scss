@@ -1,0 +1,40 @@
+@import "compass/css3";
+
+.wikipedia {
+
+	h4 {
+		border-bottom: 1px solid #cccccc;
+		margin-bottom: 5px;
+		font-size: 20px;
+		line-height: 22px;
+		font-family: "Georgia",Times New Roman,Times,serif;
+		a {
+			color: #000000;
+			text-decoration: none;
+			font-weight: normal;
+			font-style: normal;
+			font-size: 100%;
+			line-height: 1;
+			font-family: inherit;
+		}
+		
+		a:hover {
+			color: #0088cc;			
+		}			
+	}
+	
+	.wiki-source {
+		font-size: 13px;
+		font-style: italic;
+		font-weight: normal;
+		height: auto;
+		line-height: 19px;
+		margin-bottom: 15px;
+	}
+	
+	p {
+		color: #666666;
+	}
+	
+	
+}
