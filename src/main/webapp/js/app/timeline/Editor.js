@@ -39,9 +39,21 @@ Ext.define('App.timeline.Editor', {
 		return choice;				
 	},
 	
+	createMediaBuilder: function(pkg){
+		var builder = App.timeline.assets.MediaBuilder.create({flex: 1, pkg: pkg});
+		builder.on('cancel', this.onBuilderCancel, this);
+		return builder;
+	},
+	
+	onBuilderCancel: function(){		
+		this.remove(this.builder);
+		this.choice = this.createMediaChoice();
+		this.insert(0, this.choice);		
+	},
+	
 	onMediaChoice: function(type){
-		var pkg = 'App.timeline.assets.'+type.toLowerCase(),
-			builder = App.timeline.assets.MediaBuilder.create({flex: 1, pkg: pkg});
+		var pkg = 'App.timeline.assets.'+type.toLowerCase();
+		this.builder = this.createMediaBuilder(pkg); 
 						
 		this.choice.getEl().fadeOut({
 			   easing: 'easeOut',
@@ -50,7 +62,7 @@ Ext.define('App.timeline.Editor', {
 			    useDisplay: false,
 			    callback: function(){
 			    	this.choice.hide();
-					this.insert(0, builder);    	
+					this.insert(0, this.builder);    	
 			    },
 			    scope: this
 		});

@@ -18,8 +18,8 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	},
 	
 	initEvents: function(){
-		this.callParent();
-		
+		this.addEvents('cancel');
+		this.callParent();						
 		this.controller.on('dataloaded', this.onDataLoaded, this);
 	},	
 	
@@ -42,15 +42,20 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 		return Ext.create(this.pkg + '.Controller', {model: model});		
 	},
 	
-	onPrevClick: function(){		
-		if (this.controller.isNotValid()) return;
+	onPrevClick: function(){	
+		if (this.wizard.active <=0) {
+			this.fireEvent('cancel');
+			return;
+		};
 		this.wizard.prevCard();
+		this.toggleBtns();
 	},
 	
 	onNextClick: function(){
 		if (this.controller.isNotValid()) return;		
 		this.model.load();
-		this.wizard.nextCard();				
+		this.wizard.nextCard();	
+		this.toggleBtns();
 	},
 	
 	createBtn: function(txt, fn, scope){
@@ -77,12 +82,27 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 		return p;				
 	},
 	
+	
+	//in scope of this.wizard
+	toggleBtns: function(){
+		if (this.wizard.active == 0) {		
+			this.nextBtn.show();
+		}		
+		if (this.wizard.active >= (this.wizard.items.length-1)){
+			this.prevBtn.show();
+			this.nextBtn.hide();			
+		};		
+		
+	},
+	
+	
+	
 	//in scope of this.wizard 
 	doNav: function(increment){
 		var layout = this.getLayout();		
         this.active += increment;
         layout.setActiveItem(this.active);
-        this.active = this.items.indexOf(layout.getActiveItem());
+        this.active = this.items.indexOf(layout.getActiveItem());               
 	},
 	
 	createNavBtns: function(btns){
@@ -102,9 +122,9 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	},
 	
 	createToolbar: function(){
-		var next = this.createBtn('Next', this.onNextClick, this), 
-			prev = this.createBtn('Prev', this.onPrevClick, this),
-			tb = this.createNavBtns([prev, next]);
+		this.nextBtn = this.createBtn('Next', this.onNextClick, this); 
+		this.prevBtn = this.createBtn('Prev', this.onPrevClick, this);
+		var tb = this.createNavBtns([this.prevBtn, this.nextBtn]);
 			
 		return tb;
 	}
