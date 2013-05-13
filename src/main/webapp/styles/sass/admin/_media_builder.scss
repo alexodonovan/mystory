@@ -1,0 +1,12 @@
+@import "compass/css3";
+@import "../util/buttons";
+
+.wizard-ctrls {
+
+	padding: 10px;
+		
+	.nav-btn {			
+		@include default-btn;		
+	}
+	
+}

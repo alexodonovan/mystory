@@ -28,7 +28,8 @@ Ext.define('App.timeline.TitleDescription', {
 		var btn = Ext.button.Button.create({
 			text:'Save',
 			handler: this.onSaveClick,
-			scope: this
+			scope: this,
+			cls: 'story-default-btn'
 		});
 		return btn;
 	},

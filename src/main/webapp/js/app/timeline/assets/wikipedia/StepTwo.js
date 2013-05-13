@@ -16,27 +16,43 @@ Ext.define('App.timeline.assets.wikipedia.StepTwo', {
 	},		
 	
 	buildItems: function(){
-		this.wikiViewer = this.createWikiViewer();
-		
-		var credit = Ext.form.field.Text.create({
-			emptyText: 'Credit'
-		});
-		
-		var caption = Ext.form.field.Text.create({
-			emptyText: 'Caption'
-		});	
-		
-		return  [this.wikiViewer, credit, caption];
+		this.credit = this.createCreditField(),
+		this.caption = this.createCaptionField();			
+		this.wikiViewer = this.createWikiViewer();							
+		return  [this.wikiViewer, this.credit, this.caption];
 	},		
+	
+	createCreditField: function(){
+		var field = Ext.form.field.Text.create({
+			emptyText: 'Credit'
+		});		
+		field.on('blur', this.onFieldBlur, this);
+		
+		return field;
+	},
+	
+	createCaptionField: function(){
+		var field = Ext.form.field.Text.create({
+			emptyText: 'Caption'
+		});		
+		field.on('blur', this.onFieldBlur, this);
+		
+		return field;
+	},
+	
+	onFieldBlur: function(){
+		this.model.set('caption', this.caption.getValue());
+		this.model.set('credit', this.credit.getValue());
+	},
 	
 	showData: function(data){
 		var objName = Object.getOwnPropertyNames(data.query.pages)[0],
-			obj = data.query.pages[objName];
+			obj = data.query.pages[objName],
+			el = document.createElement( 'div' );
 				
-		var el = document.createElement( 'div' );
 		el.innerHTML = obj.extract;		
 		obj.extract = el.firstElementChild.innerHTML;		
-		obj.url = 'http://en.wikipedia.org/wiki/O%27Donovan_family';
+		obj.url = this.model.get('url');
 		this.wikiViewer.update(obj);
 		this.wikiViewer.setWidth(this.wikiViewer.up().getWidth() -60);		
 	},
