@@ -11,9 +11,13 @@ Ext.define('App.timeline.assets.wikipedia.StepTwo', {
 	
 	initComponent: function(){
 		this.items = this.buildItems();
-		
-		this.callParent();				
+		this.callParent();						
 	},		
+	
+	initEvents: function(){
+		this.callParent();		
+		this.addEvents('dataloaded');
+	},
 	
 	buildItems: function(){
 		this.credit = this.createCreditField(),
@@ -55,6 +59,7 @@ Ext.define('App.timeline.assets.wikipedia.StepTwo', {
 		obj.url = this.model.get('url');
 		this.wikiViewer.update(obj);
 		this.wikiViewer.setWidth(this.wikiViewer.up().getWidth() -60);		
+		this.fireEvent('dataloaded');		
 	},
 	
 	createWikiViewer: function(){

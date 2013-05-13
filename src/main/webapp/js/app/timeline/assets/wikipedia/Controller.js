@@ -37,7 +37,8 @@ Ext.define('App.timeline.assets.wikipedia.Controller', {
 	},
 	
 	createStepTwo: function(){
-		var view = App.timeline.assets.wikipedia.StepTwo.create({model: this.model});
+		var view = App.timeline.assets.wikipedia.StepTwo.create({model: this.model});			
+		this.relayEvents(view, ['dataloaded']);
 		return view;		
 	},	
 	

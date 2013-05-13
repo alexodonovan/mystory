@@ -19,6 +19,12 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	
 	initEvents: function(){
 		this.callParent();
+		
+		this.controller.on('dataloaded', this.onDataLoaded, this);
+	},	
+	
+	onDataLoaded: function(){		
+		
 	},
 	
 	buildItems: function(){				
@@ -83,9 +89,8 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 		var tb = Ext.panel.Panel.create({
 			border: false,
 			cls: 'wizard-ctrls',
-			items: btns,
-			autoHeight: true,
-			flex: 1,			
+			items: btns,			
+			height: 80,			
 			layout: {
 				type: 'hbox',
 				align: 'center',
