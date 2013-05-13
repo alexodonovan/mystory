@@ -37,12 +37,12 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	},
 	
 	onPrevClick: function(){		
-		if (this.model.isNotValid()) return;
+		if (this.controller.isNotValid()) return;
 		this.wizard.prevCard();
 	},
 	
 	onNextClick: function(){
-		if (this.model.isNotValid()) return;		
+		if (this.controller.isNotValid()) return;		
 		this.model.load();
 		this.wizard.nextCard();				
 	},

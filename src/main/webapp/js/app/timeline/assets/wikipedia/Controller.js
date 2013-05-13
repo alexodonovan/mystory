@@ -43,6 +43,18 @@ Ext.define('App.timeline.assets.wikipedia.Controller', {
 	
 	onDataLoad: function(data){
 		this.step2.showData(data);			
+	},
+	
+	isValid: function(){
+		var valid = this.model.isValid();
+		if (!valid) this.step1.accentuateInvalid();				
+		return valid;
+	},
+	
+	
+	isNotValid: function(){
+		return !this.isValid();
 	}
+	
 	
 });

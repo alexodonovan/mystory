@@ -44,13 +44,29 @@ Ext.define('App.timeline.assets.wikipedia.Model', {
 		return this.get('url').replace(sub, '');
 	},
 	
-	isValid: function(){
-		return !Ext.isEmpty(this.get('url'));
+	isValid: function(){		
+		if (this.isBlank()) return false;
+		if (!this.isValidWikiUrl()) return false;
+		return true;
 	},
 	
+	isValidWikiUrl: function(){		
+		return Ext.String.startsWith(this.get('url'), this.baseWikiUrl);
+	},
 	
+	isBlank: function(){
+		return Ext.isEmpty(this.get('url'));
+	},
+		
 	isNotValid: function(){
 		return !this.isValid();
+	},
+	
+	errors: function(){
+		var errors = [];
+		if (this.isBlank()) errors.push('This field is required.');
+		if (!this.isValidWikiUrl()) errors.push('Must be a valid wikipedia url such as "http://en.wikipedia.org/wiki/FEXCO"');		
+		return errors;		
 	}
 	
 });

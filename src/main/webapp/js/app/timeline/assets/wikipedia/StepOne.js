@@ -9,7 +9,6 @@ Ext.define('App.timeline.assets.wikipedia.StepOne', {
 		pack: 'center'
 	},
 					
-	
 	initComponent: function(){
 		this.items = this.buildItems();
 		
@@ -24,6 +23,9 @@ Ext.define('App.timeline.assets.wikipedia.StepOne', {
 	
 	onFieldBlur: function(field){			
 		this.model.set('url', field.getValue());
+		
+		var fnName = this.model.isValid()? 'clearInvalid': 'markInvalid';		
+		this.url[fnName](this.model.errors());
 	},
 	
 	buildItems: function(){
@@ -36,6 +38,12 @@ Ext.define('App.timeline.assets.wikipedia.StepOne', {
 		});
 		
 		return [this.url];
-	}	
+	},
+	
+	accentuateInvalid: function(){
+		this.url.markInvalid('This field is required.');
+		var el = Ext.get(this.url.getEl().query('input'));
+		el.highlight();
+	}
 		
 });
