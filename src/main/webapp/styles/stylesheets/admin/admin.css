@@ -1,4 +1,5 @@
 /* color statics */
+/* buttons - base colors here and offsets calculated in specific stylesheets for things like hovers */
 /* line 1, ../../sass/_resets.scss */
 html, body {
   height: 100%;
@@ -151,6 +152,7 @@ html, body {
 }
 
 /* color statics */
+/* buttons - base colors here and offsets calculated in specific stylesheets for things like hovers */
 /* line 8, ../../sass/util/_inputs.scss */
 .story-default-textfield {
   border: 1px solid #c4c4c4;
@@ -185,6 +187,19 @@ html, body {
   color: #444;
   font-size: 11px;
   font-weight: bold;
+}
+
+/* line 16, ../../sass/admin/_media_builder.scss */
+.media-builder .credit {
+  color: #999999;
+}
+/* line 24, ../../sass/admin/_media_builder.scss */
+.media-builder .credit-container {
+  padding-right: 35px;
+}
+/* line 28, ../../sass/admin/_media_builder.scss */
+.media-builder .caption-container {
+  padding-left: 25px;
 }
 
 /* line 8, ../../sass/admin/admin.scss */

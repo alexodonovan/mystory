@@ -5,7 +5,9 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 		'App.timeline.assets.wikipedia.Controller'
 		],
 	
-	border: false,	
+	border: false,
+	cls: 'media-builder',
+	
 	layout: {
 		type: 'vbox',
 		align: 'stretch'

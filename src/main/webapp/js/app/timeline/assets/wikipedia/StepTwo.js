@@ -2,6 +2,7 @@ Ext.define('App.timeline.assets.wikipedia.StepTwo', {
 	extend: 'Ext.panel.Panel',
 	
 	border: false,
+	cls: 'step-two',
 	layout: {
 		type: 'vbox',
 		align: 'center',
@@ -22,13 +23,31 @@ Ext.define('App.timeline.assets.wikipedia.StepTwo', {
 	buildItems: function(){
 		this.credit = this.createCreditField(),
 		this.caption = this.createCaptionField();			
-		this.wikiViewer = this.createWikiViewer();							
-		return  [this.wikiViewer, this.credit, this.caption];
+		this.wikiViewer = this.createWikiViewer();	
+		
+		var credit = this.createLayoutPanel(this.credit, 'right'),
+			caption = this.createLayoutPanel(this.caption, 'left');
+		
+		return  [this.wikiViewer, credit, caption];
 	},		
+	
+	createLayoutPanel: function(field, align){				
+		var p = Ext.panel.Panel.create({
+			items: [field], 
+			cls: field.cls + '-container',
+			border: false,
+			width: '100%',			
+			layout: { type: 'vbox', align: align}			
+		});
+		
+		return p;
+	},
 	
 	createCreditField: function(){
 		var field = Ext.form.field.Text.create({
-			emptyText: 'Credit'
+			emptyText: 'Credit',
+			cls: 'credit',
+			width: 150		
 		});		
 		field.on('blur', this.onFieldBlur, this);
 		
@@ -37,7 +56,9 @@ Ext.define('App.timeline.assets.wikipedia.StepTwo', {
 	
 	createCaptionField: function(){
 		var field = Ext.form.field.Text.create({
-			emptyText: 'Caption'
+			emptyText: 'Caption',
+			cls: 'caption',
+			width: 350
 		});		
 		field.on('blur', this.onFieldBlur, this);
 		

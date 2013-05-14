@@ -9,4 +9,26 @@
 	.nav-btn {			
 		@include default-btn;		
 	}	
+		
 }
+ .media-builder {
+ 	
+ 	.credit {	
+		color: #999999;																
+	}
+	
+	.caption {
+		
+	}
+	
+	.credit-container {
+		padding-right: 35px;
+	}
+	
+	.caption-container {
+		padding-left: 25px;
+	}	
+	
+ }
+ 
+ 
