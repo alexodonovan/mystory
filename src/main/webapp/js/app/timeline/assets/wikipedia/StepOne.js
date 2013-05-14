@@ -21,8 +21,10 @@ Ext.define('App.timeline.assets.wikipedia.StepOne', {
 		this.url.on('blur', this.onFieldBlur, this);
 	},
 	
-	onFieldBlur: function(field){			
-		this.model.set('url', field.getValue());
+	onFieldBlur: function(field){
+		var val = field.getValue();
+		if (Ext.String.startsWith(val, 'https')) val = val.replace('https', 'http');
+		this.model.set('url', val);
 		
 		var fnName = this.model.isValid()? 'clearInvalid': 'markInvalid';		
 		this.url[fnName](this.model.errors());
@@ -41,7 +43,7 @@ Ext.define('App.timeline.assets.wikipedia.StepOne', {
 	},
 	
 	accentuateInvalid: function(){
-		this.url.markInvalid('This field is required.');
+		this.url.markInvalid(this.model.errors());
 		var el = Ext.get(this.url.getEl().query('input'));
 		el.highlight();
 	}

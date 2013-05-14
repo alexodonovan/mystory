@@ -1,7 +1,9 @@
 Ext.define('App.timeline.assets.MediaBuilder', {
 	extend: 'Ext.panel.Panel',
 	
-	requires: ['App.timeline.assets.wikipedia.Model', 'App.timeline.assets.wikipedia.Controller'],
+	requires: ['App.timeline.assets.wikipedia.Model', 
+		'App.timeline.assets.wikipedia.Controller'
+		],
 	
 	border: false,	
 	layout: {
@@ -56,18 +58,7 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 		this.model.load();
 		this.wizard.nextCard();	
 		this.toggleBtns();
-	},
-	
-	createBtn: function(txt, fn, scope){
-		var btn = Ext.button.Button.create({
-			text: txt,
-			scale: 'medium',
-			cls: 'nav-btn',
-			handler: fn,
-			scope: scope
-		});
-		return btn;
-	},
+	},	
 	
 	createWizard: function(){
 		var p = Ext.panel.Panel.create({
@@ -87,15 +78,15 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	toggleBtns: function(){
 		if (this.wizard.active == 0) {		
 			this.nextBtn.show();
+			this.saveBtn.hide();			
 		}		
 		if (this.wizard.active >= (this.wizard.items.length-1)){
 			this.prevBtn.show();
-			this.nextBtn.hide();			
+			this.nextBtn.hide();
+			this.saveBtn.show();			
 		};		
 		
 	},
-	
-	
 	
 	//in scope of this.wizard 
 	doNav: function(increment){
@@ -121,10 +112,23 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 		return tb;				
 	},
 	
+	createBtn: function(txt, fn, scope, cls, hidden){				
+		var btn = Ext.button.Button.create({
+			text: txt,
+			scale: 'medium',
+			cls: cls || 'nav-btn',
+			handler: fn,
+			scope: scope,
+			hidden: hidden
+		});
+		return btn;
+	},
+	
 	createToolbar: function(){
 		this.nextBtn = this.createBtn('Next', this.onNextClick, this); 
 		this.prevBtn = this.createBtn('Prev', this.onPrevClick, this);
-		var tb = this.createNavBtns([this.prevBtn, this.nextBtn]);
+		this.saveBtn = this.createBtn('Save', this.model.save, this.model, 'story-save-btn', true);
+		var tb = this.createNavBtns([this.prevBtn, this.nextBtn, this.saveBtn]);
 			
 		return tb;
 	}

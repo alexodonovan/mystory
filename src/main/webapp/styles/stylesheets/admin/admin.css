@@ -108,8 +108,12 @@ html, body {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  background-color: #f5f5f5;
-  background-image: -webkit-linear-gradient(top, whitesmoke, #f1f1f1);
+  background-color: whitesmoke;
+  background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0%, #f5f5f5), color-stop(100%, #f1f1f1));
+  background-image: -webkit-linear-gradient(left top, #f5f5f5, #f1f1f1);
+  background-image: -moz-linear-gradient(left top, #f5f5f5, #f1f1f1);
+  background-image: -o-linear-gradient(left top, #f5f5f5, #f1f1f1);
+  background-image: linear-gradient(left top, #f5f5f5, #f1f1f1);
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 /* line 10, ../../sass/util/_buttons.scss */
@@ -119,6 +123,29 @@ html, body {
 /* line 14, ../../sass/util/_buttons.scss */
 .story-default-btn .x-btn-inner {
   color: #444;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* line 45, ../../sass/util/_buttons.scss */
+.story-save-btn {
+  margin: 10px 5px;
+  background-color: #3d9400;
+  border: 1px solid #29691d;
+  background-image: -webkit-linear-gradient(top, #3d9400, #398a00);
+  background: #3d9400;
+}
+/* line 32, ../../sass/util/_buttons.scss */
+.story-save-btn:hover {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 2px inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 2px inset;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 2px inset;
+  border: 1px solid #260000 !important;
+  background: #368200;
+}
+/* line 38, ../../sass/util/_buttons.scss */
+.story-save-btn .x-btn-inner {
+  color: #fff;
   font-size: 11px;
   font-weight: bold;
 }
@@ -141,8 +168,12 @@ html, body {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  background-color: #f5f5f5;
-  background-image: -webkit-linear-gradient(top, whitesmoke, #f1f1f1);
+  background-color: whitesmoke;
+  background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0%, #f5f5f5), color-stop(100%, #f1f1f1));
+  background-image: -webkit-linear-gradient(left top, #f5f5f5, #f1f1f1);
+  background-image: -moz-linear-gradient(left top, #f5f5f5, #f1f1f1);
+  background-image: -o-linear-gradient(left top, #f5f5f5, #f1f1f1);
+  background-image: linear-gradient(left top, #f5f5f5, #f1f1f1);
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 /* line 10, ../../sass/util/_buttons.scss */

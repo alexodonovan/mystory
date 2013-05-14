@@ -50,8 +50,8 @@ Ext.define('App.timeline.assets.wikipedia.Model', {
 		return true;
 	},
 	
-	isValidWikiUrl: function(){		
-		return Ext.String.startsWith(this.get('url'), this.baseWikiUrl);
+	isValidWikiUrl: function(){				
+		return (Ext.String.startsWith(this.get('url'), this.baseWikiUrl));				
 	},
 	
 	isBlank: function(){
@@ -67,6 +67,10 @@ Ext.define('App.timeline.assets.wikipedia.Model', {
 		if (this.isBlank()) errors.push('This field is required.');
 		if (!this.isValidWikiUrl()) errors.push('Must be a valid wikipedia url such as "http://en.wikipedia.org/wiki/FEXCO"');		
 		return errors;		
+	},
+	
+	save: function(){
+		alert('saving..');
 	}
 	
 });
