@@ -1,6 +1,6 @@
 Ext.define('App.timeline.assets.Media', {
 		
-	extend: 'Ext.data.Model',			
+	extend: 'Ext.data.Model',	
 	
 	fields: ['url', 'credit', 'caption'],
 	

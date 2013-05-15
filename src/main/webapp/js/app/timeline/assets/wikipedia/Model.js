@@ -6,9 +6,7 @@ Ext.define('App.timeline.assets.wikipedia.Model', {
 	
 	requires: ['App.timeline.assets.wikipedia.StepOne',
 		'App.timeline.assets.wikipedia.StepTwo'],
-			
-	_steps: [],
-					
+							
 	constructor: function(){
 		this.callParent();							
 	},	

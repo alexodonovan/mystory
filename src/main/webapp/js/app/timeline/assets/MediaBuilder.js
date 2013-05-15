@@ -2,7 +2,9 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	extend: 'Ext.panel.Panel',
 	
 	requires: ['App.timeline.assets.wikipedia.Model', 
-		'App.timeline.assets.wikipedia.Controller'
+		'App.timeline.assets.wikipedia.Controller',
+		'App.timeline.assets.image.Controller',
+		'App.timeline.assets.image.Model'
 		],
 	
 	border: false,
@@ -24,12 +26,7 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	initEvents: function(){
 		this.addEvents('cancel');
 		this.callParent();						
-		this.controller.on('dataloaded', this.onDataLoaded, this);
 	},	
-	
-	onDataLoaded: function(){		
-		
-	},
 	
 	buildItems: function(){				
 		this.wizard = this.createWizard();		

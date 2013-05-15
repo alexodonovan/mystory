@@ -87,12 +87,12 @@ Ext.define('App.maps.Marker', {
     },       
     
     doDelete: function(){
-    	var config={callback: this.deleteCallback,scope: this, action: 'destroy'};    	
-    	request = new Ext.data.proxy.Rest({
-		    url: 'rest/markers/'+this.get('id'),
-		    format: 'json',
-		    model: 'App.maps.Marker'
-		});    	    	    		
+    	var config={callback: this.deleteCallback,scope: this, action: 'destroy'},   	
+    		request = new Ext.data.proxy.Rest({
+			    url: 'rest/markers/'+this.get('id'),
+			    format: 'json',
+			    model: 'App.maps.Marker'
+			});    	    	    		
 		request.destroy(new Ext.data.Operation(config), config.callback, config.scope);				
     },
     

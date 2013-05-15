@@ -14,17 +14,17 @@ Ext.define('App.timeline.Editor', {
 		type: 'hbox',
 		align: 'stretch'
 	},
-		
+	
+	width: Ext.getBody().getWidth() - 30,
 	
 	initComponent: function(){	
 		this.items = this.buildItems();		
 		this.callParent();		
 	},
 		
-	initEvents: function(){		
-		this.callParent();
-	},
-	
+	initEvents: function(){
+		this.callParent();				
+    },   
 	
 	buildItems: function(){
 		this.choice = this.createMediaChoice();

@@ -44,11 +44,23 @@
 			<param-value>WEB-INF/spring/webmvc-config.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	</servlet>
+	</servlet>	
 	<servlet-mapping>
 		<servlet-name>genealogy</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<display-name>images</display-name>
+		<servlet-name>images</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>images</servlet-name>
+		<url-pattern>/asset-images</url-pattern>
+	</servlet-mapping>
+	
 	<session-config>
 		<session-timeout>10</session-timeout>
 	</session-config>
