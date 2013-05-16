@@ -88,7 +88,7 @@ Ext.define('App.timeline.assets.image.StepOne', {
 	
 	onUploaded: function(){
 		var el = Ext.get('image-preview');
-		Ext.defer(el.setStyle, 1000, el, ['opacity', 1]);
+		Ext.defer(el.setStyle, 500, el, ['opacity', 1]);
 	},
 	
 	onUploadProgress: function(val){

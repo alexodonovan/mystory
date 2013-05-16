@@ -222,8 +222,8 @@ html, body {
 .upload-preview img {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
-  width: 485px;
-  height: 300px;
+  width: 647px;
+  height: 400px;
 }
 
 /* line 11, ../../sass/admin/_uploader.scss */
@@ -266,15 +266,15 @@ html, body {
   font-weight: bold;
 }
 
-/* line 18, ../../sass/admin/_media_builder.scss */
+/* line 19, ../../sass/admin/_media_builder.scss */
 .media-builder .credit {
   color: #999999;
 }
-/* line 26, ../../sass/admin/_media_builder.scss */
+/* line 27, ../../sass/admin/_media_builder.scss */
 .media-builder .credit-container {
   padding-right: 35px;
 }
-/* line 30, ../../sass/admin/_media_builder.scss */
+/* line 31, ../../sass/admin/_media_builder.scss */
 .media-builder .caption-container {
   padding-left: 25px;
 }
