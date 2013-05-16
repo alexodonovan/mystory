@@ -23,84 +23,79 @@ import org.springframework.web.bind.ServletRequestUtils;
 
 import com.fsg.genealogy.domain.Image;
 
-
 @Component("images")
 public class Images implements HttpRequestHandler {
 
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public void handleRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Integer imageId = ServletRequestUtils.getIntParameter(req, "imgId");
-		if (imageId!=null){
+		if (imageId != null) {
 			this.handleGetRequest(req, resp);
 			return;
 		}
-		
-		 try {
-	            List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
-	            for (FileItem item : items) {
-	                if (item.getFieldName().equals("file")) {
-	                    String filename = FilenameUtils.getName(item.getName());
-	                    InputStream content = item.getInputStream();
-	                    
-	                    Image image = new Image(IOUtils.toByteArray(content));
-	                    image.persist();
 
-	                    resp.setContentType("text/plain");
-	                    resp.setCharacterEncoding("UTF-8");
-	                    resp.getWriter().write("File " + filename + " successfully uploaded");
-	                    return;
-	                }
-	            }
-	        } catch (FileUploadException e) {
-	            throw new ServletException("Parsing file upload failed.", e);
-	        }
-		
-//		try {
-//			FileItemFactory factory = new DiskFileItemFactory();
-//	        ServletFileUpload upload = new ServletFileUpload(factory);			
-//			List<FileItem> fileItems = upload.parseRequest(req);	
-//			
-//			Image image = new Image();;
-//			for (FileItem item: fileItems){
-//				if (!item.isFormField()) image = new Image(item.get());			
-//			}			
-//			image.persist();			
-//		} catch (FileUploadException e) {			
-//			throw new RuntimeException("error uploading file.");
-//		}		
-		
-		
-		
-//		BufferedImage image = Image.findImage(1l)
-//										.asBufferedImage();		
-//		
-//		resp.setHeader("Cache-Control", "no-cache"); 
-//		resp.setDateHeader("Expires", 0); 
-//		resp.setHeader("Pragma", "no-cache"); 
-//		resp.setDateHeader("Max-Age", 0); 
-//		resp.setContentType("image/jpeg");
-//		
-//		ServletOutputStream outputStream = resp.getOutputStream();
-//		ImageIO.write(image, "jpeg", outputStream);	
-//		outputStream.close();				
+		try {
+			List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
+			for (FileItem item : items) {
+				if (item.getFieldName().equals("file")) {
+					String filename = FilenameUtils.getName(item.getName());
+					InputStream content = item.getInputStream();
+
+					Image image = new Image(IOUtils.toByteArray(content));
+					image.persist();
+
+					resp.setContentType("text/plain");
+					resp.setCharacterEncoding("UTF-8");
+					resp.getWriter().write("File " + filename + " successfully uploaded");
+					return;
+				}
+			}
+		} catch (FileUploadException e) {
+			throw new ServletException("Parsing file upload failed.", e);
+		}
+
+		// try {
+		// FileItemFactory factory = new DiskFileItemFactory();
+		// ServletFileUpload upload = new ServletFileUpload(factory);
+		// List<FileItem> fileItems = upload.parseRequest(req);
+		//
+		// Image image = new Image();;
+		// for (FileItem item: fileItems){
+		// if (!item.isFormField()) image = new Image(item.get());
+		// }
+		// image.persist();
+		// } catch (FileUploadException e) {
+		// throw new RuntimeException("error uploading file.");
+		// }
+
+		// BufferedImage image = Image.findImage(1l)
+		// .asBufferedImage();
+		//
+		// resp.setHeader("Cache-Control", "no-cache");
+		// resp.setDateHeader("Expires", 0);
+		// resp.setHeader("Pragma", "no-cache");
+		// resp.setDateHeader("Max-Age", 0);
+		// resp.setContentType("image/jpeg");
+		//
+		// ServletOutputStream outputStream = resp.getOutputStream();
+		// ImageIO.write(image, "jpeg", outputStream);
+		// outputStream.close();
 	}
 
 	public void handleGetRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Integer imageId = ServletRequestUtils.getIntParameter(req, "imgId");		
-		BufferedImage image = Image.findImage(imageId.longValue())
-									.asBufferedImage();		
+		Integer imageId = ServletRequestUtils.getIntParameter(req, "imgId");
+		BufferedImage image = Image.findImage(imageId.longValue()).asBufferedImage();
 
-		resp.setHeader("Cache-Control", "no-cache"); 
-		resp.setDateHeader("Expires", 0); 
-		resp.setHeader("Pragma", "no-cache"); 
-		resp.setDateHeader("Max-Age", 0); 
+		resp.setHeader("Cache-Control", "no-cache");
+		resp.setDateHeader("Expires", 0);
+		resp.setHeader("Pragma", "no-cache");
+		resp.setDateHeader("Max-Age", 0);
 		resp.setContentType("image/jpeg");
-		
+
 		ServletOutputStream outputStream = resp.getOutputStream();
-		ImageIO.write(image, "jpeg", outputStream);	
-		outputStream.close();		
+		ImageIO.write(image, "jpeg", outputStream);
+		outputStream.close();
 	}
-	
-	
 
 }

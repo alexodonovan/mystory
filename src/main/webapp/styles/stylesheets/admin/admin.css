@@ -158,11 +158,71 @@ html, body {
   border: 1px solid #c4c4c4;
 }
 
-/* line 5, ../../sass/admin/_media_builder.scss */
+/* line 3, ../../sass/admin/_dropzone.scss */
+.drop-zone {
+  border: 1px dashed #a4a4a4;
+  border-color: #a4a4a4;
+}
+/* line 9, ../../sass/admin/_dropzone.scss */
+.drop-zone .x-box-inner {
+  background-color: #E9E9E9;
+}
+/* line 13, ../../sass/admin/_dropzone.scss */
+.drop-zone .drop-body {
+  border: none;
+}
+/* line 17, ../../sass/admin/_dropzone.scss */
+.drop-zone .drop-body .x-box-target {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
+  box-align: center;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  position: relative;
+  text-align: center;
+  top: 30%;
+}
+/* line 25, ../../sass/admin/_dropzone.scss */
+.drop-zone .drop-body .x-box-target .drop-img {
+  background: url(../../../images/icons/icons.png) no-repeat -179px 0;
+  width: 64px;
+  height: 64px;
+}
+/* line 31, ../../sass/admin/_dropzone.scss */
+.drop-zone .drop-body .x-box-target .drop-msg {
+  color: #a4a4a4;
+  font-size: 26px;
+}
+
+/* line 40, ../../sass/admin/_dropzone.scss */
+.drop-zone-over {
+  border-color: #4d90f3;
+}
+/* line 42, ../../sass/admin/_dropzone.scss */
+.drop-zone-over .x-box-inner {
+  background-color: #E7F0FF !important;
+}
+/* line 47, ../../sass/admin/_dropzone.scss */
+.drop-zone-over .x-box-target .drop-img {
+  background: url(../../../images/icons/icons.png) no-repeat -66px 0 !important;
+}
+/* line 51, ../../sass/admin/_dropzone.scss */
+.drop-zone-over .x-box-target .drop-msg {
+  color: #4d90f3 !important;
+}
+
+/* line 6, ../../sass/admin/_media_builder.scss */
 .wizard-ctrls {
   padding: 10px;
 }
-/* line 9, ../../sass/admin/_media_builder.scss */
+/* line 10, ../../sass/admin/_media_builder.scss */
 .wizard-ctrls .nav-btn {
   margin: 10px 5px;
   -webkit-border-radius: 3px;
@@ -189,15 +249,15 @@ html, body {
   font-weight: bold;
 }
 
-/* line 16, ../../sass/admin/_media_builder.scss */
+/* line 17, ../../sass/admin/_media_builder.scss */
 .media-builder .credit {
   color: #999999;
 }
-/* line 24, ../../sass/admin/_media_builder.scss */
+/* line 25, ../../sass/admin/_media_builder.scss */
 .media-builder .credit-container {
   padding-right: 35px;
 }
-/* line 28, ../../sass/admin/_media_builder.scss */
+/* line 29, ../../sass/admin/_media_builder.scss */
 .media-builder .caption-container {
   padding-left: 25px;
 }

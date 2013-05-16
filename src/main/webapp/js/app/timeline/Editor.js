@@ -14,10 +14,9 @@ Ext.define('App.timeline.Editor', {
 		type: 'hbox',
 		align: 'stretch'
 	},
-	
-	width: Ext.getBody().getWidth() - 30,
-	
-	initComponent: function(){	
+		
+	initComponent: function(){
+		this.width = Ext.getBody().getWidth() - 30;		
 		this.items = this.buildItems();		
 		this.callParent();		
 	},

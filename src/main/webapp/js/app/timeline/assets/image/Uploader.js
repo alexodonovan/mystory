@@ -2,8 +2,7 @@ Ext.define('App.timeline.assets.image.Uploader', {
 	extend : 'Ext.form.FormPanel',
 			
 	submitUrl: 'asset-images',
-//	submitUrl: 'rest/timelines/upload',
-	
+
 	hidden: true,	
 	fileUpload: true,  
 	autoHeight: true,

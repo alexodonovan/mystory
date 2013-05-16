@@ -1,0 +1,59 @@
+@import "compass/css3";
+
+.drop-zone {
+
+	border: 1px dashed $darker-gray;
+	border-color: $darker-gray;
+	
+	
+	.x-box-inner {
+		background-color: #E9E9E9;
+	}
+	
+	.drop-body {
+		border: none;
+		
+		
+		.x-box-target {
+			@include display-box;		
+			@include box-align(center);			
+			@include box-orient(vertical);
+			position: relative;
+			text-align: center;
+			top: 30%;				
+		
+			.drop-img {
+				background: url(../../../images/icons/icons.png) no-repeat -179px 0;
+				width: 64px;
+				height: 64px;
+			}
+			
+			.drop-msg {
+				color: $darker-gray;
+				font-size: 26px;
+			}
+		}
+		
+	}
+ }
+ 
+ .drop-zone-over { 
+ 	border-color: #4d90f3;
+ 	.x-box-inner {
+ 		background-color: #E7F0FF !important;
+ 	}
+ 	
+ 	.x-box-target {
+ 		.drop-img {
+ 			background: url(../../../images/icons/icons.png) no-repeat -66px 0 !important;
+ 		}
+ 		
+ 		.drop-msg {
+ 			
+ 			color: #4d90f3 !important;
+ 		}
+ 	}
+ 	
+ }
+ 
+ 
