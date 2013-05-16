@@ -38,7 +38,9 @@
  }
  
  .drop-zone-over { 
- 	border-color: #4d90f3;
+ 	$darker-blue: #4d90f3;
+ 
+ 	border-color: $darker-blue;
  	.x-box-inner {
  		background-color: #E7F0FF !important;
  	}
@@ -48,9 +50,8 @@
  			background: url(../../../images/icons/icons.png) no-repeat -66px 0 !important;
  		}
  		
- 		.drop-msg {
- 			
- 			color: #4d90f3 !important;
+ 		.drop-msg { 			
+ 			color: $darker-blue !important;
  		}
  	}
  	

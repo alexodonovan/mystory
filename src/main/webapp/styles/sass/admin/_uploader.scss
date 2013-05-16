@@ -2,8 +2,16 @@
 
 .upload-preview {
 	img {
-		@include opacity(0.45);
+		@include opacity(0);
 		width: 485px;
-		height: 300px;
+		height: 300px;		
+	}
+}
+
+.progress-bar {
+	border: 1px solid #4D4DF3;
+	
+	.x-progress-bar {
+		background-color: #4d90f3;
 	}
 }

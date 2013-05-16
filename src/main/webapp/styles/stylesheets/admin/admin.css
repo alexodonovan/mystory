@@ -205,25 +205,34 @@ html, body {
 .drop-zone-over {
   border-color: #4d90f3;
 }
-/* line 42, ../../sass/admin/_dropzone.scss */
+/* line 44, ../../sass/admin/_dropzone.scss */
 .drop-zone-over .x-box-inner {
   background-color: #E7F0FF !important;
 }
-/* line 47, ../../sass/admin/_dropzone.scss */
+/* line 49, ../../sass/admin/_dropzone.scss */
 .drop-zone-over .x-box-target .drop-img {
   background: url(../../../images/icons/icons.png) no-repeat -66px 0 !important;
 }
-/* line 51, ../../sass/admin/_dropzone.scss */
+/* line 53, ../../sass/admin/_dropzone.scss */
 .drop-zone-over .x-box-target .drop-msg {
   color: #4d90f3 !important;
 }
 
 /* line 4, ../../sass/admin/_uploader.scss */
 .upload-preview img {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=45);
-  opacity: 0.45;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
   width: 485px;
   height: 300px;
+}
+
+/* line 11, ../../sass/admin/_uploader.scss */
+.progress-bar {
+  border: 1px solid #4D4DF3;
+}
+/* line 14, ../../sass/admin/_uploader.scss */
+.progress-bar .x-progress-bar {
+  background-color: #4d90f3;
 }
 
 /* line 7, ../../sass/admin/_media_builder.scss */
