@@ -218,11 +218,19 @@ html, body {
   color: #4d90f3 !important;
 }
 
-/* line 6, ../../sass/admin/_media_builder.scss */
+/* line 4, ../../sass/admin/_uploader.scss */
+.upload-preview img {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=45);
+  opacity: 0.45;
+  width: 485px;
+  height: 300px;
+}
+
+/* line 7, ../../sass/admin/_media_builder.scss */
 .wizard-ctrls {
   padding: 10px;
 }
-/* line 10, ../../sass/admin/_media_builder.scss */
+/* line 11, ../../sass/admin/_media_builder.scss */
 .wizard-ctrls .nav-btn {
   margin: 10px 5px;
   -webkit-border-radius: 3px;
@@ -249,15 +257,15 @@ html, body {
   font-weight: bold;
 }
 
-/* line 17, ../../sass/admin/_media_builder.scss */
+/* line 18, ../../sass/admin/_media_builder.scss */
 .media-builder .credit {
   color: #999999;
 }
-/* line 25, ../../sass/admin/_media_builder.scss */
+/* line 26, ../../sass/admin/_media_builder.scss */
 .media-builder .credit-container {
   padding-right: 35px;
 }
-/* line 29, ../../sass/admin/_media_builder.scss */
+/* line 30, ../../sass/admin/_media_builder.scss */
 .media-builder .caption-container {
   padding-left: 25px;
 }

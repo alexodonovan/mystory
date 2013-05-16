@@ -17,7 +17,7 @@ Ext.define('App.timeline.assets.image.Uploader', {
 		this.buttonAlign =  'right';
 		this.buttons = this.createBtns();			
 		
-		this.addEvents({'uploaded': true});
+		this.addEvents('uploaded', 'progress');
 	},	
 	
 	createBtns: function(){
@@ -56,28 +56,22 @@ Ext.define('App.timeline.assets.image.Uploader', {
 		this.fireEvent('uploaded');
 	},
 	
+	progressUpdate: function(evt){
+		if (!evt.lengthComputable) return;
+		var val = evt.loaded / evt.total;
+		console.log("current progress:" + (val) * 100 + '%' );
+		this.fireEvent('progress', val);		
+	},
+	
 	doUpload: function(files){
-//		var file = files[0];		
 		var formData = new FormData();
     	formData.append("file", files[0]);
 
     	var xhr = new XMLHttpRequest();
     	xhr.onreadystatechange = Ext.bind(this.onStateChange, this, [xhr]);
+    	xhr.upload.addEventListener('progress', Ext.bind(this.progressUpdate, this), false);
     	xhr.open("POST", this.submitUrl);
     	xhr.send(formData);
-		
-//		var formData = new FormData();
-//    	formData.append("file", files[0]);
-//		
-//		//Uploading - for Firefox, Google Chrome and Safari			
-//		xhr = new XMLHttpRequest();		
-//		xhr.onreadystatechange = Ext.bind(this.onStateChange, this, [xhr]);		
-//		xhr.open("POST", this.submitUrl);
-//		xhr.setRequestHeader("Content-type","multipart/form-data");
-//		xhr.setRequestHeader("X-File-Name", file.name);
-//		xhr.setRequestHeader("X-File-Size", file.size);
-//		xhr.setRequestHeader("X-File-Type", file.type);
-//		xhr.send(formData);		
 	},
 			
 	click: function(rec){

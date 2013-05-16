@@ -1,0 +1,9 @@
+@import "compass/css3";
+
+.upload-preview {
+	img {
+		@include opacity(0.45);
+		width: 485px;
+		height: 300px;
+	}
+}

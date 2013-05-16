@@ -42,8 +42,9 @@ Ext.define('App.timeline.assets.image.FileDropZone', {
 		dropBox.addEventListener("drop", Ext.bind(this.onDrop, this), false);				
 	},
 	
-	onDragOver: function(e) {	
-	  return false;
+	onDragOver: function(e) {
+		this.noOperation(e);		
+	  	return false;
 	},
 	
 	noOperation: function(evt){
@@ -83,7 +84,7 @@ Ext.define('App.timeline.assets.image.FileDropZone', {
 	createDropZoneTpl: function(){
 		var html = 
 		'<div class="drop-img"></div>'+
-		'<div class="drop-msg">Drag photos here</div>';
+		'<div class="drop-msg">Drag & drop image here to upload</div>';
 		
 		return  new Ext.XTemplate(html);
 	},

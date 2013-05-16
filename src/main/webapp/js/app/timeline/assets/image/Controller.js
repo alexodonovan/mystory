@@ -19,18 +19,24 @@ Ext.define('App.timeline.assets.image.Controller', {
 	
 	createSteps: function(){
 		this.stepOne = this.createStepOne();		
-		this.stepTwo = App.timeline.assets.image.StepTwo.create();
+		this.stepTwo = this.createStepTwo();
 		
 		return [this.stepOne, this.stepTwo];
 	},
 	
+	createStepTwo: function(){
+		var two = App.timeline.assets.image.StepTwo.create();
+		return two;
+	},
+	
 	createStepOne: function(){
-		var one = App.timeline.assets.image.StepOne.create();
+		var one = App.timeline.assets.image.StepOne.create();	
 		one.on('uploaded', this.onUploaded, this);	
 		return one;
 	},
 	
 	onUploaded: function(){
+		
 		this.stepTwo.updateSrc('asset-images?imgId='+1);
 	},	
 	
