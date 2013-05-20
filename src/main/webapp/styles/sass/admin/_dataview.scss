@@ -20,25 +20,47 @@
 		cursor: url(../../../images/icons/openhand_8_8.cur),move; 				
 		&:hover { @include box-shadow(#777 2px 2px 10px);} 	
 		
-		img {
-			@include border-radius($radius);
-			height: $img-size;
-			width: $img-size;
-		}	
 		
-		.title {
-			padding-left: 15px;
-			font-weight: bold;
+		.img-container {
+			float: left;
+		
+			img {
+				@include border-radius($radius);
+				height: $img-size;
+				width: $img-size;
+			}
+		
+		}
+			
+		
+		.content {			
+			height: 100%;
+			@include display-box;								
+			@include box-orient(vertical);
+			@include box-align(stretch);
+			@include box-pack(center);
+			 
+			.title {				
+				font-weight: bold;
+				text-align: center;
+			}			
+			
+			.edit-btn {
+				@include default-btn;
+				text-align: center;
+				margin: 30px 30px 0 30px;
+				cursor: pointer;				
+			}		
+		
 		}
 		
 		.index {
 			$size: 15px;
-		
-			position: relative;
-			top: -$height + 4px;
-			right: -$width + 19px;
+			
+			float: right;
+			margin: 4px;	
 			height: $size;
-			width: $size;
+			width: $size;			
 			color: white;
 			@include border-radius(20px);
 			background-color: $darker-gray; 
@@ -46,7 +68,9 @@
 			text-align: center;
 			vertical-align: middle;
 			line-height: $size;
-		}	
+		}
+		
+			
 	}	
 	
 	 	

@@ -153,9 +153,76 @@ html, body {
 
 /* color statics */
 /* buttons - base colors here and offsets calculated in specific stylesheets for things like hovers */
-/* line 8, ../../sass/util/_inputs.scss */
-.story-default-textfield {
+/* line 6, ../../sass/util/_inputs.scss */
+.story-default-textfield .input-field, .story-default-textfield input, .story-default-textfield textarea, .story-default-textfield .editor-container .desc-field, .editor-container .story-default-textfield .desc-field {
+  padding: 2px 5px;
   border: 1px solid #c4c4c4;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
+  border-radius: 1px;
+}
+/* line 12, ../../sass/util/_inputs.scss */
+.story-default-textfield input {
+  height: 35px;
+  font-size: 13px;
+  line-height: normal;
+}
+
+/* line 6, ../../sass/util/_inputs.scss */
+.story-default-textarea .input-field, .story-default-textarea input, .story-default-textarea textarea, .story-default-textarea .editor-container .desc-field, .editor-container .story-default-textarea .desc-field {
+  padding: 2px 5px;
+  border: 1px solid #c4c4c4;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
+  border-radius: 1px;
+}
+/* line 12, ../../sass/util/_inputs.scss */
+.story-default-textarea input {
+  height: 35px;
+  font-size: 13px;
+  line-height: normal;
+}
+
+/* line 6, ../../sass/util/_inputs.scss */
+.story-default-input .input-field, .story-default-input input, .story-default-input textarea, .story-default-input .editor-container .desc-field, .editor-container .story-default-input .desc-field {
+  padding: 2px 5px;
+  border: 1px solid #c4c4c4;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
+  border-radius: 1px;
+}
+/* line 12, ../../sass/util/_inputs.scss */
+.story-default-input input {
+  height: 35px;
+  font-size: 13px;
+  line-height: normal;
+}
+
+/* line 6, ../../sass/util/_inputs.scss */
+.story-default-date-field .input-field, .story-default-date-field input, .story-default-date-field textarea, .story-default-date-field .editor-container .desc-field, .editor-container .story-default-date-field .desc-field {
+  padding: 2px 5px;
+  border: 1px solid #c4c4c4;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
+  border-radius: 1px;
+}
+/* line 12, ../../sass/util/_inputs.scss */
+.story-default-date-field input {
+  height: 35px;
+  font-size: 13px;
+  line-height: normal;
+}
+/* line 26, ../../sass/util/_inputs.scss */
+.story-default-date-field .x-form-focus {
+  box-shadow: none !important;
 }
 
 /* line 3, ../../sass/admin/_dropzone.scss */
@@ -229,8 +296,9 @@ html, body {
 /* line 11, ../../sass/admin/_uploader.scss */
 .progress-bar {
   border: 1px solid #4D4DF3;
+  z-index: 20000;
 }
-/* line 14, ../../sass/admin/_uploader.scss */
+/* line 16, ../../sass/admin/_uploader.scss */
 .progress-bar .x-progress-bar {
   background-color: #4d90f3;
 }
@@ -312,8 +380,12 @@ html, body {
   -moz-box-shadow: #777777 2px 2px 10px;
   box-shadow: #777777 2px 2px 10px;
 }
-/* line 23, ../../sass/admin/_dataview.scss */
-.data-view .story img {
+/* line 24, ../../sass/admin/_dataview.scss */
+.data-view .story .img-container {
+  float: left;
+}
+/* line 27, ../../sass/admin/_dataview.scss */
+.data-view .story .img-container img {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -322,16 +394,64 @@ html, body {
   height: 130px;
   width: 130px;
 }
-/* line 29, ../../sass/admin/_dataview.scss */
-.data-view .story .title {
-  padding-left: 15px;
+/* line 36, ../../sass/admin/_dataview.scss */
+.data-view .story .content {
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -ms-box-align: stretch;
+  box-align: stretch;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
+  box-pack: center;
+}
+/* line 43, ../../sass/admin/_dataview.scss */
+.data-view .story .content .title {
+  font-weight: bold;
+  text-align: center;
+}
+/* line 48, ../../sass/admin/_dataview.scss */
+.data-view .story .content .edit-btn {
+  margin: 10px 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background-color: whitesmoke;
+  background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0%, #f5f5f5), color-stop(100%, #f1f1f1));
+  background-image: -webkit-linear-gradient(left top, #f5f5f5, #f1f1f1);
+  background-image: -moz-linear-gradient(left top, #f5f5f5, #f1f1f1);
+  background-image: -o-linear-gradient(left top, #f5f5f5, #f1f1f1);
+  background-image: linear-gradient(left top, #f5f5f5, #f1f1f1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 30px 30px 0 30px;
+  cursor: pointer;
+}
+/* line 10, ../../sass/util/_buttons.scss */
+.data-view .story .content .edit-btn:hover {
+  border: 1px solid #c6c6c6;
+}
+/* line 14, ../../sass/util/_buttons.scss */
+.data-view .story .content .edit-btn .x-btn-inner {
+  color: #444;
+  font-size: 11px;
   font-weight: bold;
 }
-/* line 34, ../../sass/admin/_dataview.scss */
+/* line 57, ../../sass/admin/_dataview.scss */
 .data-view .story .index {
-  position: relative;
-  top: -126px;
-  right: -306px;
+  float: right;
+  margin: 4px;
   height: 15px;
   width: 15px;
   color: white;
@@ -347,30 +467,35 @@ html, body {
   line-height: 15px;
 }
 
-/* line 9, ../../sass/admin/admin.scss */
+/* line 3, ../../sass/admin/_event_window.scss */
+.event-window {
+  border: none;
+}
+
+/* line 10, ../../sass/admin/admin.scss */
 .editor-container {
   width: 93%;
   height: 100%;
 }
-/* line 13, ../../sass/admin/admin.scss */
-.editor-container .input-field, .editor-container .title-field input, .editor-container .desc-field {
+/* line 14, ../../sass/admin/admin.scss */
+.editor-container .input-field, .editor-container .story-default-textfield input, .story-default-textfield .editor-container input, .editor-container .story-default-textfield textarea, .story-default-textfield .editor-container textarea, .editor-container .story-default-textarea input, .story-default-textarea .editor-container input, .editor-container .story-default-textarea textarea, .story-default-textarea .editor-container textarea, .editor-container .story-default-input input, .story-default-input .editor-container input, .editor-container .story-default-input textarea, .story-default-input .editor-container textarea, .editor-container .story-default-date-field input, .story-default-date-field .editor-container input, .editor-container .story-default-date-field textarea, .story-default-date-field .editor-container textarea, .editor-container .title-field input, .editor-container .desc-field {
   padding: 2px 5px;
 }
-/* line 18, ../../sass/admin/admin.scss */
+/* line 19, ../../sass/admin/admin.scss */
 .editor-container .title-field input {
   height: 50px;
   font-size: 36px;
   line-height: 38px;
   font-family: "Georgia",Times New Roman,Times,serif;
 }
-/* line 27, ../../sass/admin/admin.scss */
+/* line 28, ../../sass/admin/admin.scss */
 .editor-container .desc-field {
   height: 100px;
   font-size: 15px;
   font-weight: normal;
   line-height: 20px;
 }
-/* line 34, ../../sass/admin/admin.scss */
+/* line 35, ../../sass/admin/admin.scss */
 .editor-container .desc-field .x-toolbar {
   border: none;
 }

@@ -11,6 +11,8 @@
 .progress-bar {
 	border: 1px solid #4D4DF3;
 	
+	z-index: 20000;
+	
 	.x-progress-bar {
 		background-color: #4d90f3;
 	}

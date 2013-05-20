@@ -1,10 +1,47 @@
 @import "compass/css3";
 @import "../base";
 
-@mixin default-textfield {
-	border: 1px solid $default-border;
+@mixin default-inputfield {
+
+	.input-field {
+		padding: 2px 5px;
+		border: 1px solid $default-border;
+		@include border-radius(1px);
+	}
+
+	input {
+		@extend .input-field;
+		height: 35px;
+		font-size: 13px;
+		line-height: normal;
+	}
+	
+	textarea {
+		@extend .input-field;
+	}					
+}
+
+@mixin default-date-field {
+	
+	.x-form-focus {
+		box-shadow: none !important;
+	}
+	
 }
 
 .story-default-textfield {
-	@include default-textfield;
+	@include default-inputfield;
+}
+
+.story-default-textarea {
+	@include default-inputfield;
+}
+
+.story-default-input {
+	@include default-inputfield;
+}
+
+.story-default-date-field{
+	@include default-inputfield;
+	@include default-date-field;
 }

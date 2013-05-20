@@ -12,24 +12,11 @@ Ext.define('App.timeline.assets.image.Uploader', {
 	
 	initComponent: function(){	
 		this.items = this.buildItems();
-		this.callParent();		
-						
-		this.buttonAlign =  'right';
-		this.buttons = this.createBtns();			
+		this.callParent();										
 		
 		this.addEvents('uploaded', 'progress');
 	},	
-	
-	createBtns: function(){
-		var btn = Ext.button.Button.create({
-			text: 'Upload',
-			handler: this.doSubmit,
-			scope: this
-		});
 		
-		 return [btn];
-	},
-	
 	buildItems: function(){	
 		this.fileUploadField = this.createFileUploadField();				
 		this.employeeIdField = this.createHiddenEmployeeIdField();			
@@ -59,7 +46,6 @@ Ext.define('App.timeline.assets.image.Uploader', {
 	progressUpdate: function(evt){
 		if (!evt.lengthComputable) return;
 		var val = evt.loaded / evt.total;
-		console.log("current progress:" + (val) * 100 + '%' );
 		this.fireEvent('progress', val);		
 	},
 	

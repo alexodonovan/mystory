@@ -39,16 +39,16 @@ Ext.define('App.timeline.assets.image.StepOne', {
 	},
 	
 	createDropZone: function(){
-		var field = App.timeline.assets.image.FileDropZone.create();
-		field.on('dropped', this.onImageDropped, this);
-		field.on('dropped', this.showProgressBar, this);		
+		var field = App.timeline.assets.image.FileDropZone.create();					
+		field.on('dropped', this.onImageDropped, this);			
 		field.on('dropped', this.doUpload, this);
 		return field;
 	},
 	
 	onImageDropped: function(files){		
-		var reader = new FileReader();
-		reader.onload = Ext.bind(this.showBackgroundImage, this);
+		var reader = new FileReader(),
+			fn = Ext.Function.createSequence(this.showBackgroundImage, this.showProgressBar, this);			
+		reader.onload = Ext.bind(fn, this);
 		reader.readAsDataURL(files[0]);
 	},
 	
@@ -74,7 +74,7 @@ Ext.define('App.timeline.assets.image.StepOne', {
 	showProgressBar: function(){
 		this.dropZone.hide();
 		this.progressBar.show();
-		this.progressBar.alignTo(this.getEl(), 'c?', [-90, 0]);	
+		this.progressBar.alignTo(this.getEl(), 'c?', [0, 0]);	
 	},
 	
 	doUpload: function(files){
@@ -91,8 +91,7 @@ Ext.define('App.timeline.assets.image.StepOne', {
 	
 	onUploaded: function(){
 		this.makeImageOpaque();
-		this.progressBar.hide();
-		this.showCreditCaptionFields();		
+		this.progressBar.hide();			
 	},
 	
 	showCreditCaptionFields: function(){
