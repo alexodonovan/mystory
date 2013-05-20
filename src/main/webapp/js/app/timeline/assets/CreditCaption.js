@@ -4,8 +4,9 @@ Ext.define('App.timeline.assets.CreditCaption', {
 	border: false,
 	cls: 'credit-caption-container',
 	layout: 'vbox',
-	width: '100%',
-	height: 55,
+	width: '90%',
+	height: 75,
+	padding: 10,
 					
 	
 	initComponent: function(){

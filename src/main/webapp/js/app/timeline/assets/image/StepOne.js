@@ -1,7 +1,9 @@
 Ext.define('App.timeline.assets.image.StepOne', {
 	extend: 'Ext.panel.Panel',
 	
-	requires: ['App.timeline.assets.image.Uploader', 'App.timeline.assets.image.FileDropZone'],
+	requires: ['App.timeline.assets.image.Uploader', 
+		'App.timeline.assets.image.FileDropZone',
+		'App.timeline.assets.CreditCaption'],
 	
 	border: false,
 	
@@ -26,8 +28,14 @@ Ext.define('App.timeline.assets.image.StepOne', {
 		this.uploadField = this.createUploadField();
 		this.dropZone = this.createDropZone();
 		this.progressBar = this.createProgressBar();
+		this.creditCaption = this.createCreditCaption();
 		
 		return [this.uploadField, this.dropZone];
+	},
+	
+	createCreditCaption: function(){
+		var fields = App.timeline.assets.CreditCaption.create({model: this.model, width: 600});				
+		return fields;
 	},
 	
 	createDropZone: function(){
@@ -75,20 +83,25 @@ Ext.define('App.timeline.assets.image.StepOne', {
 	
 	createUploadField: function(){
 		var field = App.timeline.assets.image.Uploader.create();
-		field.on('progress', this.onUploadProgress, this);
-		field.on('uploaded', this.hideProgressBar, this);
-		field.on('uploaded', this.onUploaded, this);
+		field.on('progress', this.onUploadProgress, this);			
+		field.on('uploaded', Ext.Function.createDelayed(this.onUploaded, 500, this));
 		this.relayEvents(field, ['uploaded']);
 		return field;
-	},
-	
-	hideProgressBar: function(){
-		Ext.defer(this.progressBar.hide, 500, this.progressBar);
-	},
+	},	
 	
 	onUploaded: function(){
+		this.makeImageOpaque();
+		this.progressBar.hide();
+		this.showCreditCaptionFields();		
+	},
+	
+	showCreditCaptionFields: function(){
+		this.insert(this.items.length-1, this.creditCaption);
+	},
+	
+	makeImageOpaque: function(){
 		var el = Ext.get('image-preview');
-		Ext.defer(el.setStyle, 500, el, ['opacity', 1]);
+		el.setStyle('opacity', 1);
 	},
 	
 	onUploadProgress: function(val){

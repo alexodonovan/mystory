@@ -5,7 +5,8 @@ Ext.application({
     requires: ['App.maps.GoogleMap', 
     		'App.timeline.Loader',
     		'App.timeline.Editor',
-    		'App.timeline.SimpleModel'
+    		'App.timeline.SimpleModel',
+    		'App.admin.Editor'
     		],
      
     launch: function() {   
@@ -13,14 +14,17 @@ Ext.application({
     	Ext.QuickTips.init();
     	Ext.tip.Tip.prototype.minWidth = 'auto';
     	
-    	App.timeline.SimpleModel.load('breen', {
-    		callback: this.onModelLoaded, scope: this
-    	});    	    	    	   	    	    	     	    	    	    	  
+    	App.admin.Editor.create();
+    	
+//    	App.timeline.SimpleModel.load('breen', {
+//    		callback: this.onModelLoaded, scope: this
+//    	});    	    	    	   	    	    	     	    	    	    	  
     },
     
     onModelLoaded: function(operation){
-		var model = operation.getResultSet().records[0];
-    	App.timeline.Editor.create({renderTo: 'timeline-container', model: model});
+		var model = operation.getResultSet().records[0];		
+		App.admin.Editor.create({renderTo: Ext.getBody(), model: model});		
+//    	App.timeline.Editor.create({renderTo: 'timeline-container', model: model});
     }
     
 });

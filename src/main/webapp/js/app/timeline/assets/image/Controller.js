@@ -1,9 +1,11 @@
 Ext.define('App.timeline.assets.image.Controller', {
 	extend: 'Ext.util.Observable',
 	
-	requires: ['App.timeline.assets.image.StepOne', 'App.timeline.assets.image.StepTwo'],
+	requires: ['App.timeline.assets.image.StepOne'],
 			
 	_steps: [],
+	
+	successfulUpload: false,
 					
 	constructor: function(cfg){
 		Ext.apply(this, cfg);
@@ -18,38 +20,29 @@ Ext.define('App.timeline.assets.image.Controller', {
 	},
 	
 	createSteps: function(){
-		this.stepOne = this.createStepOne();		
-		this.stepTwo = this.createStepTwo();
-		
-		return [this.stepOne, this.stepTwo];
-	},
-	
-	createStepTwo: function(){
-		var two = App.timeline.assets.image.StepTwo.create();
-		return two;
-	},
+		this.stepOne = this.createStepOne();						
+		return [this.stepOne];
+	},	
 	
 	createStepOne: function(){
-		var one = App.timeline.assets.image.StepOne.create();	
+		var one = App.timeline.assets.image.StepOne.create({model: this.model});	
 		one.on('uploaded', this.onUploaded, this);	
 		return one;
 	},
 	
 	onUploaded: function(){
-		
-		this.stepTwo.updateSrc('asset-images?imgId='+1);
-	},	
+		this.successfulUpload = true;		
+	},
+	
+	onDataLoaded: Ext.emptyFn,
 	
 	isValid: function(){
-		return true;
+		return this.uploadSuccessful;
 	},
 	
 	isNotValid: function(){
 		return !this.isValid();
 	},
 	
-	onDataLoaded: function(model){		
-		this.stepTwo.update({src: model.asDataUri()});
-	}
-
+	
 });

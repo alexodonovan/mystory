@@ -20,6 +20,15 @@ Ext.define('App.timeline.assets.image.Model', {
 		var obj = Ext.JSON.decode(operation.response.responseText),
 			image = App.timeline.assets.image.Image.create(obj);		
 		this.fireEvent('dataloaded', image);		
+	},
+	
+	isValid: function(){
+		
+	},
+	
+	
+	save: function(){
+		alert('saving image..');
 	}
 		
 });

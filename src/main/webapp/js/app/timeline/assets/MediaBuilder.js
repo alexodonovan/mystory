@@ -28,6 +28,11 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 		this.callParent();						
 	},	
 	
+	afterRender: function(){
+		this.callParent();
+		this.toggleBtns();
+	},
+	
 	buildItems: function(){				
 		this.wizard = this.createWizard();		
 		this.navBtns = this.createToolbar();
@@ -74,7 +79,7 @@ Ext.define('App.timeline.assets.MediaBuilder', {
 	
 	
 	//in scope of this.wizard
-	toggleBtns: function(){
+	toggleBtns: function(){		
 		if (this.wizard.active == 0) {		
 			this.nextBtn.show();
 			this.saveBtn.hide();			
