@@ -13,8 +13,6 @@ Ext.define('App.admin.dataview.View', {
     emptyText: 'This story has no events',
     layout :'fit',
     
-    mouseEntered: false,
-    
     initComponent: function(){
         this.initMixins();
         this.tpl = this.createTpl();
@@ -39,31 +37,44 @@ Ext.define('App.admin.dataview.View', {
         this.store.each(Ext.bind(this.attachBtnClick, this, ['close-btn', this.onCloseClick], true));
     },
     
-    onMouseLeaveNode: function(view, record, node, index, e, eOpts){
-    	if (node.contains(e.target)) return;
-    	var seqEl = Ext.get('event-sequence-'+(index+1)),
-    		closeEl = Ext.get('close-btn-'+(index+1));
-    		
-    	seqEl.alignTo(node, 'tr?', [-20, 4], true);
+    resetSequenceIndicator: function(id, node){
+    	var el = Ext.get(id);
+    	el.alignTo(node, 'tr?', [-20, 4], true);
+    },
+    
+    shiftSequenceIndicator: function(id, node){    	
+    	var el = Ext.get(id);      
+    	if (el.getActiveAnimation()) return;    	
+    	el.alignTo(node, 'tr?', [-40, 4], true);
+    },
+    
+    showCloseBtn: function(id, node){
+    	var el = Ext.get(id);
+    	if (el.getActiveAnimation()) return;
+    	
+    	el.syncFx()
+			.alignTo(node, 'tr?', [-20, 4], false)
+			.setOpacity(1, {duration: 200});
+    },
+    
+    
+    
+    hideCloseBtn: function(id, node){
+    	var closeEl = Ext.get(id);    		    
     	closeEl.sequenceFx()
     			.setOpacity(0, true)
-    			.alignTo(node, 'tr?', [ -20, -20], true);    			
-    	this.mouseEntered=false;
+    			.alignTo(node, 'tr?', [ -20, -20], true);
+    },
+    
+    onMouseLeaveNode: function(view, record, node, index, e, eOpts){
+    	if (node.contains(e.target)) return;
+    	this.resetSequenceIndicator('event-sequence-'+(index+1), node);
+    	this.hideCloseBtn('close-btn-'+(index+1), node);    	    		
     },
     
     onMouseEnterNode: function(view, record, node, index, e, eOpts){
-    	if (this.mouseEntered) return;
-    	var seqEl = Ext.get('event-sequence-'+(index+1)),
-    		closeEl = Ext.get('close-btn-'+(index+1));    
-    	
-    	if (seqEl.getActiveAnimation() || closeEl.getActiveAnimation()) return;
-    	
-    	seqEl.alignTo(node, 'tr?', [-40, 4], true);
-    	closeEl.syncFx()
-    			.alignTo(node, 'tr?', [-20, 4], false)
-    			.setOpacity(1, true);
-    	
-    	this.mouseEntered=true;
+    	this.shiftSequenceIndicator('event-sequence-'+(index+1), node);
+    	this.showCloseBtn('close-btn-'+(index+1), node);
     },
     
     attachBtnClick: function(rec, index, count, id, fn){
