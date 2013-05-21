@@ -11,14 +11,16 @@ Ext.define('App.admin.dataview.View', {
     cls: 'data-view',
     itemSelector: 'div.story',
     emptyText: 'This story has no events',
-    layout :'fit',          
+    layout :'fit',
+    
+    mouseEntered: false,
     
     initComponent: function(){
         this.initMixins();
         this.tpl = this.createTpl();
         this.callParent(arguments);
         
-        this.addEvents('editclicked');
+        this.addEvents('editclicked', 'closeclicked');
         this.store.on('datachanged', this.attachBtnClicks, this);
     },
     
@@ -26,26 +28,69 @@ Ext.define('App.admin.dataview.View', {
         this.callParent(arguments);
         
         this.initDropZones();
-        this.attachBtnClicks();        
-    },
+        this.attachBtnClicks();  
+        
+        this.on('itemmouseleave', this.onMouseLeaveNode, this);
+        this.on('itemmouseenter', this.onMouseEnterNode, this);               
+    },    
     
     attachBtnClicks: function(){
-        this.store.each(this.attachBtnClick, this);
+        this.store.each(Ext.bind(this.attachBtnClick, this, ['edit-btn', this.onEditClick], true));
+        this.store.each(Ext.bind(this.attachBtnClick, this, ['close-btn', this.onCloseClick], true));
     },
     
-    attachBtnClick: function(rec){    	
+    onMouseLeaveNode: function(view, record, node, index, e, eOpts){
+    	if (node.contains(e.target)) return;
+    	var seqEl = Ext.get('event-sequence-'+(index+1)),
+    		closeEl = Ext.get('close-btn-'+(index+1));
+    		
+    	seqEl.alignTo(node, 'tr?', [-20, 4], true);
+    	closeEl.sequenceFx()
+    			.setOpacity(0, true)
+    			.alignTo(node, 'tr?', [ -20, -20], true);    			
+    	this.mouseEntered=false;
+    },
+    
+    onMouseEnterNode: function(view, record, node, index, e, eOpts){
+    	if (this.mouseEntered) return;
+    	var seqEl = Ext.get('event-sequence-'+(index+1)),
+    		closeEl = Ext.get('close-btn-'+(index+1));    
+    	
+    	if (seqEl.getActiveAnimation() || closeEl.getActiveAnimation()) return;
+    	
+    	seqEl.alignTo(node, 'tr?', [-40, 4], true);
+    	closeEl.syncFx()
+    			.alignTo(node, 'tr?', [-20, 4], false)
+    			.setOpacity(1, true);
+    	
+    	this.mouseEntered=true;
+    },
+    
+    attachBtnClick: function(rec, index, count, id, fn){
         var index = this.indexOf(rec),
-            el = Ext.get('edit-btn-'+(index+1));
+            el = Ext.get(id+'-'+(index+1));
         
         if(!el) {
-            Ext.defer(this.attachBtnClick, 100, this, [rec], false);
+            Ext.defer(this.attachBtnClick, 100, this, arguments, false);
             return true;
         }
-        el.on('click', Ext.bind(this.onEditClick, this, [rec], false));               
+        el.on('click', Ext.bind(fn, this, [rec], false));               
     },
     
     onEditClick: function(rec){
     	this.fireEvent('editclicked', rec);        
+    },
+    
+    onCloseClick: function(rec){    
+    	Ext.Msg.confirm('Delete this event?', 
+    			'You have chosen to delete this event. Do you wish to continue?',
+    			Ext.bind(this.onCloseConfirm, this, [rec], true));    	
+
+    },
+    
+    onCloseConfirm: function(buttonId, unknown, button, rec){	
+    	if (buttonId!=='yes') return;
+   		this.fireEvent('closeclicked', rec);
     },
     
     initDropZones: function(){
@@ -109,7 +154,8 @@ Ext.define('App.admin.dataview.View', {
                     '<div class="img-container">' +
                         '<img src={url} />' +
                     '</div>' +
-                    '<div class="index">{#}</div>' +
+                    '<div id="close-btn-{#}" class="close-btn">x</div>' +
+                    '<div id="event-sequence-{#}" class="index">{#}</div>' +                    
                     '<div class="content">'+
                       '<div class="title">{title}</div>' +                  
                       '<div id="edit-btn-{#}" class="edit-btn">Edit</div>'+

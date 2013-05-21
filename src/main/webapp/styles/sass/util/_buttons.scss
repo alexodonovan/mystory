@@ -22,17 +22,17 @@
 	@include default-btn;
 }
 
-@mixin save-btn {
+@mixin story-btn($btn-color: $save-btn-color, $btn-border-color: $save-btn-border-color) {
 	margin: 10px 5px;
-	background-color: $save-btn-color;	
-	border: 1px solid $save-btn-border-color;
-	background-image: -webkit-linear-gradient(top,$save-btn-color, $save-btn-color - #040A00 );
-	background: $save-btn-color;	
+	background-color: $btn-color;	
+	border: 1px solid $btn-border-color;
+	background-image: -webkit-linear-gradient(top, $btn-color, $btn-color - #040A00 );
+	background: $btn-color;	
 
 	&:hover {
 		@include box-shadow(rgba(0,0,0,0.3) 0 1px 2px inset);					
-		border: 1px solid ($save-btn-border-color - #03F8E3) !important;
-		background: $save-btn-color - #071200;	
+		border: 1px solid ($btn-border-color - #03F8E3) !important;
+		background: $btn-color - #071200;	
 	}
 	
 	.x-btn-inner { 
@@ -43,6 +43,10 @@
 }
 
 .story-save-btn {
-	@include save-btn;	
+	@include story-btn;	
+}
+
+.story-blue-btn {
+	@include story-btn(#4b8af4, #3079ed);
 }
 

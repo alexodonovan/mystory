@@ -12,10 +12,8 @@ Ext.application({
     launch: function() {   
     	//initialize tooltips and workaround bug fix.
     	Ext.QuickTips.init();
-    	Ext.tip.Tip.prototype.minWidth = 'auto';
-    	
-    	App.admin.Editor.create();
-    	
+    	Ext.tip.Tip.prototype.minWidth = 'auto';    	
+    	App.admin.Editor.create();    	    	
 //    	App.timeline.SimpleModel.load('breen', {
 //    		callback: this.onModelLoaded, scope: this
 //    	});    	    	    	   	    	    	     	    	    	    	  
