@@ -500,52 +500,100 @@ html, body {
   cursor: pointer;
 }
 
-/* line 3, ../../sass/admin/_event_window.scss */
+/* color statics */
+/* buttons - base colors here and offsets calculated in specific stylesheets for things like hovers */
+/* line 9, ../../sass/util/_windows.scss */
+.story-plain-window-body {
+  border: none;
+}
+
+/* line 13, ../../sass/util/_windows.scss */
+.story-plain-window {
+  border: none;
+  border-top: 1px solid #CCCCCC;
+}
+
+/* line 4, ../../sass/admin/_event_window.scss */
 .event-window {
   border: none;
   border-top: 1px solid #CCCCCC;
 }
 
-/* line 3, ../../sass/admin/_toolbar.scss */
+/* line 8, ../../sass/admin/_event_window.scss */
+.x-mask {
+  opacity: 0;
+}
+
+/* line 4, ../../sass/admin/search/_searchbox.scss */
+.search-box input {
+  margin-top: 9px;
+}
+
+/* line 9, ../../sass/admin/search/_searchbox.scss */
+.search-btn {
+  padding-left: 9px;
+  padding-right: 7px;
+}
+/* line 13, ../../sass/admin/search/_searchbox.scss */
+.search-btn .search-icon {
+  background-image: url(../../../images/icons/search.png);
+  background-size: 57px 45px;
+  background-position: -28px 7px;
+}
+
+/* line 5, ../../sass/admin/_toolbar.scss */
 .top-toolbar-1 {
   background-color: #2d2d2d;
   /* #294762; */
 }
 
-/* line 7, ../../sass/admin/_toolbar.scss */
+/* line 9, ../../sass/admin/_toolbar.scss */
 .top-toolbar-2 {
   background-color: #FFFFFF;
 }
 
-/* line 11, ../../sass/admin/_toolbar.scss */
+/* line 13, ../../sass/admin/_toolbar.scss */
 .top-toolbar-3 {
   background-color: #F5F5F5;
 }
 
-/* line 11, ../../sass/admin/admin.scss */
+/* color statics */
+/* buttons - base colors here and offsets calculated in specific stylesheets for things like hovers */
+/* line 9, ../../sass/util/_windows.scss */
+.story-plain-window-body {
+  border: none;
+}
+
+/* line 13, ../../sass/util/_windows.scss */
+.story-plain-window {
+  border: none;
+  border-top: 1px solid #CCCCCC;
+}
+
+/* line 12, ../../sass/admin/admin.scss */
 .editor-container {
   width: 93%;
   height: 100%;
 }
-/* line 15, ../../sass/admin/admin.scss */
+/* line 16, ../../sass/admin/admin.scss */
 .editor-container .input-field, .editor-container .story-default-textfield input, .story-default-textfield .editor-container input, .editor-container .story-default-textfield textarea, .story-default-textfield .editor-container textarea, .editor-container .story-default-textarea input, .story-default-textarea .editor-container input, .editor-container .story-default-textarea textarea, .story-default-textarea .editor-container textarea, .editor-container .story-default-input input, .story-default-input .editor-container input, .editor-container .story-default-input textarea, .story-default-input .editor-container textarea, .editor-container .story-default-date-field input, .story-default-date-field .editor-container input, .editor-container .story-default-date-field textarea, .story-default-date-field .editor-container textarea, .editor-container .title-field input, .editor-container .desc-field {
   padding: 2px 5px;
 }
-/* line 20, ../../sass/admin/admin.scss */
+/* line 21, ../../sass/admin/admin.scss */
 .editor-container .title-field input {
   height: 50px;
   font-size: 36px;
   line-height: 38px;
   font-family: "Georgia",Times New Roman,Times,serif;
 }
-/* line 29, ../../sass/admin/admin.scss */
+/* line 30, ../../sass/admin/admin.scss */
 .editor-container .desc-field {
   height: 100px;
   font-size: 15px;
   font-weight: normal;
   line-height: 20px;
 }
-/* line 36, ../../sass/admin/admin.scss */
+/* line 37, ../../sass/admin/admin.scss */
 .editor-container .desc-field .x-toolbar {
   border: none;
 }

@@ -1,0 +1,19 @@
+@import "compass/css3";
+
+.search-box {
+	input {
+		margin-top: 9px;
+	}
+}
+
+.search-btn{
+	padding-left: 9px;
+	padding-right: 7px; 
+
+	.search-icon {
+		background-image: url(../../../images/icons/search.png);
+		background-size: 57px 45px; 
+		background-position: -28px 7px;
+	}
+
+}

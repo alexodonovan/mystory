@@ -4,7 +4,9 @@ Ext.define('App.admin.Editor', {
 	
 	requires: ['App.admin.dataview.View', 
 		'App.admin.dataview.Events',
-		'App.admin.EventWindow'],
+		'App.admin.EventWindow',
+		'App.admin.search.SearchBox',
+		'App.admin.editor.OptionsWindow'],
 			
 	constructor: function(cfg){		
 		this.store = this.createStore();
@@ -14,6 +16,7 @@ Ext.define('App.admin.Editor', {
 		this.tb2 = this.createToolbar2();
 		this.tb3 = this.createToolbar3();
 		
+		this.optionsWindow = this.createOptionsWindow();		
 		this.layoutContainer = this.createLayoutContainer();
 		
 		this.callParent(arguments);
@@ -31,18 +34,18 @@ Ext.define('App.admin.Editor', {
     	this.view.refresh();
     },
     
-    showEventWindow: function(){
-    	var win = this.createEditWindow();
+    showEventWindow: function(comp){
+    	var win = this.createEventWindow();
     	win.show();
     	
     },
     
     showEditWindow: function(rec){
-    	var win = this.createEditWindow();
+    	var win = this.createEventWindow();
     	win.show();    	
     },
     
-    createEditWindow: function(){
+    createEventWindow: function(){
     	var win = App.admin.EventWindow.create({
     		media: App.timeline.assets.image.StepOne.create()    		
     	});
@@ -74,15 +77,26 @@ Ext.define('App.admin.Editor', {
     	return tb;
     },
     
-     createToolbar2: function(){
-     	var search = Ext.form.field.Text.create({
-     		cls: 'story-default-textfield',
-     		emptyText: 'Search by surname',
-     		width: 350
-     	});
-     	
+    createPreviewBtn: function(){
+    	var btn = Ext.button.Button.create({
+    		text	: 'Preview', 
+    		scale	: 'large', 
+    		cls		: 'story-blue-btn',
+    		handler	: this.onPreviewClick,
+    		scope	: this    		
+    	});
+    	return btn;
+    },
+    
+    onPreviewClick: function(){
+    	document.location = 'preview.html';
+    },
+    
+    createToolbar2: function(){
+     	var search = App.admin.search.SearchBox.create(),
+     		preview = this.createPreviewBtn();     	          	
     	var tb = Ext.toolbar.Toolbar.create({
-    		items: [' ',search, '->', {text: 'Preview', scale: 'large', cls: 'story-blue-btn'}],
+    		items: [' ',search, '->', preview ],
     		border: false,
     		cls: 'top-toolbar-2',
     		height: 70
@@ -100,14 +114,21 @@ Ext.define('App.admin.Editor', {
     },
     
     onAddClick: function(){
-    	this.showEventWindow();
+    	if (this.optionsWindow.isVisible()) return;
+    	this.optionsWindow.animShow(this.addBtn);    	
+    },
+    
+    createOptionsWindow: function(){
+    	var options = App.admin.editor.OptionsWindow.create();
+    	options.on('choosen', this.showEventWindow, this);
+    	return options;
     },
     
     createToolbar3: function(){
-    	var addBtn = this.createAddBtn();
+    	this.addBtn = this.createAddBtn();
     	
     	var tb = Ext.toolbar.Toolbar.create({
-    		items: ['  ',  addBtn],
+    		items: ['  ',  this.addBtn],
     		border: false,
     		cls: 'top-toolbar-3'
     	});

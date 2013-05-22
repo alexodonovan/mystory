@@ -1,7 +1,10 @@
 @import "compass/css3";
+@import "../util/windows";
 
 .event-window {
-	border: none;
-	border-top: 1px solid #CCCCCC;
-	
+	@include plain-window;
+}
+
+.x-mask {
+	opacity: 0;
 }

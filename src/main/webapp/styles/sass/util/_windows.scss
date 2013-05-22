@@ -1,0 +1,15 @@
+@import "compass/css3";
+@import "../base";
+
+@mixin plain-window {
+	border: none;
+	border-top: 1px solid #CCCCCC;
+}
+
+.story-plain-window-body {
+	border: none;
+}
+
+.story-plain-window {
+	@include plain-window;
+}
