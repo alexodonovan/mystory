@@ -8,3 +8,23 @@
 .hide-date .container .date {
   display: none;
 }
+
+/*
+.navbar {
+	line-height: 85px;
+		
+	.navbar-inner {
+		background: none;
+		border: none;
+		
+		.header {
+			font-size: 76px;
+			font-family: 'Marck Script', cursive;
+			
+			&:hover {
+				color: #999999;
+			}
+		}
+	}
+}
+*/

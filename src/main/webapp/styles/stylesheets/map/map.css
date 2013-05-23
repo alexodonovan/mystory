@@ -52,7 +52,44 @@
 }
 
 /* line 45, ../../sass/map/map.scss */
+.next-btn {
+  cursor: pointer;
+}
+
+/* line 50, ../../sass/map/map.scss */
+.zoom-btn {
+  float: right !important;
+  height: 35px;
+  width: 30px;
+  cursor: pointer;
+  padding: 2px;
+  display: inline-block;
+  line-height: 35px;
+}
+/* line 59, ../../sass/map/map.scss */
+.zoom-btn .btn-text {
+  float: right;
+}
+/* line 63, ../../sass/map/map.scss */
+.zoom-btn .icon {
+  background-image: url(../../../images/icons/street-view.png);
+  background-size: 1019px 204px;
+  background-position: -13px 123px;
+  width: 23px;
+  height: 35px;
+  display: inline-block;
+  line-height: 35px;
+}
+
+/* line 74, ../../sass/map/map.scss */
 textarea.info-window-popup {
   height: 250px;
   width: 420px;
+}
+
+/* line 79, ../../sass/map/map.scss */
+.street-man {
+  display: none;
+  position: absolute;
+  z-index: 100;
 }

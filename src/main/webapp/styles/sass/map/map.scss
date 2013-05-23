@@ -42,7 +42,42 @@
 	margin-right: 30px;
 }
 
+.next-btn {
+	cursor: pointer;
+		
+}
+
+.zoom-btn {
+	float: right !important;
+	height: 35px;
+	width: 30px;
+	cursor: pointer;
+	padding: 2px;
+	display: inline-block;
+	line-height: 35px;
+	
+	.btn-text {
+		float: right;
+	}
+	
+	.icon {		
+		background-image: url(../../../images/icons/street-view.png);
+		background-size: 1019px 204px;
+		background-position: -13px 123px;
+		width: 23px;
+		height: 35px;
+		display: inline-block;
+		line-height: 35px;
+	}
+}
+
 textarea.info-window-popup {
 	height: 250px;
 	width: 420px;	
+}
+
+.street-man {
+	display: none; 
+	position: absolute;
+	z-index: 100;
 }

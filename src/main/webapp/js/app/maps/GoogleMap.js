@@ -119,10 +119,11 @@ Ext.define('App.maps.GoogleMap', {
 		model.on('click', this.onMarkerClick, this);
 		model.on('drag', this.onMarkerDrag, this);		
 		return model;
-	},		
-	
+	},	
+			
 	createStory: function(){
-		var story = App.maps.Story.create({preview: this.preview});
+		var story = App.maps.Story.create({preview: this.preview, map: this});
+		story.on('next_click', this.nextStory, this);
 		return story;
 	},	
 	
@@ -133,7 +134,12 @@ Ext.define('App.maps.GoogleMap', {
 	},
 	
 	onMarkerClick: function(model, arg, marker){
+		this.markers.updateActiveStory(model);
 		this.onMarkerLoad(model, marker);										
+	},
+	
+	nextStory: function(){
+		this.markers.showNextStory();
 	},
 	
 	onMarkerDrag: function(model){

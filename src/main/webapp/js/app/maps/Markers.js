@@ -5,6 +5,8 @@ Ext.define('App.maps.Markers', {
 	
 	autoLoad: false,
 	
+	activeStory: false,
+	
 	constructor: function(){
 		this.callParent(arguments);
 		
@@ -45,7 +47,19 @@ Ext.define('App.maps.Markers', {
 	
 	showFirstStory: function(){
 		var first = this.first();
-		if(first) first.showStory();		
+		if(first) {
+			first.showStory();
+			this.activeStory = 0;
+		}
+	},
+	
+	showNextStory: function(){
+		var marker = this.getAt(++this.activeStory);
+		if (marker) marker.showStory();
+	},
+	
+	updateActiveStory: function(marker){		
+		this.activeStory = this.indexOf(marker);
 	}
 	
 		
