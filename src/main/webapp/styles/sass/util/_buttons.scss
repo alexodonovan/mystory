@@ -50,3 +50,7 @@
 	@include story-btn(#4b8af4, #3079ed);
 }
 
+.story-red-btn {
+	@include story-btn(#d14836, #d14836);
+}
+

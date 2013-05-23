@@ -1,11 +1,11 @@
 @import "compass/css3";
 
 .upload-preview {
-	img {
-		@include opacity(0);
+	#image-preview {	
 		width: 647px;
 		height: 400px;		
 	}
+	
 }
 
 .progress-bar {

@@ -49,7 +49,7 @@ Ext.define('App.maps.GoogleMap', {
 			zoomControlOptions : {
 				style : google.maps.ZoomControlStyle.LARGE
 			},
-			streetViewControl : true,
+			streetViewControl : this.preview ? false: true,
 			mapTypeControl : false
 	 	};
 	},

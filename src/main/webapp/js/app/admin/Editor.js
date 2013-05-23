@@ -77,10 +77,25 @@ Ext.define('App.admin.Editor', {
     	return tb;
     },
     
+    createPublishBtn: function(){
+    	var btn = Ext.button.Button.create({
+    		text	: 'Publish', 
+    		scale	: 'large', 
+    		cls		: 'story-red-btn',
+    		handler	: this.onPublishClick,
+    		scope	: this    		
+    	});
+    	return btn;
+    },
+    
+    onPublishClick: function(){
+    	
+    },
+    
     createPreviewBtn: function(){
     	var btn = Ext.button.Button.create({
     		text	: 'Preview', 
-    		scale	: 'large', 
+    		scale	: 'medium', 
     		cls		: 'story-blue-btn',
     		handler	: this.onPreviewClick,
     		scope	: this    		
@@ -94,9 +109,10 @@ Ext.define('App.admin.Editor', {
     
     createToolbar2: function(){
      	var search = App.admin.search.SearchBox.create(),
-     		preview = this.createPreviewBtn();     	          	
+     		preview = this.createPreviewBtn(),
+     		publish = this.createPublishBtn();     		
     	var tb = Ext.toolbar.Toolbar.create({
-    		items: [' ',search, '->', preview ],
+    		items: [' ',search, '->', preview, publish ],
     		border: false,
     		cls: 'top-toolbar-2',
     		height: 70

@@ -139,17 +139,11 @@ Ext.define('App.maps.Story', {
 		var el = Ext.get('fly-by');	
 		el.alignTo(icon, 'tl');
 		el.setStyle('display','block');
-							
-				
+										
 		el.sequenceFx()
-			.animate({from: growFrom, to: growTo, easing: 'backOut', duration: 750})
-			.animate({from: growTo, to: shrinkTo, easing: 'backIn', duration: 350, callback: this.onAnimationComplete, scope: this});
+			.animate({from: growFrom, to: growTo, easing: 'backOut', duration: 600})
+			.animate({from: growTo, to: shrinkTo, easing: 'backIn', duration: 350, callback: Ext.Function.createDelayed(this.onAnimationComplete, 50, this)});					
 		
-		
-		
-		
-		
-//		
 	},
 	
 	onAnimationComplete: function(){
@@ -181,8 +175,7 @@ Ext.define('App.maps.Story', {
 	      	panorama.setPov({
 	        	heading: 90,
 	        	pitch: 0
-	      	});
-	      	panorama.setVisible(true);
+	      	});	      	
 		});
 	}
 	

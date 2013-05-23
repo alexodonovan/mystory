@@ -53,14 +53,14 @@ Ext.define('App.timeline.assets.image.StepOne', {
 	},
 	
 	showBackgroundImage: function(evt){
-		var src = evt.target.result,		
-			p = Ext.panel.Panel.create({
-				tpl: '<img id="image-preview" src={src}>',
-				data: {src: src},
+		var src = evt.target.result;		
+		this.imageContainer = Ext.panel.Panel.create({
+				tpl: '<img id="{id}" src={src}>',
+				data: {src: src, id: 'image-preview'},
 				cls: 'upload-preview',
 				border: false			
-			});		
-		this.insert(0, p);
+		});		
+		this.insert(0, this.imageContainer);
 		Ext.get('image-preview').fadeIn({opacity: 0.45, duration: 500});
 	},
 	
@@ -91,7 +91,15 @@ Ext.define('App.timeline.assets.image.StepOne', {
 	
 	onUploaded: function(){
 		this.makeImageOpaque();
-		this.progressBar.hide();			
+		this.progressBar.hide();	
+		this.showCropper();
+	},
+	
+	showCropper: function(){				
+		$('#image-preview').Jcrop({                                    
+            setSelect:   [ 250, 250, 100, 100],
+            maxSize: [647, 400]
+        });
 	},
 	
 	showCreditCaptionFields: function(){
