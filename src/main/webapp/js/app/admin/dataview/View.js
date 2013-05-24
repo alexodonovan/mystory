@@ -11,7 +11,8 @@ Ext.define('App.admin.dataview.View', {
     cls: 'data-view',
     itemSelector: 'div.story',
     emptyText: 'This story has no events',
-    layout :'fit',
+     
+//    autoHeight: true,    /      
     
     initComponent: function(){
         this.initMixins();

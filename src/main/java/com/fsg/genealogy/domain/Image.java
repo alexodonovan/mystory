@@ -24,7 +24,6 @@ import flexjson.JSONSerializer;
 @RooJavaBean
 public class Image {
 	
-	
 	public Image(byte[] bytes) {
 		this.bytes = bytes;
 	}

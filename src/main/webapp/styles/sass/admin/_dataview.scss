@@ -1,11 +1,9 @@
 @import "compass/css3";
 
 .data-view {
-	
-	@include display-box;
-	@include box-orient(horizontal);		
-
+		
 	.story {
+		display: inline-block;
 		$radius: 3px; 
 		$img-size: 130px;
 		$width: $img-size * 2.5; 

@@ -2,7 +2,7 @@ Ext.define('App.admin.EventWindow', {
 
 	extend : 'Ext.window.Window',
 	
-	requires: ['App.timeline.assets.image.StepOne'],
+	requires: ['App.timeline.assets.image.StepOne', 'App.util.EventBus'],
 	
 	cls: 'event-window',
 	
@@ -27,39 +27,69 @@ Ext.define('App.admin.EventWindow', {
 		this.callParent(arguments);			
 	},
 	
-	buildItems: function(){
+	initEvents: function(){
+		this.callParent(arguments);
+		
+		App.util.EventBus.subscribe('App.admin.dataview.Event.created', this.onEventCreated, this);
+	},
+	
+	createTitleField: function(){
 		var title = Ext.form.field.Text.create({
 			emptyText: 'Title',		
 			cls: 'story-default-textfield',
-			width: 300
+			width: 300,
+			name: 'title'
 		});
 		
+		return title;
+	},
+	
+	createDescField: function(){
 		var desc = Ext.form.field.TextArea.create({
 			emptyText: 'Description',
 			cls: 'story-default-input',
 			width: 300
 		});
+		return desc;
 		
-		var date = Ext.form.field.Date.create({
-			emptyText: 'Event Date.',
-			cls: 'story-default-date-field',
-			width: 350
-		});
-		
+	},
+	
+	createCreditField: function(){
 		var credit = Ext.form.field.Text.create({
 			emptyText: 'Credit',
 			cls: 'story-default-textfield',
 			width: 300
 		});
-		
+		return credit;		
+	},
+	
+	createCaptionField: function(){
 		var caption = Ext.form.field.Text.create({
 			emptyText: 'Caption',
 			cls: 'story-default-textfield',
 			width: 300
 		});
 		
+		return caption;
+	},
+	
+	buildItems: function(){
+		this.title = this.createTitleField();
+		this.desc = this.createDescField();
+		this.credit = this.createCreditField();
+		this.caption = this.createCaptionField();
+				
+		var date = Ext.form.field.Date.create({
+			emptyText: 'Event Date.',
+			cls: 'story-default-date-field',
+			width: 350
+		});
+		
+		
+		
+		
 		var btns = this.createBtns();							
-		return [title, desc, date, this.media, credit, caption, btns];
+		return [this.title, this.desc, date, this.media, this.credit, this.caption, btns];
 	}, 
 	
 	createCancelBtn: function(){
@@ -81,10 +111,33 @@ Ext.define('App.admin.EventWindow', {
 		var btn = Ext.button.Button.create({
 			text: 'Save',
 			cls: 'story-save-btn',
-			scale: 'medium'
+			scale: 'medium',
+			handler: this.onSaveClick, 
+			scope: this			
 		});
 		
 		return btn;
+	},
+	
+	onSaveClick: function(){
+		var event = App.admin.dataview.Event.create(this.dataObj());
+		event.on('created', this.onCreated, this);
+		event.save();
+	},
+	
+	onCreated: function(){		
+		this.close();
+		this.destroy();		
+	},
+	
+	dataObj: function(){
+		var data = {};
+		data.title = this.title.getValue();
+		data.description = this.desc.getValue();
+		data.caption = this.caption.getValue();
+		data.credit = this.credit.getValue();		
+		data.url = 'http://www.fexco.com/wp-content/themes/FEXCO_Theme/images/logo.jpg';
+		return data;
 	},
 	
 	

@@ -53,7 +53,13 @@ Ext.define('App.admin.Editor', {
     },
     
     createStore: function(){
-    	return App.admin.dataview.Events.create();
+    	var store = App.admin.dataview.Events.create();    	
+    	store.load({scope: this, callback: this.onStoreLoad});
+    	return store;
+    },
+    
+    onStoreLoad: function(){
+    	this.layoutContainer.doLayout(); 
     },
     
     
@@ -61,7 +67,11 @@ Ext.define('App.admin.Editor', {
     	var p = Ext.container.Container.create({
     		items: [this.tb1, this.tb2, this.tb3, this.view],
     		border: false,
-    		renderTo: 'timeline-container'
+    		renderTo: 'timeline-container',
+    		layout: {
+    			type: 'vbox',
+    			align: 'stretch'
+    		}
     	});
     	
     	return p;
@@ -146,14 +156,15 @@ Ext.define('App.admin.Editor', {
     	var tb = Ext.toolbar.Toolbar.create({
     		items: ['  ',  this.addBtn],
     		border: false,
-    		cls: 'top-toolbar-3'
+    		cls: 'top-toolbar-3',
+    		height: 44
     	});
     	
     	return tb;
     },
     
 	createView: function(){			
-		var view = App.admin.dataview.View.create({store: this.store});			
+		var view = App.admin.dataview.View.create({store: this.store, flex: 1});			
 		return view;		
 	}	
 	

@@ -51,13 +51,13 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<display-name>images</display-name>
-		<servlet-name>images</servlet-name>
+		<display-name>imagesServlet</display-name>
+		<servlet-name>imagesServlet</servlet-name>
 		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>images</servlet-name>
+		<servlet-name>imagesServlet</servlet-name>
 		<url-pattern>/asset-images</url-pattern>
 	</servlet-mapping>
 	

@@ -104,18 +104,8 @@ Ext.define('App.maps.Story', {
 		this.fireEvent('next_click');
 	},
 	
-	onZoomClick: function(){
-		
+	onZoomClick: function(){		
 		var icon = Ext.get('icon-'+this.model.get('id'));
-//		var win = App.util.PlainWindow.create({
-//			html: 'make this float',
-//			x: el.getX(), y: el.getY()
-//		});
-//		win.show(false, function(){
-//			var from = {width: el.getWidth(), height: el.getHeight()}, to = {width: 100, height: 100};		
-//			win.getEl().animate({from: from , to: to, duration: 1000});
-//		}, this);
-				
 		var scale = Math.pow(2, this.map.getZoom());
 		var nw = new google.maps.LatLng(
 		    this.map.getBounds().getNorthEast().lat(),
@@ -131,18 +121,17 @@ Ext.define('App.maps.Story', {
 		
 		var growFrom = {width: icon.getWidth(), height: icon.getHeight()}, 
 			growTo = {width: 250, height: 250, x: pixelOffset.x, y: pixelOffset.y + 150},
-			shrinkTo = {width: 1, height: 1, x: pixelOffset.x+200, y: pixelOffset.y + 50};
-//			moveFrom = {},
-//			moveTo = {x: p.x, y: p.y};
+			shrinkTo = {width: 0, height: 0, x: pixelOffset.x+200, y: pixelOffset.y + 50};
 			
+		var fn = Ext.Function.createDelayed(this.onAnimationComplete, 50, this); 
 				
-		var el = Ext.get('fly-by');	
-		el.alignTo(icon, 'tl');
-		el.setStyle('display','block');
-										
-		el.sequenceFx()
-			.animate({from: growFrom, to: growTo, easing: 'backOut', duration: 600})
-			.animate({from: growTo, to: shrinkTo, easing: 'backIn', duration: 350, callback: Ext.Function.createDelayed(this.onAnimationComplete, 50, this)});					
+		Ext.get('fly-by')	//Tower, this is Ghost Rider requesting a flyby.
+				.alignTo(icon, 'tl')
+				.setStyle('display','block') //Negative, Ghost Rider, the pattern is full.
+				.sequenceFx() 	// No. No, Mav, this is not a good idea.
+					.animate({from: growFrom, to: growTo, easing: 'backOut', duration: 600}) //Sorry, Goose, but it's time to buzz the tower.
+					.animate({from: growTo, to: shrinkTo, easing: 'backIn', duration: 350, callback: fn});	// WWWOooOOOOOSSSSSHHHHHH
+					//Tower: Got damnit Maverick.
 		
 	},
 	
