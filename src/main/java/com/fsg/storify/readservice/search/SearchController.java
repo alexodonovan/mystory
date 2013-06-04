@@ -10,8 +10,8 @@ import com.fsg.storify.readservice.timeline.Family;
 public class SearchController {
 	
 	
-	public SearchResults searchFor(SearchRequest searchRequest) {
-		List<Family> families = Family.findFamilysByAltSurnamesLike(searchRequest.getQuery())
+	public SearchResults searchFor(String query) {
+		List<Family> families = Family.findFamilysByAltSurnamesLike(query)
 										.getResultList();		
 		SearchResults results = new SearchResults(families);
 		return results;
