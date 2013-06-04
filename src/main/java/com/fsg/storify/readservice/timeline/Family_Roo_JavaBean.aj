@@ -7,12 +7,20 @@ import com.fsg.storify.readservice.timeline.Family;
 
 privileged aspect Family_Roo_JavaBean {
     
-    public String Family.getName() {
-        return this.name;
+    public String Family.getSurname() {
+        return this.surname;
     }
     
-    public void Family.setName(String name) {
-        this.name = name;
+    public void Family.setSurname(String surname) {
+        this.surname = surname;
+    }
+    
+    public String Family.getAltSurnames() {
+        return this.altSurnames;
+    }
+    
+    public void Family.setAltSurnames(String altSurnames) {
+        this.altSurnames = altSurnames;
     }
     
 }

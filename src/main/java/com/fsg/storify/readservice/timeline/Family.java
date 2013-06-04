@@ -6,8 +6,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findFamilysByNameLike" })
+@RooJpaActiveRecord(finders = { "findFamilysByAltSurnamesLike", "findFamilysBySurnameLike" })
 public class Family {
 
-    private String name;
+    private String surname;
+   
+    private String altSurnames;
 }

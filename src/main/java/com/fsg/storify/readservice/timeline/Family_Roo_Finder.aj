@@ -9,18 +9,33 @@ import javax.persistence.TypedQuery;
 
 privileged aspect Family_Roo_Finder {
     
-    public static TypedQuery<Family> Family.findFamilysByNameLike(String name) {
-        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
-        name = name.replace('*', '%');
-        if (name.charAt(0) != '%') {
-            name = "%" + name;
+    public static TypedQuery<Family> Family.findFamilysByAltSurnamesLike(String altSurnames) {
+        if (altSurnames == null || altSurnames.length() == 0) throw new IllegalArgumentException("The altSurnames argument is required");
+        altSurnames = altSurnames.replace('*', '%');
+        if (altSurnames.charAt(0) != '%') {
+            altSurnames = "%" + altSurnames;
         }
-        if (name.charAt(name.length() - 1) != '%') {
-            name = name + "%";
+        if (altSurnames.charAt(altSurnames.length() - 1) != '%') {
+            altSurnames = altSurnames + "%";
         }
         EntityManager em = Family.entityManager();
-        TypedQuery<Family> q = em.createQuery("SELECT o FROM Family AS o WHERE LOWER(o.name) LIKE LOWER(:name)", Family.class);
-        q.setParameter("name", name);
+        TypedQuery<Family> q = em.createQuery("SELECT o FROM Family AS o WHERE LOWER(o.altSurnames) LIKE LOWER(:altSurnames)", Family.class);
+        q.setParameter("altSurnames", altSurnames);
+        return q;
+    }
+    
+    public static TypedQuery<Family> Family.findFamilysBySurnameLike(String surname) {
+        if (surname == null || surname.length() == 0) throw new IllegalArgumentException("The surname argument is required");
+        surname = surname.replace('*', '%');
+        if (surname.charAt(0) != '%') {
+            surname = "%" + surname;
+        }
+        if (surname.charAt(surname.length() - 1) != '%') {
+            surname = surname + "%";
+        }
+        EntityManager em = Family.entityManager();
+        TypedQuery<Family> q = em.createQuery("SELECT o FROM Family AS o WHERE LOWER(o.surname) LIKE LOWER(:surname)", Family.class);
+        q.setParameter("surname", surname);
         return q;
     }
     

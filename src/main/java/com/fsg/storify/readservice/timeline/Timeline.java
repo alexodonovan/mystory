@@ -16,6 +16,7 @@ public class Timeline {
 
 	@OneToOne
     private Family family;
+	
 
 	@Column(columnDefinition="LONGTEXT")
     private String data;
