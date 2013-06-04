@@ -10,18 +10,18 @@ Ext.define('App.admin.dataview.View', {
     
     cls: 'data-view',
     itemSelector: 'div.story',
-    emptyText: 'This story has no events',
-     
-//    autoHeight: true,    /      
+    emptyText: 'This story has no events',  
+    route: 'asset-images',
     
     initComponent: function(){
         this.initMixins();
         this.tpl = this.createTpl();
         this.callParent(arguments);
         
-        this.addEvents('editclicked', 'closeclicked');
-        this.store.on('datachanged', this.attachBtnClicks, this);
-    },
+        this.addEvents('editclicked', 'closeclicked');        
+        this.store.on('load', this.attachBtnClicks, this);
+		this.store.on('add', this.attachBtnClicks, this);
+        },
     
     afterRender: function(){
         this.callParent(arguments);
@@ -33,24 +33,27 @@ Ext.define('App.admin.dataview.View', {
         this.on('itemmouseenter', this.onMouseEnterNode, this);               
     },    
     
-    attachBtnClicks: function(){
+    attachBtnClicks: function(){   
         this.store.each(Ext.bind(this.attachBtnClick, this, ['edit-btn', this.onEditClick], true));
         this.store.each(Ext.bind(this.attachBtnClick, this, ['close-btn', this.onCloseClick], true));
     },
     
     resetSequenceIndicator: function(id, node){
     	var el = Ext.get(id);
+    	if (!el) return;
     	el.alignTo(node, 'tr?', [-20, 4], true);
     },
     
     shiftSequenceIndicator: function(id, node){    	
-    	var el = Ext.get(id);      
+    	var el = Ext.get(id);
+    	if (!el) return;
     	if (el.getActiveAnimation()) return;    	
     	el.alignTo(node, 'tr?', [-40, 4], true);
     },
     
     showCloseBtn: function(id, node){
     	var el = Ext.get(id);
+    	if (!el) return;
     	if (el.getActiveAnimation()) return;
     	
     	el.syncFx()
@@ -158,13 +161,25 @@ Ext.define('App.admin.dataview.View', {
             }
         });
     },
-            
-    createTpl: function(){
+    
+    templateFunctions: function(){
+    	var cfg = {
+    		assetUrl: Ext.bind(this.routeToAsset, this)
+    	};
+    	return cfg;
+    },
+    
+    routeToAsset: function(assetId){
+    	if (!assetId) assetId = 1;
+    	return this.route + '?imgId=' + assetId;
+    },
+    
+    templateHtml :function(){
         var html = 
             '<tpl for=".">'+
                 '<div class="story">'+
                     '<div class="img-container">' +
-                        '<img src={url} />' +
+                        '<img src={[this.assetUrl(values.assetId)]} />' +
                     '</div>' +
                     '<div id="close-btn-{#}" class="close-btn">x</div>' +
                     '<div id="event-sequence-{#}" class="index">{#}</div>' +                    
@@ -174,8 +189,15 @@ Ext.define('App.admin.dataview.View', {
                     '</div>'+
                                     
                 '</div>'+
-            '</tpl>';           
-        return new Ext.XTemplate(html);
+            '</tpl>';
+    	
+    	return html;
+    },
+            
+    createTpl: function(){
+    	var cfg = this.templateFunctions(), 
+    		html = this.templateHtml();    	         
+        return new Ext.XTemplate(html, cfg);
     }
     
 });

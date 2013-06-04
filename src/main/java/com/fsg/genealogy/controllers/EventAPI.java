@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fsg.genealogy.domain.Event;
+import com.fsg.genealogy.domain.Family;
 
 @Controller
 @RequestMapping("/events")
@@ -24,6 +26,13 @@ public class EventAPI {
 		event.persist();
 		return new ResponseEntity<String>(event.toJson(), headers, HttpStatus.CREATED);
 	}
-
 	
+	@RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
+	public ResponseEntity<String> list(@RequestParam(value="family_id") Long familyId){		
+		HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");        
+        Family family = Family.findFamily(familyId);               
+        return new ResponseEntity<String>(Event.toJsonArray(family.getEvents()), headers, HttpStatus.OK);		
+	}
+		
 }

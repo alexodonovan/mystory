@@ -9,15 +9,26 @@
 	@include box-pack(center);
 	
 	#map-canvas {
-		
 		img {
 			max-height: none !important;
 			max-width: none !important;
-		}
+		}  	
+	}	
 	
-		width: 700px;
-		height: 685px;
+	@media screen and (max-width: 1151px) {
+		#map-canvas {
+	  		width: 530px;
+	  		height: 400px;  		
+	  		
+		}
 	}
+		
+	@media screen and (min-width: 1151px) {
+		#map-canvas {
+  			width: 730px;
+  			height: 600px;
+		}
+	}	
 	
 }
 

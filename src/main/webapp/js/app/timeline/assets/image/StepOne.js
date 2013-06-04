@@ -15,9 +15,31 @@ Ext.define('App.timeline.assets.image.StepOne', {
 					
 	initComponent: function(){
 		this.items = this.buildItems();
-		
 		this.callParent();				
-	},	
+	},
+	
+	afterRender: function(){
+		this.callParent(arguments);			
+	},
+	
+	afterWindowShow: function(){
+		//edit mode
+		if (this.event) this.attachRemoveBtn();
+	},
+	
+	attachRemoveBtn: function(){
+		debugger;
+		var remove = Ext.Component.create({
+			html: 'Remove',
+			width: 100,
+			height: 35,
+			hidden: true,
+			floating: true,
+			renderTo: Ext.getBody()
+		});
+		remove.alignTo(Ext.get('image-preview'), 'tr?');
+		remove.show();
+	},
 	
 	initEvents: function(){
 		this.callParent();	
@@ -26,11 +48,14 @@ Ext.define('App.timeline.assets.image.StepOne', {
 		
 	buildItems: function(){
 		this.uploadField = this.createUploadField();
-		this.dropZone = this.createDropZone();
+		this.dropZone = img = this.createDropZone();
 		this.progressBar = this.createProgressBar();
 		this.creditCaption = this.createCreditCaption();
 		
-		return [this.uploadField, this.dropZone];
+		//editing
+		if (this.event) img = this.createBackgroundImage();
+		
+		return [this.uploadField, img];
 	},
 	
 	createCreditCaption: function(){
@@ -52,14 +77,25 @@ Ext.define('App.timeline.assets.image.StepOne', {
 		reader.readAsDataURL(files[0]);
 	},
 	
+	createBackgroundImage: function(){
+		var imgId = this.event.get('assetId');
+		this.imageContainer = this.createImageContainer('asset-images?imgId='+ imgId);		
+		return this.imageContainer;
+	},
+	
+	createImageContainer: function(src){
+		var p =	Ext.panel.Panel.create({
+			tpl: '<img id="{id}" src={src}>',
+			data: {src: src, id: 'image-preview'},
+			cls: 'upload-preview',
+			border: false			
+		});		
+		return p;
+	},
+	
 	showBackgroundImage: function(evt){
 		var src = evt.target.result;		
-		this.imageContainer = Ext.panel.Panel.create({
-				tpl: '<img id="{id}" src={src}>',
-				data: {src: src, id: 'image-preview'},
-				cls: 'upload-preview',
-				border: false			
-		});		
+		this.imageContainer = this.createImageContainer(src);
 		this.insert(0, this.imageContainer);
 		Ext.get('image-preview').fadeIn({opacity: 0.45, duration: 500});
 	},

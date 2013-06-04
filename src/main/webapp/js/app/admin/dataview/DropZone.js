@@ -21,9 +21,6 @@ Ext.define('App.admin.dataview.DropZone', {
             afterRepair: this.afterRepair,
             getRepairXY: this.getRepairXY
         });
-
-        
-
         this.dropZone = Ext.create('Ext.dd.DropZone', this.dataview.getEl(), config);
     },
 

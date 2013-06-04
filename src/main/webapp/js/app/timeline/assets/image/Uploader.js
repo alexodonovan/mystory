@@ -38,12 +38,13 @@ Ext.define('App.timeline.assets.image.Uploader', {
 		return field;				
 	},	
 	
-	onStateChange: function(req){
+	onStateChange: function(req){		
 		if (req.readyState != 4) return;
-		this.fireEvent('uploaded');
+		var resp = Ext.JSON.decode(req.response);
+		this.fireEvent('uploaded', resp.id);
 	},
 	
-	progressUpdate: function(evt){
+	progressUpdate: function(evt){		
 		if (!evt.lengthComputable) return;
 		var val = evt.loaded / evt.total;
 		this.fireEvent('progress', val);		
@@ -51,8 +52,7 @@ Ext.define('App.timeline.assets.image.Uploader', {
 	
 	doUpload: function(files){
 		var formData = new FormData();
-    	formData.append("file", files[0]);
-
+    	formData.append("file", files[0]);    	    	
     	var xhr = new XMLHttpRequest();
     	xhr.onreadystatechange = Ext.bind(this.onStateChange, this, [xhr]);
     	xhr.upload.addEventListener('progress', Ext.bind(this.progressUpdate, this), false);
@@ -94,6 +94,7 @@ Ext.define('App.timeline.assets.image.Uploader', {
 	},
 	
 	onSuccessfulUpload: function(fp, o){
+		debugger;
 		if (this.win) this.win.hide();
 		this.fireEvent('uploaded', this.record);
 		this.fileUploadField.clear();

@@ -31,6 +31,9 @@ Ext.define('App.admin.EventWindow', {
 		this.callParent(arguments);
 		
 		App.util.EventBus.subscribe('App.admin.dataview.Event.created', this.onEventCreated, this);
+		this.media.on('uploaded', this.onUploaded, this);
+		
+		this.on('show', this.onWindowShow, this);
 	},
 	
 	createTitleField: function(){
@@ -48,7 +51,7 @@ Ext.define('App.admin.EventWindow', {
 		var desc = Ext.form.field.TextArea.create({
 			emptyText: 'Description',
 			cls: 'story-default-input',
-			width: 300
+			width: 300			
 		});
 		return desc;
 		
@@ -125,7 +128,7 @@ Ext.define('App.admin.EventWindow', {
 		event.save();
 	},
 	
-	onCreated: function(){		
+	onEventCreated: function(){		
 		this.close();
 		this.destroy();		
 	},
@@ -136,7 +139,7 @@ Ext.define('App.admin.EventWindow', {
 		data.description = this.desc.getValue();
 		data.caption = this.caption.getValue();
 		data.credit = this.credit.getValue();		
-		data.url = 'http://www.fexco.com/wp-content/themes/FEXCO_Theme/images/logo.jpg';
+		data.assetId = this.assetId;
 		return data;
 	},
 	
@@ -151,6 +154,21 @@ Ext.define('App.admin.EventWindow', {
 				layout: {type:'hbox', align: 'middle'}
 		});
 		
+	},
+	
+	onUploaded: function(assetId){
+		this.assetId = assetId;
+	},
+	
+	updateFields: function(model){
+		this.title.setValue(model.get('title'));
+		this.desc.setValue(model.get('description'));
+		this.credit.setValue(model.get('credit'));
+		this.caption.setValue(model.get('caption'));
+	},
+	
+	onWindowShow: function(){
+		this.media.afterWindowShow();
 	}
 		
 });

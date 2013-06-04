@@ -39,12 +39,12 @@ privileged aspect Event_Roo_JavaBean {
         this.caption = caption;
     }
     
-    public String Event.getUrl() {
-        return this.url;
+    public Long Event.getAssetId() {
+        return this.assetId;
     }
     
-    public void Event.setUrl(String url) {
-        this.url = url;
+    public void Event.setAssetId(Long assetId) {
+        this.assetId = assetId;
     }
     
 }

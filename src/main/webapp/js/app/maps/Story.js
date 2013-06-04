@@ -17,7 +17,7 @@ Ext.define('App.maps.Story', {
 		var g = google.maps.event,
 			window = new google.maps.InfoWindow({
 			    content: this.content(),
-			    maxWidth: 450
+			    maxWidth: 350
 			});
 			
 		g.addListener(window, 'domready', Ext.bind(this.onInfoWindowDomReady, this));

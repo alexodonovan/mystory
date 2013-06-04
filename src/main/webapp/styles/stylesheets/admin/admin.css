@@ -540,12 +540,17 @@ html, body {
   margin-top: 9px;
 }
 
-/* line 9, ../../sass/admin/search/_searchbox.scss */
+/* line 10, ../../sass/admin/search/_searchbox.scss */
+.search-box-list .search-box-list-item {
+  padding: 15px;
+}
+
+/* line 24, ../../sass/admin/search/_searchbox.scss */
 .search-btn {
   padding-left: 9px;
   padding-right: 7px;
 }
-/* line 13, ../../sass/admin/search/_searchbox.scss */
+/* line 28, ../../sass/admin/search/_searchbox.scss */
 .search-btn .search-icon {
   background-image: url(../../../images/icons/search.png);
   background-size: 57px 45px;
