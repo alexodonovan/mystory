@@ -10,7 +10,8 @@ Ext.define('App.admin.dataview.Event', {
 		{name: 'caption', mapping: 'caption', type:'string'},
 		{name: 'title', type:'string'},
 		{name: 'description', type:'string'},
-		{name: 'assetId'}
+		{name: 'assetId'},
+		{name: 'familyId'}
 	],
 	
 	proxy: {

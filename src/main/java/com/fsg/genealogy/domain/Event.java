@@ -16,6 +16,18 @@ public class Event {
 	private String description;
 	private String credit;
 	private String caption;	
-	private Long assetId;	
+	private Long assetId;
+		
+	public Event() {}
+
+	public Event(String title, String description, String credit, String caption, Long assetId) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.credit = credit;
+		this.caption = caption;
+		this.assetId = assetId;
+	}
+	
 	
 }

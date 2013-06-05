@@ -26,6 +26,13 @@ Ext.define('App.admin.Editor', {
 			initEvents : function() {
 				this.view.on('editclicked', this.showEditWindow, this);
 				this.view.on('closeclicked', this.onCloseClicked, this);
+				
+				App.util.EventBus.subscribe('App.admin.search.Family.selected', this.onFamilySelect, this);
+			},
+			
+			onFamilySelect: function(family){
+				if (Ext.isArray(family)) family = family[0];			
+				this.family = family;				
 			},
 
 			onCloseClicked : function(rec) {
@@ -45,8 +52,9 @@ Ext.define('App.admin.Editor', {
 				win.show();
 			},
 
-			createEventWindow : function(model) {
+			createEventWindow : function(model) {								
 				var win = App.admin.EventWindow.create({
+							family: this.family,
 							media : App.timeline.assets.image.StepOne.create({event : model})
 						});
 				return win;

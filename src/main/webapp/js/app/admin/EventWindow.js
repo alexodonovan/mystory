@@ -139,7 +139,9 @@ Ext.define('App.admin.EventWindow', {
 		data.description = this.desc.getValue();
 		data.caption = this.caption.getValue();
 		data.credit = this.credit.getValue();		
-		data.assetId = this.assetId;
+		data.assetId = this.assetId;		
+		debugger;
+		data.familyId = this.family.get('id');
 		return data;
 	},
 	

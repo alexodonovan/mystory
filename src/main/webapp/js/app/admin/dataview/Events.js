@@ -17,9 +17,16 @@ Ext.define('App.admin.dataview.Events', {
 	},
 	
 	onFamilySelect: function(family){
-		if (Ext.isArray(family)) family = family[0];
-		debugger;
-		this.load({ params: {family_id: family.get('id')} });
+		if (Ext.isArray(family)) family = family[0];		
+		this.load({
+			callback: Ext.bind(this.onEventsLoaded, this, [family], false),	
+			params: {family_id: family.get('id')} 
+		});
+		this.family = family;
+	},
+	
+	onEventsLoaded: function(family){
+		this.each(function(rec){ rec.family = family; }, this);
 	}
 			
 });

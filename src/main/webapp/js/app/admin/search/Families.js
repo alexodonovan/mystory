@@ -24,6 +24,8 @@ Ext.define('App.admin.search.Families', {
 	},
 	
 	loadCallback: function(request){
+		if (!request) return;
+		if (!request.response) return;		
 		this.loadData(request.response.families);
 	}
 

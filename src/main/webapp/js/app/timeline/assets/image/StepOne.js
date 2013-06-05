@@ -27,8 +27,7 @@ Ext.define('App.timeline.assets.image.StepOne', {
 		if (this.event) this.attachRemoveBtn();
 	},
 	
-	attachRemoveBtn: function(){
-		debugger;
+	attachRemoveBtn: function(){	
 		var remove = Ext.Component.create({
 			html: 'Remove',
 			width: 100,
