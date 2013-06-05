@@ -2,10 +2,14 @@ Ext.define('App.admin.Editor', {
 
 			extend : 'Ext.util.Observable',
 
-			requires : ['App.admin.dataview.View', 'App.admin.dataview.Events',
+			requires : [
+					'App.admin.dataview.View', 
+					'App.admin.dataview.Events',
 					'App.admin.EventWindow',
 					'App.admin.search.SearchContainer',
-					'App.admin.editor.OptionsWindow'],
+					'App.admin.editor.OptionsWindow',
+					'App.admin.editor.NewButton'
+				],
 
 			constructor : function(cfg) {
 				this.store = this.createStore();
@@ -32,7 +36,8 @@ Ext.define('App.admin.Editor', {
 			
 			onFamilySelect: function(family){
 				if (Ext.isArray(family)) family = family[0];			
-				this.family = family;				
+				this.family = family;					
+				this.addBtn.toggle(family);
 			},
 
 			onCloseClicked : function(rec) {
@@ -62,7 +67,6 @@ Ext.define('App.admin.Editor', {
 
 			createStore : function() {
 				var store = App.admin.dataview.Events.create();
-				store.load({scope: this, callback: this.onStoreLoad});
 				return store;
 			},
 
@@ -125,8 +129,8 @@ Ext.define('App.admin.Editor', {
 			},
 
 			createToolbar2 : function() {
-				var search = App.admin.search.SearchContainer.create(), preview = this
-						.createPreviewBtn(), publish = this.createPublishBtn();
+				var search = App.admin.search.SearchContainer.create(), 
+						preview = this.createPreviewBtn(), publish = this.createPublishBtn();
 				var tb = Ext.toolbar.Toolbar.create({
 							items : [' ', search, '->', preview, publish],
 							border : false,
@@ -138,20 +142,18 @@ Ext.define('App.admin.Editor', {
 			},
 
 			createAddBtn : function() {
-				var btn = Ext.button.Button.create({
-							text : 'Add',
-							scale : 'medium',
-							cls : 'story-save-btn',
-							handler : this.onAddClick,
-							scope : this
-						});
-
-				return btn;
+				var btn = App.admin.editor.NewButton.create({model: this.family});
+				btn.on('addclick', this.onAddClick, this);
+				btn.on('newclick', this.onNewClick, this);
+				return btn;				
+			},
+			
+			onNewClick: function(){
+				//show the new surname window here.				
 			},
 
 			onAddClick : function() {
-				if (this.optionsWindow.isVisible())
-					return;
+				if (this.optionsWindow.isVisible()) return;
 				this.optionsWindow.animShow(this.addBtn);
 			},
 
