@@ -152,8 +152,8 @@ Ext.define('App.admin.Editor', {
 				//show the new surname window here.				
 			},
 
-			onAddClick : function() {
-				if (this.optionsWindow.isVisible()) return;
+			onAddClick : function() {							
+				if (this.optionsWindow.isVisible()) return;					
 				this.optionsWindow.animShow(this.addBtn);
 			},
 
