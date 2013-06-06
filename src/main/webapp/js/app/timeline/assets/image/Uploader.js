@@ -64,10 +64,6 @@ Ext.define('App.timeline.assets.image.Uploader', {
 		this.record = rec;		
 		this.employeeIdField.setValue(rec.get('employeeId'));				
 		this.fileUploadField.fileInput.dom.click();		
-	},
-	
-	onWindowCloseEvt: function(){
-		alert('window closed');
 	},	
 		
 	onFileSelect: function(){				

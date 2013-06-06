@@ -6,6 +6,8 @@ Ext.define('App.admin.dataview.Events', {
 	autoLoad: false,
 	id: 'eventsStore',
 	
+	sorters: [{property: 'date'}],
+	
 	constructor: function(){
 		this.callParent(arguments);
 		App.util.EventBus.subscribe('App.admin.dataview.Event.created', this.onEventCreated, this);

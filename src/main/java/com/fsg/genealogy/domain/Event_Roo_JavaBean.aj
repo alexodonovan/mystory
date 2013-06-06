@@ -4,6 +4,7 @@
 package com.fsg.genealogy.domain;
 
 import com.fsg.genealogy.domain.Event;
+import java.util.Date;
 
 privileged aspect Event_Roo_JavaBean {
     
@@ -45,6 +46,14 @@ privileged aspect Event_Roo_JavaBean {
     
     public void Event.setAssetId(Long assetId) {
         this.assetId = assetId;
+    }
+    
+    public Date Event.getDate() {
+        return this.date;
+    }
+    
+    public void Event.setDate(Date date) {
+        this.date = date;
     }
     
 }

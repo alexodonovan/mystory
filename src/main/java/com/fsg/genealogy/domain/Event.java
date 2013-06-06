@@ -1,5 +1,7 @@
 package com.fsg.genealogy.domain;
 
+import java.util.Date;
+
 import org.springframework.roo.addon.equals.RooEquals;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -19,23 +21,29 @@ public class Event {
 	private String credit;
 	private String caption;	
 	private Long assetId;
+	private Date date;
 		
 	public Event() {}
 
-	public Event(String title, String description, String credit, String caption, Long assetId) {
+	public Event(String title, String description, String credit, String caption, Long assetId, Date date) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.credit = credit;
 		this.caption = caption;
 		this.assetId = assetId;
+		this.date = date;
 	}
 
-	public void update(String title, String description, String credit, String caption) {
+	public void update(String title, String description, 
+			String credit, String caption,
+			Date date, Long assetId) {
 		this.title = title;
 		this.description = description;
 		this.credit = credit;
 		this.caption = caption;
+		this.date = date;
+		this.assetId = assetId;
 	}
 	
 	

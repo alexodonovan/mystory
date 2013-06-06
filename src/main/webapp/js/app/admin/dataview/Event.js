@@ -9,6 +9,7 @@ Ext.define('App.admin.dataview.Event', {
 		{name: 'id'},
 		{name: 'credit', mapping: 'credit', type:'string'},
 		{name: 'caption', mapping: 'caption', type:'string'},
+		{name: 'date', type:'date', dateReadFormat: 'time', dateWriteFormat: 'm/d/y'},
 		{name: 'title', type:'string'},
 		{name: 'description', type:'string'},
 		{name: 'assetId'},

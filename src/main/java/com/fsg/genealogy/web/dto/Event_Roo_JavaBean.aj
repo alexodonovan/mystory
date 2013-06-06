@@ -4,6 +4,7 @@
 package com.fsg.genealogy.web.dto;
 
 import com.fsg.genealogy.web.dto.Event;
+import java.util.Date;
 
 privileged aspect Event_Roo_JavaBean {
     
@@ -61,6 +62,14 @@ privileged aspect Event_Roo_JavaBean {
     
     public void Event.setFamilyId(Long familyId) {
         this.familyId = familyId;
+    }
+    
+    public Date Event.getDate() {
+        return this.date;
+    }
+    
+    public void Event.setDate(Date date) {
+        this.date = date;
     }
     
 }

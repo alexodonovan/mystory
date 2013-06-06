@@ -167,9 +167,15 @@ Ext.define('App.admin.dataview.View', {
     
     templateFunctions: function(){
     	var cfg = {
-    		assetUrl: Ext.bind(this.routeToAsset, this)
+    		assetUrl: Ext.bind(this.routeToAsset, this),
+    		formatDate: Ext.bind(this.formatDate, this)
     	};
     	return cfg;
+    },
+    
+    formatDate: function(date){
+    	if (!date) return;    	
+    	return Ext.Date.format(date, 'F j, Y');
     },
     
     routeToAsset: function(assetId){
@@ -187,7 +193,8 @@ Ext.define('App.admin.dataview.View', {
                     '<div id="close-btn-{#}" class="close-btn">x</div>' +
                     //'<div id="event-sequence-{#}" class="index">{#}</div>' +                    
                     '<div class="content">'+
-                      '<div class="title">{title}</div>' +                  
+                      '<div class="title">{title}</div>' +
+                      '<div class="date">{[this.formatDate(values.date)]}</div>' +
                       '<div id="edit-btn-{#}" class="edit-btn">Edit</div>'+
                     '</div>'+
                                     

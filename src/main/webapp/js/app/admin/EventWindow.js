@@ -84,16 +84,21 @@ Ext.define('App.admin.EventWindow', {
 		this.desc = this.createDescField();
 		this.credit = this.createCreditField();
 		this.caption = this.createCaptionField();
-				
-		var date = Ext.form.field.Date.create({
+		this.date = this.createDateField();
+							
+		var btns = this.createBtns();							
+		return [this.title, this.desc, this.date, this.media, this.credit, this.caption, btns];
+	},
+	
+	createDateField: function(){
+		var field = Ext.form.field.Date.create({
 			emptyText: 'Event Date.',
 			cls: 'story-default-date-field',
 			width: 350
 		});
 		
-		var btns = this.createBtns();							
-		return [this.title, this.desc, date, this.media, this.credit, this.caption, btns];
-	}, 
+		return field;
+	},
 	
 	createCancelBtn: function(){
 		var btn = Ext.button.Button.create({
@@ -138,6 +143,7 @@ Ext.define('App.admin.EventWindow', {
 		event.set('credit', this.credit.getValue());		
 		event.set('assetId', this.assetId);			
 		event.set('familyId', this.family.get('id'));
+		event.set('date', this.date.getValue());
 		return event;
 	},
 	
@@ -168,6 +174,7 @@ Ext.define('App.admin.EventWindow', {
 		this.credit.setValue(model.get('credit'));		
 		this.caption.setValue(model.get('caption'));
 		this.assetId = model.get('assetId');
+		this.date.setValue(model.get('date'));
 	},
 	
 	onWindowShow: function(){

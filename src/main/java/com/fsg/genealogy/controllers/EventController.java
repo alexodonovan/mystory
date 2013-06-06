@@ -22,7 +22,9 @@ public class EventController {
 
 	public void update(com.fsg.genealogy.web.dto.Event dto) {		
 		Event entity = Event.findEvent(dto.getId());
-		entity.update(dto.getTitle(), dto.getDescription(), dto.getCredit(), dto.getCaption());
+		entity.update(dto.getTitle(), dto.getDescription(), 
+				dto.getCredit(), dto.getCaption(),
+				dto.getDate(), dto.getAssetId());
 		entity.merge();		
 	}
 
@@ -35,7 +37,6 @@ public class EventController {
 						
 		family.removeEvent(entity);
 		family.merge();
-					
 	}
 
 }
