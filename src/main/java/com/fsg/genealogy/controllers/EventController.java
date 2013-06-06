@@ -9,15 +9,20 @@ import com.fsg.genealogy.domain.Family;
 @Service
 public class EventController {
 
-	public Event create(String json) {
-		com.fsg.genealogy.web.dto.Event event = com.fsg.genealogy.web.dto.Event.fromJsonToEvent(json);
-		Event entity = event.toEntity();		
+	public Event create(com.fsg.genealogy.web.dto.Event dto) {		
+		Event entity = dto.toEntity();		
 				
-		Family family = Family.findFamily(event.getFamilyId());
+		Family family = Family.findFamily(dto.getFamilyId());
 		family.addEvent(entity);
 		family.merge();
 		
 		return entity;
+	}
+
+	public void update(com.fsg.genealogy.web.dto.Event dto) {		
+		Event entity = Event.findEvent(dto.getId());
+		entity.update(dto.getTitle(), dto.getDescription(), dto.getCredit(), dto.getCaption());
+		entity.merge();		
 	}
 
 }

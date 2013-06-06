@@ -25,7 +25,7 @@ Ext.define('App.admin.dataview.Events', {
 		this.family = family;
 	},
 	
-	onEventsLoaded: function(family){
+	onEventsLoaded: function(family){		
 		this.each(function(rec){ rec.family = family; }, this);
 	}
 			

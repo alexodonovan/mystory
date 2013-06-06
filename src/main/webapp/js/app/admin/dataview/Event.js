@@ -19,20 +19,25 @@ Ext.define('App.admin.dataview.Event', {
         type: 'rest',       
         url: 'rest/events',				
 		appendId: false
-    },    
-    
-    update: function(){
-    	this.save('updateCallback');    
     },
     
-    save: function(fnName){
+    create: function(){    	
+    	this.save();
+    },
+    
+    update: function(){    	
+    	this.save('updateCallback', 'update');    
+    },
+    
+    save: function(fnName, act){
     	debugger;
-    	var callback = this.createCallback;
+    	var callback = this.createCallback, action = 'create';    	
     	if (fnName) callback = this[fnName];
+    	if (act) action = act; 
     	    	 
     	var	origFn = Ext.bind(callback, this),
     		newFn = Ext.Function.createInterceptor(origFn, this.checkCallbackArgs, this); 
-    	this.callParent([{callback: newFn}]);    	
+    	this.callParent([{callback: newFn, action: action}]);    	
     },
     
     checkCallbackArgs: function(record, operation){

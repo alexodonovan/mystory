@@ -17,18 +17,28 @@ import com.fsg.genealogy.domain.Family;
 
 @Controller
 @RequestMapping("/events")
-@RooWebJson(jsonObject = Event.class)
+@RooWebJson(updateFromJsonMethod="updateEvent",jsonObject = Event.class)
 public class EventAPI {
 	
 	@Autowired
 	private EventController eventController;
 	
 	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
-	public ResponseEntity<java.lang.String> createFromJson(@RequestBody String json) {				
-		Event event = eventController.create(json);				
+	public ResponseEntity<java.lang.String> createFromJson(@RequestBody String json) {
+		com.fsg.genealogy.web.dto.Event dto = com.fsg.genealogy.web.dto.Event.fromJsonToEvent(json);
+		Event event = eventController.create(dto);				
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json");		
 		return new ResponseEntity<String>(event.toJson(), headers, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, headers = "Accept=application/json")
+	public ResponseEntity<String> updateEvent(@RequestBody String json) {
+		com.fsg.genealogy.web.dto.Event dto = com.fsg.genealogy.web.dto.Event.fromJsonToEvent(json);
+		eventController.update(dto);	
+		HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+		return new ResponseEntity<String>(headers, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")

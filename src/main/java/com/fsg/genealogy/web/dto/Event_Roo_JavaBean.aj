@@ -7,6 +7,14 @@ import com.fsg.genealogy.web.dto.Event;
 
 privileged aspect Event_Roo_JavaBean {
     
+    public Long Event.getId() {
+        return this.id;
+    }
+    
+    public void Event.setId(Long id) {
+        this.id = id;
+    }
+    
     public String Event.getTitle() {
         return this.title;
     }

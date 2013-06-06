@@ -6,6 +6,7 @@ import org.springframework.roo.addon.json.RooJson;
 @RooJavaBean @RooJson
 public class Event {
 	
+	private Long id;
 	private String title;
 	private String description;
 	private String credit;

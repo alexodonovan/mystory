@@ -28,6 +28,13 @@ public class Event {
 		this.caption = caption;
 		this.assetId = assetId;
 	}
+
+	public void update(String title, String description, String credit, String caption) {
+		this.title = title;
+		this.description = description;
+		this.credit = credit;
+		this.caption = caption;
+	}
 	
 	
 }

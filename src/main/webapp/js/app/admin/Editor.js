@@ -60,6 +60,7 @@ Ext.define('App.admin.Editor', {
 			createEventWindow : function(model) {								
 				var win = App.admin.EventWindow.create({
 							family: this.family,
+							model: model,
 							media : App.timeline.assets.image.StepOne.create({event : model})
 						});
 				return win;

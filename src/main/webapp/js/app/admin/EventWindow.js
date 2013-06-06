@@ -123,27 +123,28 @@ Ext.define('App.admin.EventWindow', {
 	},
 	
 	onSaveClick: function(){
-		var event = App.admin.dataview.Event.create(this.dataObj());
+		var event = this._model();		
 		event.on('created', this.onCreated, this);
-		event.save();
+		event.on('updated', this.onUpdated, this);		
+		var fn = (event.get('id')) ? 'update': 'create';
+		event[fn]();
+	},
+	
+	_model: function(){		
+		var event = this.model || App.admin.dataview.Event.create();		
+		event.set('title', this.title.getValue());		 
+		event.set('description', this.desc.getValue());
+		event.set('caption', this.caption.getValue());
+		event.set('credit', this.credit.getValue());		
+		event.set('assetId', this.assetId);			
+		event.set('familyId', this.family.get('id'));
+		return event;
 	},
 	
 	onEventCreated: function(){		
 		this.close();
 		this.destroy();		
-	},
-	
-	dataObj: function(){
-		var data = {};
-		data.title = this.title.getValue();
-		data.description = this.desc.getValue();
-		data.caption = this.caption.getValue();
-		data.credit = this.credit.getValue();		
-		data.assetId = this.assetId;			
-		data.familyId = this.family.get('id');
-		return data;
-	},
-	
+	},	
 	
 	createBtns: function(){
 		this.saveBtn = this.createSaveBtn();		
