@@ -15,6 +15,7 @@ Ext.define('App.admin.search.Field', {
     typeAhead: false,
     hideLabel: true,
 	hideTrigger:true,    
+	allowBlank: true,
 	
 	listConfig: {
 		loadingText: 'Searching...',

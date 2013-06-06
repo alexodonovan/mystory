@@ -21,9 +21,7 @@ Ext.define('App.admin.EventWindow', {
 	},
 			
 	initComponent: function(){		
-		
 		this.items = this.buildItems();
-		
 		this.callParent(arguments);			
 	},
 	
@@ -31,9 +29,14 @@ Ext.define('App.admin.EventWindow', {
 		this.callParent(arguments);
 		
 		App.util.EventBus.subscribe('App.admin.dataview.Event.created', this.onEventCreated, this);
+		App.util.EventBus.subscribe('App.admin.dataview.Event.updated', this.onEventUpdated, this);
 		this.media.on('uploaded', this.onUploaded, this);
 		
 		this.on('show', this.onWindowShow, this);
+	},
+	
+	onEventUpdated: function(){
+		this.close();		
 	},
 	
 	createTitleField: function(){
@@ -87,9 +90,6 @@ Ext.define('App.admin.EventWindow', {
 			cls: 'story-default-date-field',
 			width: 350
 		});
-		
-		
-		
 		
 		var btns = this.createBtns();							
 		return [this.title, this.desc, date, this.media, this.credit, this.caption, btns];

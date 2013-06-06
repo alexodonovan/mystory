@@ -30,7 +30,6 @@ Ext.define('App.admin.dataview.Event', {
     },
     
     save: function(fnName, act){
-    	debugger;
     	var callback = this.createCallback, action = 'create';    	
     	if (fnName) callback = this[fnName];
     	if (act) action = act; 
@@ -40,6 +39,11 @@ Ext.define('App.admin.dataview.Event', {
     	this.callParent([{callback: newFn, action: action}]);    	
     },
     
+    destroy: function(){
+    	this.set('familyId', this.family.get('id'));
+    	this.callParent(arguments);
+    },
+    
     checkCallbackArgs: function(record, operation){
     	if (!operation.success) throw new Error('Operation failed:' + operation.error.status+':'+operation.error.statusText);
     	if (!record) throw new Error('operation failed');
@@ -47,6 +51,7 @@ Ext.define('App.admin.dataview.Event', {
     
     updateCallback: function(record, operation){
 		this.set('version', record.get('version')+1);
+		App.util.EventBus.publish('App.admin.dataview.Event.updated', this);
     },
     
     createCallback: function(record, operation){

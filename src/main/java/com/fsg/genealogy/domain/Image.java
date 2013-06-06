@@ -33,11 +33,7 @@ public class Image {
 	
 	@Transient
 	private String data = "";
-//	@Transient
-//	private byte[] data;
 	
-	
-
 	public String customSerialize() {
 		this.data = new Base64().encodeAsString(bytes);
 //		this.data = this.bytes;

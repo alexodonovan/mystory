@@ -94,7 +94,6 @@ Ext.define('App.timeline.assets.image.Uploader', {
 	},
 	
 	onSuccessfulUpload: function(fp, o){
-		debugger;
 		if (this.win) this.win.hide();
 		this.fireEvent('uploaded', this.record);
 		this.fileUploadField.clear();

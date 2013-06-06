@@ -40,9 +40,9 @@ Ext.define('App.admin.Editor', {
 				this.addBtn.toggle(family);
 			},
 
-			onCloseClicked : function(rec) {
+			onCloseClicked : function(rec) {				
+				rec.destroy();
 				this.store.remove(rec);
-				this.view.refresh();
 			},
 
 			showEventWindow : function(comp) {

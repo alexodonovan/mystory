@@ -22,12 +22,17 @@ public class Family {
 	
 	private String surname;
 	
-	@OneToMany(fetch=FetchType.EAGER) 
+	@OneToMany(fetch=FetchType.EAGER, orphanRemoval=true) 
 	@JoinTable @Cascade({CascadeType.ALL})
 	private Collection<Event> events;
 
 	public void addEvent(Event event) {
 		if (events == null) events = new ArrayList<Event>();
 		this.events.add(event);		
+	}
+
+	public void removeEvent(Event entity) {
+		if (events == null) return;
+		this.events.remove(entity);		
 	}
 }

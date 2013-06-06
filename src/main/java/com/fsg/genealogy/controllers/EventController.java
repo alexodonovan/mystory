@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.fsg.genealogy.domain.Event;
 import com.fsg.genealogy.domain.Family;
+import com.fsg.genealogy.domain.Image;
 
 
 @Service
@@ -23,6 +24,18 @@ public class EventController {
 		Event entity = Event.findEvent(dto.getId());
 		entity.update(dto.getTitle(), dto.getDescription(), dto.getCredit(), dto.getCaption());
 		entity.merge();		
+	}
+
+	public void delete(com.fsg.genealogy.web.dto.Event dto) {
+		Family family = Family.findFamily(dto.getFamilyId());		
+		Event entity = Event.findEvent(dto.getId());
+		
+		Image image = Image.findImage(entity.getAssetId());
+		if (image!=null) image.remove();
+						
+		family.removeEvent(entity);
+		family.merge();
+					
 	}
 
 }

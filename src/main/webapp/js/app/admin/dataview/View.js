@@ -21,6 +21,7 @@ Ext.define('App.admin.dataview.View', {
         this.addEvents('editclicked', 'closeclicked');        
         this.store.on('load', this.attachBtnClicks, this);
 		this.store.on('add', this.attachBtnClicks, this);
+//		this.on('itemupdate', this.attachBtnClicks, this);
         },
     
     afterRender: function(){
@@ -31,12 +32,13 @@ Ext.define('App.admin.dataview.View', {
         
 //        this.on('itemmouseleave', this.onMouseLeaveNode, this);
 //        this.on('itemmouseenter', this.onMouseEnterNode, this);               
-    },    
+    },           
     
-    attachBtnClicks: function(){   
+    attachBtnClicks: function(){     
+    	console.log('attachclicks ' + new Date());
         this.store.each(Ext.bind(this.attachBtnClick, this, ['edit-btn', this.onEditClick], true));
         this.store.each(Ext.bind(this.attachBtnClick, this, ['close-btn', this.onCloseClick], true));
-    },
+    },             
     
     resetSequenceIndicator: function(id, node){
     	var el = Ext.get(id);
@@ -89,6 +91,7 @@ Ext.define('App.admin.dataview.View', {
             Ext.defer(this.attachBtnClick, 100, this, arguments, false);
             return true;
         }
+        el.un('click', Ext.bind(fn, this, [rec], false));
         el.on('click', Ext.bind(fn, this, [rec], false));               
     },
     
