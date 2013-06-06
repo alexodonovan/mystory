@@ -29,8 +29,8 @@ Ext.define('App.admin.dataview.View', {
         this.initDropZones();
         this.attachBtnClicks();  
         
-        this.on('itemmouseleave', this.onMouseLeaveNode, this);
-        this.on('itemmouseenter', this.onMouseEnterNode, this);               
+//        this.on('itemmouseleave', this.onMouseLeaveNode, this);
+//        this.on('itemmouseenter', this.onMouseEnterNode, this);               
     },    
     
     attachBtnClicks: function(){   
@@ -182,7 +182,7 @@ Ext.define('App.admin.dataview.View', {
                         '<img src={[this.assetUrl(values.assetId)]} />' +
                     '</div>' +
                     '<div id="close-btn-{#}" class="close-btn">x</div>' +
-                    '<div id="event-sequence-{#}" class="index">{#}</div>' +                    
+                    //'<div id="event-sequence-{#}" class="index">{#}</div>' +                    
                     '<div class="content">'+
                       '<div class="title">{title}</div>' +                  
                       '<div id="edit-btn-{#}" class="edit-btn">Edit</div>'+

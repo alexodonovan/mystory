@@ -5,7 +5,8 @@ Ext.define('App.admin.dataview.Event', {
 	
 	autoLoad: false,
 		
-	fields: [				
+	fields: [		
+		{name: 'id'},
 		{name: 'credit', mapping: 'credit', type:'string'},
 		{name: 'caption', mapping: 'caption', type:'string'},
 		{name: 'title', type:'string'},
@@ -25,6 +26,7 @@ Ext.define('App.admin.dataview.Event', {
     },
     
     save: function(fnName){
+    	debugger;
     	var callback = this.createCallback;
     	if (fnName) callback = this[fnName];
     	    	 

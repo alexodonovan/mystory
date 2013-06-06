@@ -139,8 +139,7 @@ Ext.define('App.admin.EventWindow', {
 		data.description = this.desc.getValue();
 		data.caption = this.caption.getValue();
 		data.credit = this.credit.getValue();		
-		data.assetId = this.assetId;		
-		debugger;
+		data.assetId = this.assetId;			
 		data.familyId = this.family.get('id');
 		return data;
 	},
@@ -165,8 +164,9 @@ Ext.define('App.admin.EventWindow', {
 	updateFields: function(model){
 		this.title.setValue(model.get('title'));
 		this.desc.setValue(model.get('description'));
-		this.credit.setValue(model.get('credit'));
+		this.credit.setValue(model.get('credit'));		
 		this.caption.setValue(model.get('caption'));
+		this.assetId = model.get('assetId');
 	},
 	
 	onWindowShow: function(){
