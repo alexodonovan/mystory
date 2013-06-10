@@ -6,3 +6,4 @@ log.roo
 *.scssc
 *.svn
 src/main/webapp/META-INF/context.xml
+/target

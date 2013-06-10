@@ -2,31 +2,49 @@ Ext.application({
     name: 'App',    
     appFolder: 'js/app',
     
-    requires: ['App.maps.GoogleMap'],
+    requires: ['App.maps.GoogleMap', 'App.util.Config'],
      
     launch: function() {
 //    	this.loadConfig()
 //    		.then();
+    	
+    	var config = this.createConfigLoader();
+    	config.load('readservice');
 
-    	this.createTimeline();
+    	
     	
     	var gm = App.maps.GoogleMap;
     	gm.waitForReadyThen(gm.createPreview);
     },
     
-    loadConfig: function(){
-    	
+    onLoaded: function(config){
+    	var params = this.parseUrl(), url;
+    	if (Ext.isEmpty(params)) return;    	
+    	url = config.url + '/timelines/'+ params.q + '/data.jsonp';    	
+    	this.createTimeline(url);    	
     },
+    
+    parseUrl: function(){
+    	var queryString = window.location.search;
+    	if (!Ext.isEmpty(queryString)) return Ext.Object.fromQueryString(queryString);
+    	
+		Ext.MessageBox.alert('Error', 'Unknown family name');
+		return false;
+    },
+    
+    createConfigLoader: function(){
+    	var config = App.util.Config.create();
+    	config.on('loaded', this.onLoaded, this);
+    	return config;
+    },             
            
-    createTimeline: function(json){
-    	
-    	
-    	var config = {
+    createTimeline: function(url){
+    	var cfg = {
 			width : "98%",
 			height : "98%",
-			source : 'http://localhost:8081//storify-read-service/timelines/breen/data.jsonp'
+			source: url
 		};				
-		createStoryJS(config);
+		createStoryJS(cfg);
     }      
     
     

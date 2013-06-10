@@ -126,7 +126,9 @@ Ext.define('App.admin.Editor', {
 			},
 
 			onPreviewClick : function() {
-				document.location = 'preview.html';
+				if (!this.family) return;			
+				var params = {q: this.family.get('surname')};
+				document.location = 'preview.html?' + Ext.Object.toQueryString(params);
 			},
 
 			createToolbar2 : function() {

@@ -9,7 +9,7 @@ Ext.define('App.util.Config', {
 		});
 	},
 	
-	onLoadSuccess: function(response, request){
+	onLoadSuccess: function(response, request){		
 		var config = Ext.JSON.decode(response.responseText);
 		window.readService = config;
 		this.fireEvent('loaded', config);
