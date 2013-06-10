@@ -1,5 +1,6 @@
 package com.fsg.genealogy.web.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.fsg.genealogy.controllers.TimelineController;
 import com.fsg.genealogy.domain.Image;
 import com.fsg.genealogy.domain.Timeline;
 
 @Controller
 @RequestMapping("/timelines")
 public class TimelineAPI {
+	
+	@Autowired
+	private TimelineController timelineController;
 
 	@RequestMapping(method = RequestMethod.PUT, headers = { "Accept=application/json" })
 	@ResponseStatus(HttpStatus.OK)
@@ -31,20 +36,15 @@ public class TimelineAPI {
 		new Image(body.getBytes()).persist();
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/images/{imageId}", headers = "Accept=application/json")
-	public ResponseEntity<String> image(@PathVariable Long imageId) {
-		Image image = Image.findImage(imageId);
+	@RequestMapping(method = RequestMethod.GET, value = "/{familyId}", headers = "Accept=application/json")
+	public ResponseEntity<String> image(@PathVariable Long familyId) {
+		Timeline timeline = timelineController.buildTimeline(familyId); 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json; charset=utf-8");
-		if (image == null) {
+		if (timeline == null) {
 			return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
 		}
-		System.out.print(image.toJson());
-		return new ResponseEntity<String>(image.customSerialize(), headers, HttpStatus.OK);		
-		// final HttpHeaders headers = new HttpHeaders();
-		// headers.setContentType(MediaType.IMAGE_JPEG);
-		// return new ResponseEntity<byte[]>(image.getData(), headers,
-		// HttpStatus.ACCEPTED);
+		return new ResponseEntity<String>(timeline.getData() ,headers, HttpStatus.OK);		
 	}
 
 }

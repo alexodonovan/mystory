@@ -5,13 +5,8 @@ Ext.application({
     requires: ['App.maps.GoogleMap', 'App.util.Config'],
      
     launch: function() {
-//    	this.loadConfig()
-//    		.then();
-    	
     	var config = this.createConfigLoader();
     	config.load('readservice');
-
-    	
     	
     	var gm = App.maps.GoogleMap;
     	gm.waitForReadyThen(gm.createPreview);
@@ -20,7 +15,11 @@ Ext.application({
     onLoaded: function(config){
     	var params = this.parseUrl(), url;
     	if (Ext.isEmpty(params)) return;    	
-    	url = config.url + '/timelines/'+ params.q + '/data.jsonp';    	
+    	
+    	url = 
+    	
+//    	live sight will use something like the following - preview should use previous
+//    	url = config.url + '/timelines/'+ params.q + '/data.jsonp';    	
     	this.createTimeline(url);    	
     },
     
@@ -38,14 +37,7 @@ Ext.application({
     	return config;
     },             
            
-    createTimeline: function(url){
-    	var cfg = {
-			width : "98%",
-			height : "98%",
-			source: url
-		};				
-		createStoryJS(cfg);
+    createTimeline: function(url){    				
+		createStoryJS({width: "98%", height: "98%", source: url});
     }      
-    
-    
 });
