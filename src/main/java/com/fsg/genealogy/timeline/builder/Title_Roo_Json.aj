@@ -12,10 +12,6 @@ import java.util.List;
 
 privileged aspect Title_Roo_Json {
     
-    public String Title.toJson() {
-        return new JSONSerializer().exclude("*.class").deepSerialize(this);
-    }
-    
     public static Title Title.fromJsonToTitle(String json) {
         return new JSONDeserializer<Title>().use(null, Title.class).deserialize(json);
     }

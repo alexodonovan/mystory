@@ -19,7 +19,7 @@ public class Builder {
 		title.setText("The strong");
 		title.setDate(events);
 		
-		return new Timeline(title).toJson();										
+		return new Timeline(title).toJsonExcludeNulls();										
 	}
 
 }

@@ -12,10 +12,6 @@ import java.util.List;
 
 privileged aspect Asset_Roo_Json {
     
-    public String Asset.toJson() {
-        return new JSONSerializer().exclude("*.class").deepSerialize(this);
-    }
-    
     public static Asset Asset.fromJsonToAsset(String json) {
         return new JSONDeserializer<Asset>().use(null, Asset.class).deserialize(json);
     }

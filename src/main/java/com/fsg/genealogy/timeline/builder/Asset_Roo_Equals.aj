@@ -17,11 +17,11 @@ privileged aspect Asset_Roo_Equals {
             return true;
         }
         Asset rhs = (Asset) obj;
-        return new EqualsBuilder().append(caption, rhs.caption).append(credit, rhs.credit).append(media, rhs.media).append(thumbnail, rhs.thumbnail).isEquals();
+        return new EqualsBuilder().append(caption, rhs.caption).append(credit, rhs.credit).append(media, rhs.media).append(serializer, rhs.serializer).append(thumbnail, rhs.thumbnail).isEquals();
     }
     
     public int Asset.hashCode() {
-        return new HashCodeBuilder().append(caption).append(credit).append(media).append(thumbnail).toHashCode();
+        return new HashCodeBuilder().append(caption).append(credit).append(media).append(serializer).append(thumbnail).toHashCode();
     }
     
 }

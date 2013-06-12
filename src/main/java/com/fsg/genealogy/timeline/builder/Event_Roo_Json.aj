@@ -12,10 +12,6 @@ import java.util.List;
 
 privileged aspect Event_Roo_Json {
     
-    public String Event.toJson() {
-        return new JSONSerializer().exclude("*.class").deepSerialize(this);
-    }
-    
     public static Event Event.fromJsonToEvent(String json) {
         return new JSONDeserializer<Event>().use(null, Event.class).deserialize(json);
     }

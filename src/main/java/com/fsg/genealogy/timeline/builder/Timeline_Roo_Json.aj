@@ -12,10 +12,6 @@ import java.util.List;
 
 privileged aspect Timeline_Roo_Json {
     
-    public String Timeline.toJson() {
-        return new JSONSerializer().exclude("*.class").deepSerialize(this);
-    }
-    
     public static Timeline Timeline.fromJsonToTimeline(String json) {
         return new JSONDeserializer<Timeline>().use(null, Timeline.class).deserialize(json);
     }
