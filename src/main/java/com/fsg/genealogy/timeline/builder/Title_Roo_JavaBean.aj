@@ -5,7 +5,7 @@ package com.fsg.genealogy.timeline.builder;
 
 import com.fsg.genealogy.timeline.builder.Event;
 import com.fsg.genealogy.timeline.builder.Title;
-import java.util.Collection;
+import java.util.List;
 
 privileged aspect Title_Roo_JavaBean {
     
@@ -17,11 +17,11 @@ privileged aspect Title_Roo_JavaBean {
         this.type = type;
     }
     
-    public Collection<Event> Title.getDate() {
+    public List<Event> Title.getDate() {
         return this.date;
     }
     
-    public void Title.setDate(Collection<Event> date) {
+    public void Title.setDate(List<Event> date) {
         this.date = date;
     }
     

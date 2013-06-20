@@ -1,21 +1,32 @@
 package com.fsg.genealogy.timeline.builder;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.roo.addon.equals.RooEquals;
 import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.json.RooJson;
 
-@RooJson(deepSerialize=true, toJsonMethod="toJsonExcludeNulls") @RooJavaBean @RooEquals
-public class Title extends Event implements com.fsg.genealogy.timeline.builder.JSON {
+@RooJavaBean @RooEquals
+public class Title extends Event {
 	
 	public String type="timeline";
-	public Collection<Event> date;
+	public List<Event> date;
 	
-	@Override
-	public String toJsonExcludeNulls() {
-		return new ExcludeNullJsonSerializer().toJson(this.getClass().getDeclaredFields(), this).deepSerialize(this);
+	public Title(com.fsg.genealogy.domain.Event event, List<com.fsg.genealogy.domain.Event> entities) {
+		super.setAsset(new Asset("url of image here", "url of thumbnail here", event.getCaption(), event.getCredit()));
+		super.setHeadline(event.getTitle());
+		super.setText(event.getDescription());		
+		
+		List<Event> events = new ArrayList<Event>();
+		for (com.fsg.genealogy.domain.Event entity: entities){			
+			events.add(new Event(entity));
+		}
+		this.date = events;
 	}
-	
+
+	public Title() {
+		super();
+		this.date = new ArrayList<Event>();
+	}	
 
 }

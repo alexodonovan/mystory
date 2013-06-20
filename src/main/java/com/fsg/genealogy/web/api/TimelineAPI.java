@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.fsg.genealogy.controllers.TimelineController;
-import com.fsg.genealogy.domain.Image;
 import com.fsg.genealogy.domain.Timeline;
 
 @Controller
@@ -29,22 +28,13 @@ public class TimelineAPI {
 		timeline.merge();
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/upload")
-	@ResponseStatus(HttpStatus.OK)
-	public void updateImage(@RequestBody String body) {// @RequestParam
-														// MultipartFile file) {
-		new Image(body.getBytes()).persist();
-	}
-
 	@RequestMapping(method = RequestMethod.GET, value = "/{familyId}", headers = "Accept=application/json")
 	public ResponseEntity<String> image(@PathVariable Long familyId) {
-		Timeline timeline = timelineController.buildTimeline(familyId); 		
+		String json = timelineController.buildTimeline(familyId); 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json; charset=utf-8");
-		if (timeline == null) {
-			return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<String>(timeline.getData() ,headers, HttpStatus.OK);		
+		if (json == null) return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);		
+		return new ResponseEntity<String>(json ,headers, HttpStatus.OK);		
 	}
 
 }

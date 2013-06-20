@@ -12,7 +12,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJson
 @RooJpaActiveRecord
 public class Timeline {
-	    
+	
 	@Column(columnDefinition="LONGTEXT")
     private String data;
 }

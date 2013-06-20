@@ -127,7 +127,7 @@ Ext.define('App.admin.Editor', {
 
 			onPreviewClick : function() {
 				if (!this.family) return;			
-				var params = {q: this.family.get('surname')};
+				var params = {q: this.family.get('id')};
 				document.location = 'preview.html?' + Ext.Object.toQueryString(params);
 			},
 

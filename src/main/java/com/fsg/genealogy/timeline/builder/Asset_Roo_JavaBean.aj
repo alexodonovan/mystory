@@ -4,17 +4,8 @@
 package com.fsg.genealogy.timeline.builder;
 
 import com.fsg.genealogy.timeline.builder.Asset;
-import com.fsg.genealogy.timeline.builder.ExcludeNullJsonSerializer;
 
 privileged aspect Asset_Roo_JavaBean {
-    
-    public ExcludeNullJsonSerializer Asset.getSerializer() {
-        return this.serializer;
-    }
-    
-    public void Asset.setSerializer(ExcludeNullJsonSerializer serializer) {
-        this.serializer = serializer;
-    }
     
     public String Asset.getMedia() {
         return this.media;

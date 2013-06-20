@@ -1,7 +1,7 @@
 package com.fsg.genealogy.domain;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
@@ -24,7 +24,7 @@ public class Family {
 	
 	@OneToMany(fetch=FetchType.EAGER, orphanRemoval=true) 
 	@JoinTable @Cascade({CascadeType.ALL})
-	private Collection<Event> events;
+	private List<Event> events;
 
 	public void addEvent(Event event) {
 		if (events == null) events = new ArrayList<Event>();
@@ -34,5 +34,9 @@ public class Family {
 	public void removeEvent(Event entity) {
 		if (events == null) return;
 		this.events.remove(entity);		
+	}
+	
+	public List<Event> getAllExceptTitle() {
+		return this.events.subList(1, this.events.size());		
 	}
 }

@@ -16,9 +16,8 @@ Ext.application({
     	var params = this.parseUrl(), url;
     	if (Ext.isEmpty(params)) return;    	
     	
-    	url = 
-    	
-//    	live sight will use something like the following - preview should use previous
+    	url = 'rest/timelines/'+ params.q;
+//    	live site will use something like the following - preview should use previous
 //    	url = config.url + '/timelines/'+ params.q + '/data.jsonp';    	
     	this.createTimeline(url);    	
     },
@@ -37,7 +36,8 @@ Ext.application({
     	return config;
     },             
            
-    createTimeline: function(url){    				
+    createTimeline: function(url){
+    	debugger;
 		createStoryJS({width: "98%", height: "98%", source: url});
     }      
 });

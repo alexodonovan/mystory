@@ -5,7 +5,7 @@ package com.fsg.genealogy.domain;
 
 import com.fsg.genealogy.domain.Event;
 import com.fsg.genealogy.domain.Family;
-import java.util.Collection;
+import java.util.List;
 
 privileged aspect Family_Roo_JavaBean {
     
@@ -17,11 +17,11 @@ privileged aspect Family_Roo_JavaBean {
         this.surname = surname;
     }
     
-    public Collection<Event> Family.getEvents() {
+    public List<Event> Family.getEvents() {
         return this.events;
     }
     
-    public void Family.setEvents(Collection<Event> events) {
+    public void Family.setEvents(List<Event> events) {
         this.events = events;
     }
     
