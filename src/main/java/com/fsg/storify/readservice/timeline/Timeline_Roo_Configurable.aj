@@ -8,6 +8,6 @@ import org.springframework.beans.factory.annotation.Configurable;
 
 privileged aspect Timeline_Roo_Configurable {
     
-    declare @type: Timeline: @Configurable;
+    declare @type: TimelineAPI: @Configurable;
     
 }

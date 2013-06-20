@@ -13,7 +13,7 @@ import javax.persistence.Version;
 
 privileged aspect Timeline_Roo_Jpa_Entity {
     
-    declare @type: Timeline: @Entity;
+    declare @type: TimelineAPI: @Entity;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

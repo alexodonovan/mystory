@@ -14,8 +14,8 @@ import com.fsg.storify.readservice.timeline.Timeline;
 
 @Controller
 @RequestMapping("/timelines")
-public class TimelineController {
-	
+public class TimelineAPI {
+			
 	@RequestMapping(value="/{searchString}/data.jsonp", method = RequestMethod.GET, produces="plain/text")
 	public @ResponseBody String getDataJsonp(@PathVariable String searchString){		
 		List<Family> resultList = Family.findFamilysBySurnameLike(searchString).getResultList();
@@ -26,7 +26,7 @@ public class TimelineController {
 									.append(timeline.getData());		
 		
 		return jsonP.toString();		
-	} 
+	}		
 	
 	@RequestMapping(value="/{searchString}/data.jsonpp", method = RequestMethod.GET, produces="text/javascript")
 	public @ResponseBody String getDataForEdit(@PathVariable String searchString, @RequestParam(value="callback") String callback){
