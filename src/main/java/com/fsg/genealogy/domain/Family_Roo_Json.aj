@@ -16,12 +16,20 @@ privileged aspect Family_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(this);
     }
     
+    public String Family.toJson(String[] fields) {
+        return new JSONSerializer().include(fields).exclude("*.class").serialize(this);
+    }
+    
     public static Family Family.fromJsonToFamily(String json) {
         return new JSONDeserializer<Family>().use(null, Family.class).deserialize(json);
     }
     
     public static String Family.toJsonArray(Collection<Family> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
+    }
+    
+    public static String Family.toJsonArray(Collection<Family> collection, String[] fields) {
+        return new JSONSerializer().include(fields).exclude("*.class").serialize(collection);
     }
     
     public static Collection<Family> Family.fromJsonArrayToFamilys(String json) {

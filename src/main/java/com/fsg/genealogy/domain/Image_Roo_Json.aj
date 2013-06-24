@@ -16,12 +16,20 @@ privileged aspect Image_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(this);
     }
     
+    public String Image.toJson(String[] fields) {
+        return new JSONSerializer().include(fields).exclude("*.class").serialize(this);
+    }
+    
     public static Image Image.fromJsonToImage(String json) {
         return new JSONDeserializer<Image>().use(null, Image.class).deserialize(json);
     }
     
     public static String Image.toJsonArray(Collection<Image> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
+    }
+    
+    public static String Image.toJsonArray(Collection<Image> collection, String[] fields) {
+        return new JSONSerializer().include(fields).exclude("*.class").serialize(collection);
     }
     
     public static Collection<Image> Image.fromJsonArrayToImages(String json) {

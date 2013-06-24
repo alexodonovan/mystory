@@ -16,7 +16,8 @@ public class PreviewBuilder {
 	public String toJson(Family family) {
 		Event t = this.firstEvent(family.getEvents());							
 		Title title = new Title(t, family.getAllExceptTitle());
-		return new Gson().toJson(title);
+		Timeline timeline = new Timeline(title);
+		return new Gson().toJson(timeline);
 	}
 	
 	public Event firstEvent(List<com.fsg.genealogy.domain.Event> events){

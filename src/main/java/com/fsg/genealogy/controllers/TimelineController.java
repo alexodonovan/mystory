@@ -14,7 +14,7 @@ public class TimelineController {
 	private PreviewBuilder builder;
 
 	public String buildTimeline(Long familyId) {
-		Family family = Family.findFamily(familyId);						
+		Family family = Family.findFamily(familyId);		
 		String json = builder.toJson(family);						
 		return json;
 	}

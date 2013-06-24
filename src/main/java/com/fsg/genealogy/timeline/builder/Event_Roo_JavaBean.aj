@@ -5,23 +5,22 @@ package com.fsg.genealogy.timeline.builder;
 
 import com.fsg.genealogy.timeline.builder.Asset;
 import com.fsg.genealogy.timeline.builder.Event;
-import java.util.Date;
 
 privileged aspect Event_Roo_JavaBean {
     
-    public Date Event.getStartDate() {
+    public String Event.getStartDate() {
         return this.startDate;
     }
     
-    public void Event.setStartDate(Date startDate) {
+    public void Event.setStartDate(String startDate) {
         this.startDate = startDate;
     }
     
-    public Date Event.getEndDate() {
+    public String Event.getEndDate() {
         return this.endDate;
     }
     
-    public void Event.setEndDate(Date endDate) {
+    public void Event.setEndDate(String endDate) {
         this.endDate = endDate;
     }
     

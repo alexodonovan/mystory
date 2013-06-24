@@ -37,7 +37,6 @@ Ext.application({
     },             
            
     createTimeline: function(url){
-    	debugger;
 		createStoryJS({width: "98%", height: "98%", source: url});
     }      
 });
