@@ -2,19 +2,27 @@ Ext.define('App.admin.EventWindow', {
 
 	extend : 'Ext.window.Window',
 	
-	requires: ['App.timeline.assets.image.StepOne', 'App.util.EventBus'],
+	requires: ['App.timeline.assets.image.StepOne', 'App.util.EventBus', 'App.timeline.assets.youtube.StepOne' ],
 	
 	cls: 'event-window',
 	
-	modal: true,
-	closable: false,
-	header: false,
-	border: false,
-	frame: true,
-	plain: true,
-	draggable: false,
-	resizable: false,
-	padding: 40,
+	modal : true,
+	closable : false,
+	header : false,
+	border : false,
+	frame : true,
+	minHeight: 550,
+	minWidth: 500,
+	shadow: 'frame',
+	shadowOffset: 35,
+	plain : true,             
+	  y: 30,
+	autoScroll: true,
+	draggable : false,
+	resizable : false,
+	resizeHandles : 'n',
+	padding : 40,
+
 	
 	defaults: {
 		margin: 10
@@ -41,10 +49,13 @@ Ext.define('App.admin.EventWindow', {
 	
 	createTitleField: function(){
 		var title = Ext.form.field.Text.create({
+			fieldLabel: 'Title',
 			emptyText: 'Title',		
 			cls: 'story-default-textfield',
-			width: 300,
-			name: 'title'
+			width: 500,
+			name: 'title',
+			allowBlank : false,
+	        blankText : 'Please find in Title'
 		});
 		
 		return title;
@@ -52,9 +63,12 @@ Ext.define('App.admin.EventWindow', {
 	
 	createDescField: function(){
 		var desc = Ext.form.field.TextArea.create({
+			fieldLabel: 'Description',
 			emptyText: 'Description',
 			cls: 'story-default-input',
-			width: 300			
+			width: 500,
+			allowBlank : false,
+	        blankText : 'Please find in Description'
 		});
 		return desc;
 		
@@ -62,18 +76,20 @@ Ext.define('App.admin.EventWindow', {
 	
 	createCreditField: function(){
 		var credit = Ext.form.field.Text.create({
+			fieldLabel: 'Credit',
 			emptyText: 'Credit',
 			cls: 'story-default-textfield',
-			width: 300
+			width: 500
 		});
 		return credit;		
 	},
 	
 	createCaptionField: function(){
 		var caption = Ext.form.field.Text.create({
+			fieldLabel: 'Caption',
 			emptyText: 'Caption',
 			cls: 'story-default-textfield',
-			width: 300
+			width: 500
 		});
 		
 		return caption;
@@ -84,6 +100,7 @@ Ext.define('App.admin.EventWindow', {
 		this.desc = this.createDescField();
 		this.credit = this.createCreditField();
 		this.caption = this.createCaptionField();
+		
 		this.date = this.createDateField();
 							
 		var btns = this.createBtns();							
@@ -92,9 +109,13 @@ Ext.define('App.admin.EventWindow', {
 	
 	createDateField: function(){
 		var field = Ext.form.field.Date.create({
+			fieldLabel: 'Event Date',
 			emptyText: 'Event Date.',
 			cls: 'story-default-date-field',
-			width: 350
+			width: 500,
+			allowBlank : false,
+	        blankText : 'Please select date of Event',
+	        maxValue: new Date()
 		});
 		
 		return field;
@@ -121,13 +142,17 @@ Ext.define('App.admin.EventWindow', {
 			cls: 'story-save-btn',
 			scale: 'medium',
 			handler: this.onSaveClick, 
-			scope: this			
+			scope: this
 		});
 		
 		return btn;
 	},
 	
 	onSaveClick: function(){
+		if (!this.date.isValid()) return;
+		if (!this.title.isValid()) return;
+		if (!this.desc.isValid()) return;
+		
 		var event = this._model();		
 		event.on('created', this.onCreated, this);
 		event.on('updated', this.onUpdated, this);		
@@ -143,6 +168,9 @@ Ext.define('App.admin.EventWindow', {
 		event.set('credit', this.credit.getValue());		
 		event.set('assetId', this.assetId);			
 		event.set('familyId', this.family.get('id'));
+		if(this.media.url){
+			event.set('url', this.media.url.getValue());
+		}
 		event.set('date', this.date.getValue());
 		return event;
 	},
@@ -174,6 +202,9 @@ Ext.define('App.admin.EventWindow', {
 		this.credit.setValue(model.get('credit'));		
 		this.caption.setValue(model.get('caption'));
 		this.assetId = model.get('assetId');
+		if(model.get('url')){
+			this.media.url.setValue(model.get('url'));
+		}
 		this.date.setValue(model.get('date'));
 	},
 	
@@ -182,3 +213,4 @@ Ext.define('App.admin.EventWindow', {
 	}
 		
 });
+

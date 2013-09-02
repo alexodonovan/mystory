@@ -10,7 +10,7 @@ Ext.define('App.util.EventBus', {
         bus.on(eventName, fn, scope, o);
     },
     	    	
-	publish : function() {        
+	publish : function() { 
 		var bus = App.util.EventBus.bus;
         if(bus.eventsSuspended !== true){
             var ce = bus.events ? bus.events[arguments[0].toLowerCase()] : false;

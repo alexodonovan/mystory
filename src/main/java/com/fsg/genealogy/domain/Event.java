@@ -20,31 +20,33 @@ public class Event {
 	private String description;
 	private String credit;
 	private String caption;	
+	private String url; 
 	private Long assetId;
 	private Date date;
 		
 	public Event() {}
 
-	public Event(String title, String description, String credit, String caption, Long assetId, Date date) {
+	public Event(String title, String description, String credit, String caption, String url, Long assetId, Date date) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.credit = credit;
 		this.caption = caption;
+		this.url = url;
 		this.assetId = assetId;
 		this.date = date;
 	}
 
 	public void update(String title, String description, 
-			String credit, String caption,
+			String credit, String caption, String url,
 			Date date, Long assetId) {
 		this.title = title;
 		this.description = description;
 		this.credit = credit;
 		this.caption = caption;
+		this.url = url;
 		this.date = date;
 		this.assetId = assetId;
 	}
-	
-	
+
 }

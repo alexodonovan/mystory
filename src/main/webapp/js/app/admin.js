@@ -10,7 +10,7 @@ Ext.application({
     		'App.util.Config'
     		],
      
-    launch: function() {   
+    launch: function() { 
     	this.initTooltips();    	
     	var config = this.createConfigLoader();
     	config.load('readservice');    	    	    

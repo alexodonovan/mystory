@@ -17,11 +17,11 @@ privileged aspect Event_Roo_Equals {
             return true;
         }
         Event rhs = (Event) obj;
-        return new EqualsBuilder().append(assetId, rhs.assetId).append(caption, rhs.caption).append(credit, rhs.credit).append(date, rhs.date).append(description, rhs.description).append(id, rhs.id).append(title, rhs.title).isEquals();
+        return new EqualsBuilder().append(assetId, rhs.assetId).append(caption, rhs.caption).append(credit, rhs.credit).append(date, rhs.date).append(description, rhs.description).append(id, rhs.id).append(title, rhs.title).append(url, rhs.url).isEquals();
     }
     
     public int Event.hashCode() {
-        return new HashCodeBuilder().append(assetId).append(caption).append(credit).append(date).append(description).append(id).append(title).toHashCode();
+        return new HashCodeBuilder().append(assetId).append(caption).append(credit).append(date).append(description).append(id).append(title).append(url).toHashCode();
     }
     
 }

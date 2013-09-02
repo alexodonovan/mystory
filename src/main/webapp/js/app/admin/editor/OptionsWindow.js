@@ -46,7 +46,9 @@ Ext.define('App.admin.editor.OptionsWindow', {
     
     onChoiceSelect: function(media){
     	//temp if statement, remove when all media types supported
-    	if (media !== 'Image') return;    	
+    	var allowedMedia = (media === 'Image')||(media === 'YouTube');
+    	if (!allowedMedia) return;    	
+    	
     	var ns = 'App.timeline.assets.'+media.toLowerCase()+'.StepOne', 
     		comp = Ext.create(ns);
     		

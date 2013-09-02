@@ -16,20 +16,12 @@ privileged aspect Marker_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(this);
     }
     
-    public String Marker.toJson(String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(this);
-    }
-    
     public static Marker Marker.fromJsonToMarker(String json) {
         return new JSONDeserializer<Marker>().use(null, Marker.class).deserialize(json);
     }
     
     public static String Marker.toJsonArray(Collection<Marker> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
-    }
-    
-    public static String Marker.toJsonArray(Collection<Marker> collection, String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(collection);
     }
     
     public static Collection<Marker> Marker.fromJsonArrayToMarkers(String json) {

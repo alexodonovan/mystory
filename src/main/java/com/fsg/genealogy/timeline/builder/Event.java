@@ -18,9 +18,9 @@ public class Event {
 		this.setHeadline(event.getTitle());
 		this.setText(event.getDescription());
 		
-		SimpleDateFormat df = new SimpleDateFormat("YYYY");		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy,MM");		
 		if (event.getDate()!=null) this.setStartDate(df.format(event.getDate()));
-		if (event.getDate()!=null) this.setEndDate(df.format(event.getDate()));		
+		if (event.getDate()!=null) this.setEndDate(df.format(event.getDate()));	
 	}
 
 	public String startDate;

@@ -7,12 +7,15 @@ Ext.define('App.admin.dataview.Event', {
 		
 	fields: [		
 		{name: 'id'},
-		{name: 'credit', mapping: 'credit', type:'string'},
-		{name: 'caption', mapping: 'caption', type:'string'},
+//		{name: 'credit', mapping: 'credit', type:'string'},If the path expression is the same as the field name, the mapping may be omitted
+//		{name: 'caption', mapping: 'caption', type:'string'},If the path expression is the same as the field name, the mapping may be omitted
+		{name: 'credit', type:'string'},
+		{name: 'caption', type:'string'},
 		{name: 'date', type:'date', dateReadFormat: 'time', dateWriteFormat: 'm/d/y'},
 		{name: 'title', type:'string'},
 		{name: 'description', type:'string'},
 		{name: 'assetId'},
+		{name: 'url', type:'string'},
 		{name: 'familyId'}
 	],
 	
@@ -40,10 +43,10 @@ Ext.define('App.admin.dataview.Event', {
     	this.callParent([{callback: newFn, action: action}]);    	
     },
     
-    destroy: function(){
+/*    destroy: function(){
     	this.set('familyId', this.family.get('id'));
     	this.callParent(arguments);
-    },
+    },*/
     
     checkCallbackArgs: function(record, operation){
     	if (!operation.success) throw new Error('Operation failed:' + operation.error.status+':'+operation.error.statusText);

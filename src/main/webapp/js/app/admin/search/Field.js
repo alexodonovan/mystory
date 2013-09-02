@@ -40,14 +40,14 @@ Ext.define('App.admin.search.Field', {
     	this.on('select', this.onItemClick, this);
     },
     
-    onItemClick: function(combo, record, eOpts){
+    onItemClick: function(combo, record, eOpts){ 	
     	App.util.EventBus.publish('App.admin.search.Family.selected', record);
     },
     
     createTpl: function(){
     	var html = 
     		'<div class="search-box-list-item">' +
-    			'<span class="surname">{surname} </span>' +
+    			'<span class="surname" style="font-weight: bold; color: green; font-size: 12pt">{surname} </span>' + 
     			'</span class="alt-surnames">{altSurnames}</span>' +
     		'</div>';
     		

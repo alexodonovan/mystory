@@ -4,10 +4,10 @@ Ext.application({
     
     requires: ['App.maps.GoogleMap', 'App.util.Config'],
      
-    launch: function() {
+    launch: function() {  	
     	var config = this.createConfigLoader();
     	config.load('readservice');
-    	
+
     	var gm = App.maps.GoogleMap;
     	gm.waitForReadyThen(gm.createPreview);
     },
@@ -16,7 +16,7 @@ Ext.application({
     	var params = this.parseUrl(), url;
     	if (Ext.isEmpty(params)) return;    	
     	
-    	url = 'rest/timelines/'+ params.q;
+    	url = 'rest/timelines/'+ params.q + '/data.jsonp';
 //    	live site will use something like the following - preview should use previous
 //    	url = config.url + '/timelines/'+ params.q + '/data.jsonp';    	
     	this.createTimeline(url);    	
@@ -29,7 +29,7 @@ Ext.application({
 		Ext.MessageBox.alert('Error', 'Unknown family name');
 		return false;
     },
-    
+   
     createConfigLoader: function(){
     	var config = App.util.Config.create();
     	config.on('loaded', this.onLoaded, this);

@@ -13,7 +13,7 @@ public class Title extends Event {
 	public List<Event> date;
 	
 	public Title(com.fsg.genealogy.domain.Event event, List<com.fsg.genealogy.domain.Event> entities) {
-		super.setAsset(new Asset("url of image here", "url of thumbnail here", event.getCaption(), event.getCredit()));
+		super.setAsset(new Asset("asset-images?imgId=136", event.getCaption(), event.getCredit()));
 		super.setHeadline(event.getTitle());
 		super.setText(event.getDescription());		
 		

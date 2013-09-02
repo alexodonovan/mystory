@@ -82,8 +82,4 @@ Ext.define('App.timeline.Editor', {
 		});		
 	}
 	
-	
-	
-	
-	
 });

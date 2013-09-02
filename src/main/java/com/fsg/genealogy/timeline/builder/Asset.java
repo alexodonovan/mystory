@@ -20,6 +20,11 @@ public class Asset {
 		this.credit = credit;
 	}	
 	
-	
+	public Asset(String media, String caption, String credit) {
+		super();
+		this.media = media;
+		this.caption = caption;
+		this.credit = credit;
+	}	
 
 }

@@ -46,7 +46,7 @@ Ext.define('App.admin.Editor', {
 			},
 
 			showEventWindow : function(comp) {
-				var win = this.createEventWindow();
+				var win = this.createEventWindow(null, comp);
 				win.show();
 
 			},
@@ -57,13 +57,32 @@ Ext.define('App.admin.Editor', {
 				win.show();
 			},
 
-			createEventWindow : function(model) {								
+			createEventWindow : function(model, comp) {	
+				if(model === null){
+				comp = comp || App.timeline.assets.image.StepOne.create({event : model});				
 				var win = App.admin.EventWindow.create({
 							family: this.family,
 							model: model,
-							media : App.timeline.assets.image.StepOne.create({event : model})
+							media : comp
 						});
-				return win;
+				return win; 
+				}
+				else if(model.get("assetId") === null || model.get("assetId") === 0){
+				comp = comp || App.timeline.assets.youtube.StepOne.create({event : model});				
+				var win = App.admin.EventWindow.create({
+							family: this.family,
+							model: model,
+							media : comp
+						});
+				return win; 
+				}
+				comp = comp || App.timeline.assets.image.StepOne.create({event : model});				
+				var win = App.admin.EventWindow.create({
+							family: this.family,
+							model: model,
+							media : comp
+						});
+				return win; 
 			},
 
 			createStore : function() {
@@ -111,6 +130,8 @@ Ext.define('App.admin.Editor', {
 			},
 
 			onPublishClick : function() {
+				alert('This must be coded yet.........');
+				return;
 
 			},
 
@@ -126,7 +147,7 @@ Ext.define('App.admin.Editor', {
 			},
 
 			onPreviewClick : function() {
-				if (!this.family) return;			
+				if (!this.family) return;	
 				var params = {q: this.family.get('id')};
 				document.location = 'preview.html?' + Ext.Object.toQueryString(params);
 			},
@@ -152,10 +173,11 @@ Ext.define('App.admin.Editor', {
 			},
 			
 			onNewClick: function(){
-				//show the new surname window here.				
+				//show the new surname window here.
+				alert('This must be coded yet.........');
 			},
 
-			onAddClick : function() {							
+			onAddClick : function() {
 				if (this.optionsWindow.isVisible()) return;					
 				this.optionsWindow.animShow(this.addBtn);
 			},

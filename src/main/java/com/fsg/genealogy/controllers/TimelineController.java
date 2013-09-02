@@ -15,8 +15,9 @@ public class TimelineController {
 
 	public String buildTimeline(Long familyId) {
 		Family family = Family.findFamily(familyId);		
-		String json = builder.toJson(family);						
-		return json;
+		String json = builder.toJson(family);
+//		System.out.println(json);
+//		return json;			
+		return "storyjs_jsonp_data = "+ json;
 	}
-
 }

@@ -16,20 +16,12 @@ privileged aspect Timeline_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(this);
     }
     
-    public String Timeline.toJson(String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(this);
-    }
-    
     public static Timeline Timeline.fromJsonToTimeline(String json) {
         return new JSONDeserializer<Timeline>().use(null, Timeline.class).deserialize(json);
     }
     
     public static String Timeline.toJsonArray(Collection<Timeline> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
-    }
-    
-    public static String Timeline.toJsonArray(Collection<Timeline> collection, String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(collection);
     }
     
     public static Collection<Timeline> Timeline.fromJsonArrayToTimelines(String json) {

@@ -127,15 +127,15 @@ Ext.define('App.timeline.assets.image.StepOne', {
 	onUploaded: function(){
 		this.makeImageOpaque();
 		this.progressBar.hide();	
-		this.showCropper();
+//		this.showCropper();
 	},
 	
-	showCropper: function(){				
+/*	showCropper: function(){				
 		$('#image-preview').Jcrop({                                    
             setSelect:   [ 250, 250, 100, 100],
             maxSize: [647, 400]
         });
-	},
+	},*/
 	
 	showCreditCaptionFields: function(){
 		this.insert(this.items.length-1, this.creditCaption);

@@ -35,6 +35,7 @@ Ext.define('App.admin.search.SearchContainer', {
     
     onSearchClick: function(){
         if (!this.field.isValid()) return;
+      //alert(this.field.getValue() + ", Name not on record");
         document.location = 'admin.html?search='+this.field.getValue();
     },
     

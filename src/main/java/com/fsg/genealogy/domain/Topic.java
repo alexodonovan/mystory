@@ -16,4 +16,10 @@ public class Topic {
 	private String endDate;
 		
 	private Collection<DateTopic> date;
+	
+//	public Topic(com.fsg.genealogy.domain.DateTopic dateTopic){
+//		this.date.add(dateTopic);
+//	}
+	
 }
+

@@ -4,9 +4,9 @@ Ext.define('App.admin.dataview.View', {
     
     requires: ['App.admin.dataview.Events', 'App.admin.dataview.Draggable'],
     
-    mixins: {
-        draggable: 'App.admin.dataview.Draggable'
-    },
+//    mixins: {
+//        draggable: 'App.admin.dataview.Draggable'
+//    },
     
     cls: 'data-view',
     itemSelector: 'div.story',
@@ -14,7 +14,7 @@ Ext.define('App.admin.dataview.View', {
     route: 'asset-images',
     
     initComponent: function(){
-        this.initMixins();
+//        this.initMixins();
         this.tpl = this.createTpl();
         this.callParent(arguments);
         
@@ -38,6 +38,7 @@ Ext.define('App.admin.dataview.View', {
     	console.log('attachclicks ' + new Date());
         this.store.each(Ext.bind(this.attachBtnClick, this, ['edit-btn', this.onEditClick], true));
         this.store.each(Ext.bind(this.attachBtnClick, this, ['close-btn', this.onCloseClick], true));
+        this.store.each(Ext.bind(this.attachBtnClick, this, ['img', this.onEditClick ], true));
     },             
     
     resetSequenceIndicator: function(id, node){
@@ -62,9 +63,7 @@ Ext.define('App.admin.dataview.View', {
 			.alignTo(node, 'tr?', [-20, 4], false)
 			.setOpacity(1, {duration: 200});
     },
-    
-    
-    
+        
     hideCloseBtn: function(id, node){
     	var closeEl = Ext.get(id);    		    
     	closeEl.sequenceFx()
@@ -103,7 +102,6 @@ Ext.define('App.admin.dataview.View', {
     	Ext.Msg.confirm('Delete this event?', 
     			'You have chosen to delete this event. Do you wish to continue?',
     			Ext.bind(this.onCloseConfirm, this, [rec], true));    	
-
     },
     
     onCloseConfirm: function(buttonId, unknown, button, rec){	
@@ -120,10 +118,10 @@ Ext.define('App.admin.dataview.View', {
         Ext.each(nodes, this.initDropZone, this);
     },
     
-    dragStarted: function(node){
-        this.draggingNode = node;
-        this.draggingRecord = this.getRecord(node);
-    },
+//    dragStarted: function(node){
+//        this.draggingNode = node;
+//        this.draggingRecord = this.getRecord(node);
+//    },
     
     onNodeDragOver: function(source, e, data, dropNode){
         if (data.ddel.id === dropNode.id) return;               
@@ -143,10 +141,7 @@ Ext.define('App.admin.dataview.View', {
         this.store.insert(dropIndex+insertPos, [clone]);        
         
         this.refresh();
-        this.initDropZones();
-        
-        
-        
+        this.initDropZones();     
     },
     
     initDropZone: function(node){
@@ -178,31 +173,58 @@ Ext.define('App.admin.dataview.View', {
     	return Ext.Date.format(date, 'F j, Y');
     },
     
-    routeToAsset: function(assetId){
-    	if (!assetId) assetId = 1;
-    	return this.route + '?imgId=' + assetId;
-    },
+    routeToAsset : function(assetId, url) {	
+		if (!url === null || url === "") {
+			return this.route + '?imgId=' + assetId;
+		}else if(url.length < 30){
+			var vidId = this.youTubeGetID(url);
+			return "http://img.youtube.com/vi/"
+						+ vidId + "/2.jpg";
+		}
+		else{
+			var obj = Ext.Object.fromQueryString(url);
+			var vidId = obj.v;
+			var vid = vidId.slice(0,11);
+		return "http://img.youtube.com/vi/"
+					+ vid + "/2.jpg";
+		}					
+	},
+	
+	youTubeGetID : function(url){
+		
+	    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+	    var match = url.match(regExp);
+	    if (match&&match[7].length==11){
+	        return match[7];
+	    }else{
+	        alert("Not a valid Url");
+	        return false;					        
+	    }
+	},
+//    routeToAsset: function(assetId){
+//    	if (!assetId) assetId = 1;
+//    	return this.route + '?imgId=' + assetId;
+//    },
     
-    templateHtml :function(){
-        var html = 
-            '<tpl for=".">'+
-                '<div class="story">'+
-                    '<div class="img-container">' +
-                        '<img src={[this.assetUrl(values.assetId)]} />' +
-                    '</div>' +
-                    '<div id="close-btn-{#}" class="close-btn">x</div>' +
-                    //'<div id="event-sequence-{#}" class="index">{#}</div>' +                    
-                    '<div class="content">'+
-                      '<div class="title">{title}</div>' +
-                      '<div class="date">{[this.formatDate(values.date)]}</div>' +
-                      '<div id="edit-btn-{#}" class="edit-btn">Edit</div>'+
-                    '</div>'+
-                                    
-                '</div>'+
-            '</tpl>';
-    	
-    	return html;
-    },
+	templateHtml : function() {	
+		var html = '<tpl for=".">'
+					+ '<div class="story">'
+						+ '<div id="img-{#}" class="img-container" style="cursor: pointer" title="Click to Edit" >'
+							+ '<img src={[this.assetUrl(values.assetId, values.url)]} />'
+						+ '</div>'
+						+ '<div id="close-btn-{#}" class="close-btn"><img src="assets/img/close_icon.png"></div>'
+							//+ '<div id="close-btn-{#}" class="close-btn">x</div>'    
+							// 	'<div id="event-sequence-{#}"
+							// class="index">{#}</div>'+
+						+ '<div class="content">'
+							+ '<div class="title">{title}</div>'
+									//+ '<div class="date">{[this.formatDate(values.date)]}</div>' 
+							+ '<div id="edit-btn-{#}" class="edit-btn">Edit</div>'
+						+ '</div>' 
+					+ '</div>' 
+				+ '</tpl>';
+		return html;
+	},
             
     createTpl: function(){
     	var cfg = this.templateFunctions(), 

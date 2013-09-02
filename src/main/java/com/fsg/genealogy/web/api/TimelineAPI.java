@@ -28,7 +28,7 @@ public class TimelineAPI {
 		timeline.merge();
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/{familyId}", headers = "Accept=application/json")
+	@RequestMapping(method = RequestMethod.GET, value = "/{familyId}/data.jsonp", headers = "Accept=application/json")
 	public ResponseEntity<String> image(@PathVariable Long familyId) {
 		String json = timelineController.buildTimeline(familyId); 		
 		HttpHeaders headers = new HttpHeaders();
