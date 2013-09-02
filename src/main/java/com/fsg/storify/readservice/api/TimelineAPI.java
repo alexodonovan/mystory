@@ -28,6 +28,8 @@ public class TimelineAPI {
 		return jsonP.toString();		
 	}		
 	
+//	@RequestMapping(value="/search.jsonp/{query}", method = RequestMethod.GET, produces="text/javascript",  headers = "Accept=application/json")
+	
 	@RequestMapping(value="/{searchString}/data.jsonpp", method = RequestMethod.GET, produces="text/javascript")
 	public @ResponseBody String getDataForEdit(@PathVariable String searchString, @RequestParam(value="callback") String callback){
 		List<Family> resultList = Family.findFamilysBySurnameLike(searchString).getResultList();
@@ -38,11 +40,8 @@ public class TimelineAPI {
 									.append(timeline.toJson())
 									.append(");");		
 		
-		return jsonP.toString();		
-		
+		return jsonP.toString();			
 	}
-	
-	
 	
 	@RequestMapping(value="/{searchString}/data.json", method = RequestMethod.GET)
 	public @ResponseBody String getDataJson(@PathVariable String searchString){		

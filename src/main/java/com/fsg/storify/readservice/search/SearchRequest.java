@@ -4,7 +4,8 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.json.RooJson;
 
 
-@RooJson @RooJavaBean
+@RooJson 
+@RooJavaBean
 public class SearchRequest {
 	
 	private String query;	
